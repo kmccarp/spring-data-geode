@@ -278,7 +278,7 @@ public class LocatorFactoryBean extends AbstractFactoryBeanSupport<Locator> impl
 	}
 
 	private int assertPort(@NonNull int port) {
-		Assert.isTrue(port >= 0 && port < 65536, String.format("Network port [%d] is not valid", port));
+		Assert.isTrue(port >= 0 && port < 65536, "Network port [%d] is not valid".formatted(port));
 		return port;
 	}
 

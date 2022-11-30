@@ -22,7 +22,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -100,7 +99,7 @@ public class LookupPartitionRegionMutationIntegrationTests extends IntegrationTe
 	private void assertExpirationAttributes(ExpirationAttributes expirationAttributes,
 			String description, int expectedTimeout, ExpirationAction expectedAction) {
 
-		assertNotNull(String.format("ExpirationAttributes for '%1$s' must not be null", description),
+		assertNotNull("ExpirationAttributes for '%1$s' must not be null".formatted(description),
 			expirationAttributes);
 		assertEquals(expectedAction, expirationAttributes.getAction());
 		assertEquals(expectedTimeout, expirationAttributes.getTimeout());
@@ -122,14 +121,14 @@ public class LookupPartitionRegionMutationIntegrationTests extends IntegrationTe
 
 	private void assertRegionAttributes(Region<?, ?> region, String expectedName, DataPolicy expectedDataPolicy) {
 
-		assertRegionAttributes(region, expectedName, String.format("%1$s%2$s", Region.SEPARATOR, expectedName),
+		assertRegionAttributes(region, expectedName, "%1$s%2$s".formatted(Region.SEPARATOR, expectedName),
 			expectedDataPolicy);
 	}
 
 	private void assertRegionAttributes(Region<?, ?> region, String expectedName, String expectedFullPath,
 			DataPolicy expectedDataPolicy) {
 
-		assertNotNull(String.format("'%1$s' Region was not properly initialized", region));
+		assertNotNull("'%1$s' Region was not properly initialized".formatted(region));
 		assertEquals(expectedName, region.getName());
 		assertEquals(expectedFullPath, region.getFullPath());
 		assertNotNull(region.getAttributes());
@@ -165,7 +164,7 @@ public class LookupPartitionRegionMutationIntegrationTests extends IntegrationTe
 		assertNotNull(example.getAttributes().getAsyncEventQueueIds());
 		assertEquals(1, example.getAttributes().getAsyncEventQueueIds().size());
 		assertEquals("AEQ", example.getAttributes().getAsyncEventQueueIds().iterator().next());
-		assertGatewaySenders(example, Collections.singletonList("GWS"));
+		assertGatewaySenders(example, List.of("GWS"));
 	}
 
 	interface Nameable extends BeanNameAware {

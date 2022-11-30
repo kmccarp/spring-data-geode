@@ -72,7 +72,7 @@ public class SnapshotServiceImportExportIntegrationTests extends SpringApplicati
 
 		assertThat(actualRegion).isNotNull();
 		assertThat(actualRegion.getName()).isEqualTo("People");
-		assertThat(actualRegion.getFullPath()).isEqualTo(String.format("%1$s%2$s", Region.SEPARATOR, expectedName));
+		assertThat(actualRegion.getFullPath()).isEqualTo("%1$s%2$s".formatted(Region.SEPARATOR, expectedName));
 		assertThat(actualRegion.size()).isEqualTo(expectedSize);
 	}
 

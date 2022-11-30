@@ -167,7 +167,7 @@ public class ReplicatedRegionNamespaceIntegrationTests extends IntegrationTestsS
 
 		Region<?, ?> region = applicationContext.getBean("replicated-with-synchronous-index-updates", Region.class);
 
-		assertThat(region).as(String.format("The '%1$s' Region was not properly configured and initialized",
+		assertThat(region).as("The '%1$s' Region was not properly configured and initialized".formatted(
 			"replicated-with-synchronous-index-updates")).isNotNull();
 
 		RegionAttributes<?, ?> regionAttributes = region.getAttributes();

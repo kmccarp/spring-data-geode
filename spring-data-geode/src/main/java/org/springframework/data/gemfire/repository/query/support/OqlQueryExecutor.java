@@ -57,7 +57,7 @@ public interface OqlQueryExecutor {
 	 * @see org.springframework.data.gemfire.repository.query.support.UnsupportedQueryExecutionException
 	 */
 	default UnsupportedQueryExecutionException newUnsupportedQueryExecutionException(String query) {
-		return new UnsupportedQueryExecutionException(String.format(NON_EXECUTABLE_QUERY_MESSAGE, query,
+		return new UnsupportedQueryExecutionException(NON_EXECUTABLE_QUERY_MESSAGE.formatted(query,
 			this.getClass().getName()));
 	}
 

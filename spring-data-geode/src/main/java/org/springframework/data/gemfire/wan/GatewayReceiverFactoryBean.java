@@ -104,7 +104,7 @@ public class GatewayReceiverFactoryBean extends AbstractWANComponentFactoryBean<
 		int localEndPort = defaultPort(this.endPort, GatewayReceiver.DEFAULT_END_PORT);
 
 		Assert.isTrue(localStartPort <= localEndPort,
-			String.format("[startPort] must be less than or equal to [%d]", localEndPort));
+			"[startPort] must be less than or equal to [%d]".formatted(localEndPort));
 
 		gatewayReceiverFactory.setStartPort(localStartPort);
 		gatewayReceiverFactory.setEndPort(localEndPort);

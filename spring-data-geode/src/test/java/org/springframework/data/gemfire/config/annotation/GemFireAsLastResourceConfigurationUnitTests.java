@@ -24,7 +24,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,7 +70,7 @@ public class GemFireAsLastResourceConfigurationUnitTests {
 
 	private AnnotationMetadata mockEnableTransactionManagementWithOrder(Integer order) {
 
-		Map<String, Object> enableTransactionManagementAttributes = Collections.singletonMap("order", order);
+		Map<String, Object> enableTransactionManagementAttributes = Map.of("order", order);
 
 		when(mockImportMetadata.getAnnotationAttributes(eq(EnableTransactionManagement.class.getName())))
 			.thenReturn(enableTransactionManagementAttributes);
@@ -112,9 +111,8 @@ public class GemFireAsLastResourceConfigurationUnitTests {
 		}
 		catch (IllegalStateException expected) {
 
-			assertThat(expected).hasMessage(String.format(
-				"The @%1$s annotation may only be used on a Spring application @%2$s class"
-					+ " that is also annotated with @%3$s having an explicit [order] set",
+			assertThat(expected).hasMessage(("The @%1$s annotation may only be used on a Spring application @%2$s class"
+				+ " that is also annotated with @%3$s having an explicit [order] set").formatted(
 				EnableGemFireAsLastResource.class.getSimpleName(), Configuration.class.getSimpleName(),
 				EnableTransactionManagement.class.getSimpleName()));
 
@@ -138,9 +136,8 @@ public class GemFireAsLastResourceConfigurationUnitTests {
 		}
 		catch (IllegalArgumentException expected) {
 
-			assertThat(expected).hasMessage(String.format(
-				"The @%1$s(order) attribute value [%2$d] must be explicitly set to a value other than"
-					+ " Integer.MAX_VALUE or Integer.MIN_VALUE",
+			assertThat(expected).hasMessage(("The @%1$s(order) attribute value [%2$d] must be explicitly set to a value other than"
+				+ " Integer.MAX_VALUE or Integer.MIN_VALUE").formatted(
 				EnableTransactionManagement.class.getSimpleName(), Integer.MAX_VALUE));
 
 			assertThat(expected).hasNoCause();
@@ -157,9 +154,8 @@ public class GemFireAsLastResourceConfigurationUnitTests {
 		}
 		catch (IllegalArgumentException expected) {
 
-			assertThat(expected).hasMessage(String.format(
-				"The @%1$s(order) attribute value [%2$d] must be explicitly set to a value other than"
-					+ " Integer.MAX_VALUE or Integer.MIN_VALUE",
+			assertThat(expected).hasMessage(("The @%1$s(order) attribute value [%2$d] must be explicitly set to a value other than"
+				+ " Integer.MAX_VALUE or Integer.MIN_VALUE").formatted(
 				EnableTransactionManagement.class.getSimpleName(), Integer.MIN_VALUE));
 
 			assertThat(expected).hasNoCause();
@@ -183,8 +179,8 @@ public class GemFireAsLastResourceConfigurationUnitTests {
 		}
 		catch (IllegalStateException expected) {
 
-			assertThat(expected).hasMessage(String.format("The @%1$s(order) attribute was not properly set [null];"
-				+ " Also, please make your Spring application @%2$s annotated class is annotated with both @%3$s and @%1$s",
+			assertThat(expected).hasMessage(("The @%1$s(order) attribute was not properly set [null];"
+				+ " Also, please make your Spring application @%2$s annotated class is annotated with both @%3$s and @%1$s").formatted(
 				EnableTransactionManagement.class.getSimpleName(), Configuration.class.getSimpleName(),
 				EnableGemFireAsLastResource.class.getSimpleName()));
 

@@ -148,7 +148,7 @@ public abstract class GemfireFunctionUtils {
 	private static String nullSafeName(Method method) {
 
 		return Optional.ofNullable(method)
-			.map(it -> String.format("%s.%s", method.getDeclaringClass().getName(), method.getName()))
+			.map(it -> "%s.%s".formatted(method.getDeclaringClass().getName(), method.getName()))
 			.orElse(null);
 	}
 
@@ -166,7 +166,7 @@ public abstract class GemfireFunctionUtils {
 	@SuppressWarnings("unused")
 	public static void registerFunctionForPojoMethod(Class<?> type, String functionId) {
 
-		Assert.notNull(type, () -> String.format("Class type of POJO containing %s(s) is required",
+		Assert.notNull(type, () -> "Class type of POJO containing %s(s) is required".formatted(
 			GemfireFunction.class.getName()));
 
 		ReflectionUtils.doWithMethods(type,
@@ -216,7 +216,7 @@ public abstract class GemfireFunctionUtils {
 
 		Assert.notNull(target, "Target object is required");
 
-		Assert.isTrue(isGemfireFunction(method), () -> String.format("Method [%s] must be a %s",
+		Assert.isTrue(isGemfireFunction(method), () -> "Method [%s] must be a %s".formatted(
 			nullSafeName(method), GemfireFunction.class.getName()));
 
 		registerFunctionForPojoMethod(target, method, getAnnotationAttributes(method, GemfireFunction.class), overwrite);
@@ -262,7 +262,7 @@ public abstract class GemfireFunctionUtils {
 			int batchSize = gemfireFunctionAttributes.getNumber("batchSize");
 
 			Assert.isTrue(batchSize >= 0,
-				String.format("%1$s.batchSize [%2$d] specified on [%3$s.%4$s] must be a non-negative value",
+				"%1$s.batchSize [%2$d] specified on [%3$s.%4$s] must be a non-negative value".formatted(
 					GemfireFunction.class.getSimpleName(), batchSize, target.getClass().getName(), method.getName()));
 
 			function.setBatchSize(batchSize);
@@ -314,7 +314,7 @@ public abstract class GemfireFunctionUtils {
 	static ResourcePermission parseResourcePermission(String resourcePermissionString) {
 
 		Assert.hasText(resourcePermissionString,
-			String.format("ResourcePermission [%s] is required", resourcePermissionString));
+			"ResourcePermission [%s] is required".formatted(resourcePermissionString));
 
 		ResourcePermission.Resource resource = ResourcePermission.Resource.DATA;
 		ResourcePermission.Operation operation = ResourcePermission.Operation.WRITE;
@@ -420,9 +420,8 @@ public abstract class GemfireFunctionUtils {
 					for (Annotation annotation : annotations) {
 						if (annotation.annotationType().equals(targetAnnotationType)) {
 
-							Assert.state(position < 0, String.format(
-								"Method %s signature cannot contain more than one parameter annotated with type %s",
-									method.getName(), targetAnnotationType.getName()));
+							Assert.state(position < 0, "Method %s signature cannot contain more than one parameter annotated with type %s".formatted(
+								method.getName(), targetAnnotationType.getName()));
 
 							boolean isRequiredType = false;
 
@@ -433,10 +432,9 @@ public abstract class GemfireFunctionUtils {
 								}
 							}
 
-							Assert.isTrue(isRequiredType, String.format(
-								"Parameter of type %s annotated with %s must be assignable from one of type %s in method %s",
-									parameterTypes[index], targetAnnotationType.getName(),
-										StringUtils.arrayToCommaDelimitedString(requiredTypes), method.getName()));
+							Assert.isTrue(isRequiredType, "Parameter of type %s annotated with %s must be assignable from one of type %s in method %s".formatted(
+								parameterTypes[index], targetAnnotationType.getName(),
+								StringUtils.arrayToCommaDelimitedString(requiredTypes), method.getName()));
 
 							position = index;
 						}

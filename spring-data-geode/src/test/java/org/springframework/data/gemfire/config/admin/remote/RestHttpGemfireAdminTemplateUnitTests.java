@@ -133,7 +133,7 @@ public class RestHttpGemfireAdminTemplateUnitTests {
 			})
 			.map(it -> (T) ReflectionUtils.getField(it, target))
 			.orElseThrow(() ->
-				new NoSuchFieldException(String.format("Field [%s] was not found on Object of type [%s]",
+				new NoSuchFieldException("Field [%s] was not found on Object of type [%s]".formatted(
 					fieldName, target.getClass().getName())));
 	}
 
@@ -145,8 +145,8 @@ public class RestHttpGemfireAdminTemplateUnitTests {
 		assertThat(template).isNotNull();
 		assertThat(template.getClientCache()).isSameAs(this.mockClientCache);
 		assertThat(template.getManagementRestApiUrl())
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE,
-				RestHttpGemfireAdminTemplate.DEFAULT_SCHEME, RestHttpGemfireAdminTemplate.DEFAULT_HOST));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE).formatted(
+			RestHttpGemfireAdminTemplate.DEFAULT_SCHEME, RestHttpGemfireAdminTemplate.DEFAULT_HOST));
 		assertThat(template.<RestOperations>getRestOperations()).isInstanceOf(RestTemplate.class);
 
 		RestTemplate restTemplate = template.getRestOperations();
@@ -171,13 +171,13 @@ public class RestHttpGemfireAdminTemplateUnitTests {
 
 		RestHttpGemfireAdminTemplate template =
 			new RestHttpGemfireAdminTemplate(this.mockClientCache, "sftp", "skullbox", 8080,
-				false, Collections.singletonList(mockInterceptor));
+				false, List.of(mockInterceptor));
 
 		assertThat(template).isNotNull();
 		assertThat(template.getClientCache()).isSameAs(this.mockClientCache);
 		assertThat(template.getManagementRestApiUrl())
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE,
-				"sftp", "skullbox", 8080));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE).formatted(
+			"sftp", "skullbox", 8080));
 		assertThat(template.<RestOperations>getRestOperations()).isInstanceOf(RestTemplate.class);
 
 		RestTemplate restTemplate = (RestTemplate) template.getRestOperations();
@@ -285,44 +285,44 @@ public class RestHttpGemfireAdminTemplateUnitTests {
 	public void resolvesManagementRestApiUrlCorrectly() {
 
 		assertThat(this.template.resolveManagementRestApiUrl("http", "boombox", 80))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE,
-				"http", "boombox", 80));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE).formatted(
+			"http", "boombox", 80));
 
 		assertThat(this.template.resolveManagementRestApiUrl("https", "cardboardbox", 443))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE,
-				"https", "cardboardbox", 443));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE).formatted(
+			"https", "cardboardbox", 443));
 
 		assertThat(this.template.resolveManagementRestApiUrl("ftp", "lunchbox", 21))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE,
-				"ftp", "lunchbox", 21));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE).formatted(
+			"ftp", "lunchbox", 21));
 
 		assertThat(this.template.resolveManagementRestApiUrl("sftp", "mailbox", 22))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE,
-				"sftp", "mailbox", 22));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE).formatted(
+			"sftp", "mailbox", 22));
 
 		assertThat(this.template.resolveManagementRestApiUrl("smtp", "skullbox", 25))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE,
-				"smtp", "skullbox", 25));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_URL_TEMPLATE).formatted(
+			"smtp", "skullbox", 25));
 	}
 
 	@Test
 	public void resolvesManagementRestApiUrlCorrectlyWhenInvalidPortIsGiven() {
 
 		assertThat(this.template.resolveManagementRestApiUrl("https", "box", -1))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE,
-				"https", "box"));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE).formatted(
+			"https", "box"));
 
 		assertThat(this.template.resolveManagementRestApiUrl("http", "dropbox", 0))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE,
-				"http", "dropbox"));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE).formatted(
+			"http", "dropbox"));
 
 		assertThat(this.template.resolveManagementRestApiUrl("https", "jambox", 65536))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE,
-				"https", "jambox"));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE).formatted(
+			"https", "jambox"));
 
 		assertThat(this.template.resolveManagementRestApiUrl("http", "shoebox", 101123))
-			.isEqualTo(String.format(RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE,
-				"http", "shoebox"));
+			.isEqualTo((RestHttpGemfireAdminTemplate.MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE).formatted(
+			"http", "shoebox"));
 	}
 
 	@Test

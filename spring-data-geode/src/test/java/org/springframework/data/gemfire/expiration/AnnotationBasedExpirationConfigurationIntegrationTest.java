@@ -83,7 +83,7 @@ public class AnnotationBasedExpirationConfigurationIntegrationTest extends Integ
 
 		assertThat(example).isNotNull();
 		assertThat(example.getName()).isEqualTo("Example");
-		assertThat(example.getFullPath()).isEqualTo(String.format("%1$s%2$s", Region.SEPARATOR, "Example"));
+		assertThat(example.getFullPath()).isEqualTo("%1$s%2$s".formatted(Region.SEPARATOR, "Example"));
 		assertThat(example.getAttributes()).isNotNull();
 		assertThat(defaultExpirationAttributes).isNotNull();
 		assertThat(defaultExpirationAttributes.getTimeout()).isEqualTo(600);

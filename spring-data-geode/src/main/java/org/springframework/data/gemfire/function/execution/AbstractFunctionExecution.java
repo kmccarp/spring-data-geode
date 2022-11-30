@@ -242,7 +242,7 @@ abstract class AbstractFunctionExecution {
 			else if (cause instanceof InterruptedException) {
 
 				String message =
-					String.format(FUNCTION_EXECUTION_TIMEOUT_ERROR_MESSAGE, resolveFunctionIdentifier(), timeout);
+					FUNCTION_EXECUTION_TIMEOUT_ERROR_MESSAGE.formatted(resolveFunctionIdentifier(), timeout);
 
 				throw new ExecutionTimeoutFunctionException(message, cause);
 			}
@@ -291,7 +291,7 @@ abstract class AbstractFunctionExecution {
 
 		return result instanceof Iterable
 			? (Iterable<T>) result
-			: (Iterable<T>) Collections.singleton(result);
+			: (Iterable<T>) Set.of(result);
 	}
 
 	/**
@@ -324,9 +324,9 @@ abstract class AbstractFunctionExecution {
 
 			Function<?> function = getFunction();
 
-			String message = String.format("Execution of Function [%s] failed", function != null
+			String message = "Execution of Function [%s] failed".formatted(function != null
 				? function.getClass().getName()
-				: String.format("with ID [%s]", getFunctionId()));
+				: "with ID [%s]".formatted(getFunctionId()));
 
 			throw new FunctionException(message, (Throwable) result);
 		}

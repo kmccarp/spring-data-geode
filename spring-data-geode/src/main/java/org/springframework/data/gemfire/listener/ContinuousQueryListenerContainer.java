@@ -102,7 +102,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 
 	// Default Thread name prefix is "ContinuousQueryListenerContainer-"
 	public static final String DEFAULT_THREAD_NAME_PREFIX =
-		String.format("%s-", ContinuousQueryListenerContainer.class.getSimpleName());
+		"%s-".formatted(ContinuousQueryListenerContainer.class.getSimpleName());
 
 	// Default PoolResolver uses Apache Geode's PoolManager
 	protected static final PoolResolver DEFAULT_POOL_RESOLVER = new PoolManagerPoolResolver();
@@ -241,7 +241,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 	String eagerlyInitializePool(String poolName) {
 
 		Supplier<String> poolNameResolver = () -> {
-			Assert.notNull(resolvePool(poolName), String.format("No Pool with name [%s] was found", poolName));
+			Assert.notNull(resolvePool(poolName), "No Pool with name [%s] was found".formatted(poolName));
 			return poolName;
 		};
 
@@ -330,7 +330,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 
 		String threadNamePrefix = Optional.ofNullable(getBeanName())
 			.filter(StringUtils::hasText)
-			.map(it -> String.format("%s-", it))
+			.map(it -> "%s-".formatted(it))
 			.orElse(DEFAULT_THREAD_NAME_PREFIX);
 
 		return new SimpleAsyncTaskExecutor(threadNamePrefix);
@@ -692,7 +692,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 			return manage(query);
 		}
 		catch (QueryException cause) {
-			throw new GemfireQueryException(String.format("Unable to create query [%s]", definition.getQuery()), cause);
+			throw new GemfireQueryException("Unable to create query [%s]".formatted(definition.getQuery()), cause);
 		}
 	}
 
@@ -743,7 +743,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 			query.execute();
 		}
 		catch (QueryException cause) {
-			throw new GemfireQueryException(String.format("Could not execute query [%1$s]; state is [%2$s]",
+			throw new GemfireQueryException("Could not execute query [%1$s]; state is [%2$s]".formatted(
 				query.getName(), query.getState()), cause);
 		}
 	}
@@ -803,7 +803,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 			})
 			.ifPresent(errorHandler -> errorHandler.handleError(cause));
 
-		if (!getErrorHandler().isPresent() && this.logger.isWarnEnabled()) {
+		if (getErrorHandler().isEmpty() && this.logger.isWarnEnabled()) {
 			this.logger.warn("Execution of CQ listener failed; No ErrorHandler was configured", cause);
 		}
 	}
@@ -836,7 +836,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 			}
 			catch (Exception cause) {
 				if (this.logger.isWarnEnabled()) {
-					this.logger.warn(String.format("Cannot stop query [%1$s]; state is [%2$s]",
+					this.logger.warn("Cannot stop query [%1$s]; state is [%2$s]".formatted(
 						query.getName(), query.getState()), cause);
 				}
 			}
@@ -863,7 +863,7 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 				}
 				catch (Exception cause) {
 					if (logger.isWarnEnabled()) {
-						logger.warn(String.format("Cannot close query [%1$s]; state is [%2$s]",
+						logger.warn("Cannot close query [%1$s]; state is [%2$s]".formatted(
 							query.getName(), query.getState()), cause);
 					}
 				}

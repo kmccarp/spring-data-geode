@@ -126,7 +126,7 @@ public class SnapshotApplicationEventTriggeredImportsExportsIntegrationTests ext
 	private void assertPerson(Person expectedPerson, Person actualPerson) {
 
 		assertThat(actualPerson)
-			.describedAs(String.format("Expected [%1$s]; but was [%2$s]", expectedPerson, actualPerson))
+			.describedAs("Expected [%1$s]; but was [%2$s]".formatted(expectedPerson, actualPerson))
 			.isNotNull();
 
 		assertThat(actualPerson.getId()).isEqualTo(expectedPerson.getId());

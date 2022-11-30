@@ -328,7 +328,7 @@ public class LuceneIndexFactoryBean extends AbstractFactoryBeanSupport<LuceneInd
 	 * @return a resolve {@link List} of object fields to index.
 	 */
 	protected List<String> resolveFields(List<String> fields) {
-		return !isEmpty(fields) ? fields : Collections.singletonList(LuceneService.REGION_VALUE_FIELD);
+		return !isEmpty(fields) ? fields : List.of(LuceneService.REGION_VALUE_FIELD);
 	}
 
 	/**

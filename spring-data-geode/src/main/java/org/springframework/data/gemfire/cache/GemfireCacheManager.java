@@ -61,7 +61,7 @@ public class GemfireCacheManager extends AbstractCacheManager {
 	@SuppressWarnings("all")
 	<T extends GemFireCache> T assertGemFireCacheAvailable(T gemfireCache) {
 		Assert.state(gemfireCache != null, "A GemFire cache instance is required");
-		Assert.state(!gemfireCache.isClosed(), String.format("GemFire cache [%s] has been closed",
+		Assert.state(!gemfireCache.isClosed(), "GemFire cache [%s] has been closed".formatted(
 			gemfireCache.getName()));
 
 		return gemfireCache;
@@ -70,8 +70,8 @@ public class GemfireCacheManager extends AbstractCacheManager {
 	/* (non-Javadoc) */
 	@SuppressWarnings("all")
 	Region<?, ?> assertGemFireRegionAvailable(Region<?, ?> region, String cacheName) {
-		Assert.state(region != null, String.format("No Region for cache name [%s] was found", cacheName));
-		Assert.state(!region.isDestroyed(), String.format("Region [%s] has been destroyed", cacheName));
+		Assert.state(region != null, "No Region for cache name [%s] was found".formatted(cacheName));
+		Assert.state(!region.isDestroyed(), "Region [%s] has been destroyed".formatted(cacheName));
 
 		return region;
 	}

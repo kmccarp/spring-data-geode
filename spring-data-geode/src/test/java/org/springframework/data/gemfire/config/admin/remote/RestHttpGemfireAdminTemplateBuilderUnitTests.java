@@ -69,7 +69,7 @@ public class RestHttpGemfireAdminTemplateBuilderUnitTests {
 			})
 			.map(it -> (T) ReflectionUtils.getField(it, target))
 			.orElseThrow(() ->
-				new NoSuchFieldException(String.format("Field [%s] was not found on Object of type [%s]",
+				new NoSuchFieldException("Field [%s] was not found on Object of type [%s]".formatted(
 					fieldName, target.getClass().getName())));
 	}
 

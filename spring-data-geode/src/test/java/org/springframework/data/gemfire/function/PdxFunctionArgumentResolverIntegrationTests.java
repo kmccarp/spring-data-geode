@@ -367,7 +367,7 @@ public class PdxFunctionArgumentResolverIntegrationTests extends IntegrationTest
 
 		@Override
 		public String toString() {
-			return String.format("%1$s %2$s is a %3$s", getFirstName(), getLastName(), getGender());
+			return "%1$s %2$s is a %3$s".formatted(getFirstName(), getLastName(), getGender());
 		}
 	}
 

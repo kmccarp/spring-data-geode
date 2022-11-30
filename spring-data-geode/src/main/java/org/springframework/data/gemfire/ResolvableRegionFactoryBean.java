@@ -160,7 +160,7 @@ public abstract class ResolvableRegionFactoryBean<K, V> extends AbstractFactoryB
 	 * @see org.apache.geode.cache.Region
 	 */
 	protected Region<K, V> createRegion(GemFireCache cache, String regionName) throws Exception {
-		throw new BeanInitializationException(String.format(REGION_NOT_FOUND_ERROR_MESSAGE, regionName, cache));
+		throw new BeanInitializationException(REGION_NOT_FOUND_ERROR_MESSAGE.formatted(regionName, cache));
 	}
 
 	/**

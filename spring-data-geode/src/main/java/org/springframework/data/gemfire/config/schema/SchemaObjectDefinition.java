@@ -111,6 +111,6 @@ public abstract class SchemaObjectDefinition implements Serializable, Ordered {
 
 	@Override
 	public String toString() {
-		return String.format("%1$s[%2$s]", getType(), getName());
+		return "%1$s[%2$s]".formatted(getType(), getName());
 	}
 }

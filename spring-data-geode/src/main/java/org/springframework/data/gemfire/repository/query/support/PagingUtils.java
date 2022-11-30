@@ -73,11 +73,11 @@ public abstract class PagingUtils {
 
 		int pageNumber = pageable.getPageNumber();
 
-		Assert.isTrue(pageNumber >= 0, () -> String.format(INVALID_PAGE_NUMBER_MESSAGE, pageNumber));
+		Assert.isTrue(pageNumber >= 0, () -> INVALID_PAGE_NUMBER_MESSAGE.formatted(pageNumber));
 
 		int pageSize = pageable.getPageSize();
 
-		Assert.isTrue(pageSize > 0, () -> String.format(INVALID_PAGE_SIZE_MESSAGE, pageSize));
+		Assert.isTrue(pageSize > 0, () -> INVALID_PAGE_SIZE_MESSAGE.formatted(pageSize));
 	}
 
 	/**
@@ -155,7 +155,7 @@ public abstract class PagingUtils {
 		Parameters<?, ?> queryMethodParameters = queryMethod.getParameters();
 
 		Assert.state(queryMethodParameters.hasPageableParameter(),
-			() -> String.format("QueryMethod [%s] does not have a Pageable parameter", queryMethod));
+			() -> "QueryMethod [%s] does not have a Pageable parameter".formatted(queryMethod));
 
 		arguments = ArrayUtils.nullSafeArray(arguments, Object.class);
 
@@ -163,7 +163,7 @@ public abstract class PagingUtils {
 		long queryMethodParameterCount = queryMethodParameters.stream().count();
 
 		Assert.isTrue(queryMethodArgumentCount == queryMethodParameterCount,
-			() -> String.format("The number of arguments [%d] must match the number of QueryMethod [%s] parameters [%d]",
+			() -> "The number of arguments [%d] must match the number of QueryMethod [%s] parameters [%d]".formatted(
 				queryMethodArgumentCount, queryMethod, queryMethodParameterCount));
 
 		int pageableIndex = queryMethodParameters.getPageableIndex();
@@ -171,7 +171,7 @@ public abstract class PagingUtils {
 		Object pageableArgument = arguments[pageableIndex];
 
 		Assert.isInstanceOf(Pageable.class, pageableArgument,
-			() -> String.format("Argument [%1$s] must be of type [%2$s]", pageableArgument, Pageable.class.getName()));
+			() -> "Argument [%1$s] must be of type [%2$s]".formatted(pageableArgument, Pageable.class.getName()));
 
 		return (Pageable) pageableArgument;
 	}

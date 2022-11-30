@@ -37,7 +37,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
-import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Test;
@@ -308,7 +308,7 @@ public class CacheFactoryBeanUnitTests {
 		cacheFactoryBean.setPdxSerializer(mockPdxSerializer);
 		cacheFactoryBean.setProperties(gemfireProperties);
 		cacheFactoryBean.setSearchTimeout(45000);
-		cacheFactoryBean.setTransactionListeners(Collections.singletonList(mockTransactionLister));
+		cacheFactoryBean.setTransactionListeners(List.of(mockTransactionLister));
 		cacheFactoryBean.setTransactionWriter(mockTransactionWriter);
 		cacheFactoryBean.setUseBeanFactoryLocator(true);
 
@@ -820,7 +820,7 @@ public class CacheFactoryBeanUnitTests {
 		cacheFactoryBean.setEvictionHeapPercentage(0.70f);
 		cacheFactoryBean.setEvictionOffHeapPercentage(0.80f);
 		cacheFactoryBean.setGatewayConflictResolver(mockGatewayConflictResolver);
-		cacheFactoryBean.setJndiDataSources(Collections.singletonList(new CacheFactoryBean.JndiDataSource()));
+		cacheFactoryBean.setJndiDataSources(List.of(new CacheFactoryBean.JndiDataSource()));
 		cacheFactoryBean.setLockLease(15000);
 		cacheFactoryBean.setLockTimeout(5000);
 		cacheFactoryBean.setMessageSyncInterval(10000);
@@ -830,7 +830,7 @@ public class CacheFactoryBeanUnitTests {
 		cacheFactoryBean.setPdxIgnoreUnreadFields(true);
 		cacheFactoryBean.setPdxDiskStoreName("TestPdxDiskStore");
 		cacheFactoryBean.setSearchTimeout(30000);
-		cacheFactoryBean.setTransactionListeners(Collections.singletonList(mockTransactionListener));
+		cacheFactoryBean.setTransactionListeners(List.of(mockTransactionListener));
 		cacheFactoryBean.setTransactionWriter(mockTransactionWriter);
 		cacheFactoryBean.setUseClusterConfiguration(true);
 

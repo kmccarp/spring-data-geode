@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.InetSocketAddress;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Supplier;
 
 import org.junit.Test;
@@ -98,8 +99,7 @@ public class FactoryDefaultsPoolAdapterTest {
 
 	@Test
 	public void serversReturnsLocalhostListeningOnDefaultCacheServerPort() {
-		assertThat(this.poolAdapter.getServers()).isEqualTo(Collections.singletonList(
-			newSocketAddress("localhost", DEFAULT_CACHE_SERVER_PORT)));
+		assertThat(this.poolAdapter.getServers()).isEqualTo(List.of(newSocketAddress("localhost", DEFAULT_CACHE_SERVER_PORT)));
 	}
 
 	private <T> T testPoolOperationIsUnsupported(Supplier<T> poolOperation) {

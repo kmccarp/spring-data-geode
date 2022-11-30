@@ -219,7 +219,7 @@ public class AddPoolConfiguration extends AbstractAnnotationConfigSupport
 
 		return Optional.ofNullable(this.poolConfigurers)
 			.filter(poolConfigurers -> !poolConfigurers.isEmpty())
-			.orElseGet(() -> Collections.singletonList(LazyResolvingComposablePoolConfigurer.create(getBeanFactory())));
+			.orElseGet(() -> List.of(LazyResolvingComposablePoolConfigurer.create(getBeanFactory())));
 	}
 
 	protected String getAndValidatePoolName(Map<String, Object> enablePoolAttributes) {

@@ -111,14 +111,14 @@ public class GemfireTemplateQueriesOnGroupedPooledClientCacheRegionsIntegrationT
 		int cacheServerPortTwo = findAndReserveAvailablePort();
 
 		serverOne = run(GemFireCacheServerOneConfiguration.class,
-			String.format("-Dspring.data.gemfire.cache.server.port=%d", cacheServerPortOne),
-			String.format("-Dspring.data.gemfire.locator.port=%d", locatorPort));
+			"-Dspring.data.gemfire.cache.server.port=%d".formatted(cacheServerPortOne),
+			"-Dspring.data.gemfire.locator.port=%d".formatted(locatorPort));
 
 		waitForServerToStart("localhost", cacheServerPortOne);
 
 		serverTwo = run(GemFireCacheServerTwoConfiguration.class,
-			String.format("-Dspring.data.gemfire.cache.server.port=%d", cacheServerPortTwo),
-			String.format("-Dspring.data.gemfire.locator.port=%d", locatorPort));
+			"-Dspring.data.gemfire.cache.server.port=%d".formatted(cacheServerPortTwo),
+			"-Dspring.data.gemfire.locator.port=%d".formatted(locatorPort));
 
 		waitForServerToStart("localhost", cacheServerPortTwo);
 
@@ -275,7 +275,7 @@ public class GemfireTemplateQueriesOnGroupedPooledClientCacheRegionsIntegrationT
 			return PropertiesBuilder.create()
 				.setProperty("name", applicationName())
 				.setProperty("log-level", logLevel())
-				.setProperty("locators", String.format("localhost[%d]", locatorPort))
+				.setProperty("locators", "localhost[%d]".formatted(locatorPort))
 				.setProperty("groups", groups())
 				.setProperty("start-locator", startLocator(locatorPort))
 				.build();
@@ -336,7 +336,7 @@ public class GemfireTemplateQueriesOnGroupedPooledClientCacheRegionsIntegrationT
 
 		@Override
 		String startLocator(int locatorPort) {
-			return String.format("localhost[%d]", locatorPort);
+			return "localhost[%d]".formatted(locatorPort);
 		}
 
 		@Bean(name = "Cats")

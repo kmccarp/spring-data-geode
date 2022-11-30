@@ -397,7 +397,7 @@ public class GemfireRepositoryFactoryBean<T extends Repository<S, ID>, S, ID>
 
 			@Override
 			public String toString() {
-				return String.format("{ queryPostProcessor: %s }", getQueryPostProcessor());
+				return "{ queryPostProcessor: %s }".formatted(getQueryPostProcessor());
 			}
 		}
 	}

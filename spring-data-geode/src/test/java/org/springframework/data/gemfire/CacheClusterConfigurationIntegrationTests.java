@@ -107,7 +107,7 @@ public class CacheClusterConfigurationIntegrationTests extends ForkingClientServ
 			if (Arrays.asList("config", "debug", "info").contains(LOG_LEVEL.toLowerCase())) {
 				try {
 					FileUtils.write(new File(locatorWorkingDirectory.getParent(),
-						String.format("%s-clusterconfiglocator.log", description.getMethodName())),
+						"%s-clusterconfiglocator.log".formatted(description.getMethodName())),
 							getLocatorProcessOutput(description));
 				}
 				catch (IllegalArgumentException | IOException cause) {
@@ -121,7 +121,7 @@ public class CacheClusterConfigurationIntegrationTests extends ForkingClientServ
 			try {
 
 				String locatorProcessOutputString = StringUtils.collectionToDelimitedString(locatorProcessOutput,
-					FileUtils.LINE_SEPARATOR, String.format("[%s] - ", description.getMethodName()), "");
+					FileUtils.LINE_SEPARATOR, "[%s] - ".formatted(description.getMethodName()), "");
 
 				locatorProcessOutputString = StringUtils.hasText(locatorProcessOutputString)
 					? locatorProcessOutputString
@@ -146,7 +146,7 @@ public class CacheClusterConfigurationIntegrationTests extends ForkingClientServ
 
 		int locatorPort = findAndReserveAvailablePort();
 
-		String locatorName = String.format("ClusterConfigLocator-%d", System.currentTimeMillis());
+		String locatorName = "ClusterConfigLocator-%d".formatted(System.currentTimeMillis());
 
 		locatorWorkingDirectory = createDirectory(new File(FileSystemUtils.WORKING_DIRECTORY, locatorName.toLowerCase()));
 
@@ -154,14 +154,14 @@ public class CacheClusterConfigurationIntegrationTests extends ForkingClientServ
 
 		List<String> arguments = new ArrayList<>();
 
-		arguments.add(String.format("-Dgemfire.name=%s", locatorName));
-		arguments.add(String.format("-Dlog4j.geode.log.level=%s", LOG_LEVEL));
-		arguments.add(String.format("-Dlogback.log.level=%s", LOG_LEVEL));
+		arguments.add("-Dgemfire.name=%s".formatted(locatorName));
+		arguments.add("-Dlog4j.geode.log.level=%s".formatted(LOG_LEVEL));
+		arguments.add("-Dlogback.log.level=%s".formatted(LOG_LEVEL));
 		arguments.add("-Dspring.data.gemfire.enable-cluster-configuration=true");
 		arguments.add("-Dspring.data.gemfire.load-cluster-configuration=true");
-		arguments.add(String.format("-Dgemfire.log-file=%s", LOG_FILE));
-		arguments.add(String.format("-Dgemfire.log-level=%s", LOG_LEVEL));
-		arguments.add(String.format("-Dspring.data.gemfire.locator.port=%d", locatorPort));
+		arguments.add("-Dgemfire.log-file=%s".formatted(LOG_FILE));
+		arguments.add("-Dgemfire.log-level=%s".formatted(LOG_LEVEL));
+		arguments.add("-Dspring.data.gemfire.locator.port=%d".formatted(locatorPort));
 
 		locatorProcess = run(locatorWorkingDirectory, LocatorProcess.class, arguments.toArray(new String[0]));
 		locatorProcess.register(input -> locatorProcessOutput.add(input));
@@ -280,7 +280,7 @@ public class CacheClusterConfigurationIntegrationTests extends ForkingClientServ
 
 			assertThat(expected.getCause().getMessage()
 				.matches("Region \\[ClusterConfigRegion\\] in Cache \\[.*\\] not found"))
-				.as(String.format("Message was [%s]", expected.getMessage())).isTrue();
+				.as("Message was [%s]".formatted(expected.getMessage())).isTrue();
 
 			throw expected;
 		}

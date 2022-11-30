@@ -241,7 +241,7 @@ public class AbstractGemFireAsLastResourceAspectSupport implements Ordered {
 	 * @see java.lang.String#format(String, Object...)
 	 */
 	protected String format(String message, Object... args) {
-		return String.format(message, args);
+		return message.formatted(args);
 	}
 
 	/**
@@ -526,7 +526,7 @@ public class AbstractGemFireAsLastResourceAspectSupport implements Ordered {
 			catch (ResourceException cause) {
 
 				String message =
-					String.format("Failed to acquire GemFire Connection from GemFire's JCA ResourceAdapter: %s",
+					"Failed to acquire GemFire Connection from GemFire's JCA ResourceAdapter: %s".formatted(
 						cause.getMessage());
 
 				if (throwOnError) {
@@ -563,7 +563,7 @@ public class AbstractGemFireAsLastResourceAspectSupport implements Ordered {
 				}
 				catch (ResourceException cause) {
 
-					String message = String.format("Failed to close GemFire Connection: %s", cause.getMessage());
+					String message = "Failed to close GemFire Connection: %s".formatted(cause.getMessage());
 
 					if (throwOnError) {
 						throw newRuntimeException(cause, message);

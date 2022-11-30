@@ -205,7 +205,7 @@ public class DiskStoreConfiguration extends AbstractAnnotationConfigSupport
 		return Optional.ofNullable(this.diskStoreConfigurers)
 			.filter(diskStoreConfigurers -> !diskStoreConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableDiskStoreConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableDiskStoreConfigurer.create(getBeanFactory())));
 	}
 
 	protected BeanDefinitionBuilder resolveDiskStoreDirectories(String diskStoreName,

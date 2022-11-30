@@ -69,7 +69,7 @@ public class DiskStoreDirectoryBeanPostProcessor implements BeanPostProcessor {
 		File diskDirectoryFile = new File(location);
 
 		Assert.isTrue(diskDirectoryFile.isDirectory() || diskDirectoryFile.mkdirs(),
-			String.format("Failed to create Disk Directory [%s]%n", location));
+			"Failed to create Disk Directory [%s]%n".formatted(location));
 
 		if (logger.isInfoEnabled()) {
 			logger.info("Disk Directory is @ Location [{}].%n", location);
@@ -92,7 +92,7 @@ public class DiskStoreDirectoryBeanPostProcessor implements BeanPostProcessor {
 			while (field == null && !Object.class.equals(type));
 
 			if (field == null) {
-				throw new NoSuchFieldException(String.format("No field with name [%1$s] found on object of type [%2$s]",
+				throw new NoSuchFieldException("No field with name [%1$s] found on object of type [%2$s]".formatted(
 					fieldName, ObjectUtils.nullSafeClassName(obj)));
 			}
 
@@ -101,7 +101,7 @@ public class DiskStoreDirectoryBeanPostProcessor implements BeanPostProcessor {
 			return (T) field.get(obj);
 		}
 		catch (Exception e) {
-			throw new RuntimeException(String.format("Failed to read field [%1$s] from object of type [%2$s]",
+			throw new RuntimeException("Failed to read field [%1$s] from object of type [%2$s]".formatted(
 				fieldName, ObjectUtils.nullSafeClassName(obj)), e);
 		}
 	}

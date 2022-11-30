@@ -98,28 +98,28 @@ public class ShiroSecuredClusteredLocatorApplicationIntegrationTests
 		int locatorPort = findAndReserveAvailablePort();
 
 		String locatorBaseName = ShiroSecuredClusteredLocatorApplicationIntegrationTests.class.getSimpleName().concat("%s");
-		String locatorOneName = String.format(locatorBaseName, "LocatorOne");
-		String locatorTwoName = String.format(locatorBaseName, "LocatorTwo");
+		String locatorOneName = locatorBaseName.formatted("LocatorOne");
+		String locatorTwoName = locatorBaseName.formatted("LocatorTwo");
 
 		locatorProcessOne = run(createDirectory(locatorOneName), TestLocatorApplication.class,
 			"-Dspring.profiles.active=auth-server",
-			String.format("-Dspring.data.gemfire.locator.name=%s", locatorOneName),
-			String.format("-Dspring.data.gemfire.locator.port=%d", locatorPort));
+			"-Dspring.data.gemfire.locator.name=%s".formatted(locatorOneName),
+			"-Dspring.data.gemfire.locator.port=%d".formatted(locatorPort));
 
 		waitForServerToStart("localhost", locatorPort);
 
 		locatorProcessTwo = run(createDirectory(locatorTwoName), TestLocatorApplication.class,
 			//String.format("-Dspring.data.gemfire.security.username=%s", CLUSTER_SECURITY_USERNAME),
 			//String.format("-Dspring.data.gemfire.security.password=%s", CLUSTER_SECURITY_PASSWORD),
-			String.format("-Dspring.data.gemfire.locator.name=%s", locatorTwoName),
-			String.format("-Dspring.data.gemfire.locators=localhost[%d]", locatorPort));
+			"-Dspring.data.gemfire.locator.name=%s".formatted(locatorTwoName),
+			"-Dspring.data.gemfire.locators=localhost[%d]".formatted(locatorPort));
 
 		startGemFireServer(TestServerApplication.class,
 			//String.format("-Dspring.data.gemfire.security.username=%s", CLUSTER_SECURITY_USERNAME),
 			//String.format("-Dspring.data.gemfire.security.password=%s", CLUSTER_SECURITY_PASSWORD),
 			//String.format("-Dspring.data.gemfire.security.username=%s", "guest"),
 			//String.format("-Dspring.data.gemfire.security.password=%s", "guest"),
-			String.format("-Dspring.data.gemfire.locators=localhost[%d]", locatorPort));
+			"-Dspring.data.gemfire.locators=localhost[%d]".formatted(locatorPort));
 	}
 
 	@AfterClass

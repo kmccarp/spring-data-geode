@@ -49,7 +49,7 @@ public class Programmer extends User {
 
 	@Override
 	public String toString() {
-		return String.format("%1$s programs in '%2$s.", getUsername(), getProgrammingLanguage());
+		return "%1$s programs in '%2$s.".formatted(getUsername(), getProgrammingLanguage());
 	}
 
 }

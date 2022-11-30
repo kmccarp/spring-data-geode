@@ -242,7 +242,7 @@ public class ClientRegionNamespaceIntegrationTests extends IntegrationTestsSuppo
 		assertThat(compressed.getAttributes().getDataPolicy()).isEqualTo(DataPolicy.EMPTY);
 		assertThat(compressed.getAttributes().getPoolName()).isEqualTo("gemfire-pool");
 		assertThat(compressed.getAttributes().getCompressor() instanceof TestCompressor)
-			.describedAs(String.format("Expected 'TestCompressor'; but was '%s'",
+			.describedAs("Expected 'TestCompressor'; but was '%s'".formatted(
 				ObjectUtils.nullSafeClassName(compressed.getAttributes().getCompressor())))
 			.isTrue();
 		assertThat(compressed.getAttributes().getCompressor().toString()).isEqualTo("STD");

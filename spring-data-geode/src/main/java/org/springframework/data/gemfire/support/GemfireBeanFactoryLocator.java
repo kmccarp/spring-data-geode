@@ -147,7 +147,7 @@ public class GemfireBeanFactoryLocator implements BeanFactoryAware, BeanNameAwar
 		BeanFactory beanFactory = BEAN_FACTORIES.get(beanFactoryKey);
 
 		Assert.isTrue(BEAN_FACTORIES.isEmpty() || beanFactory != null,
-			String.format("BeanFactory for key [%s] was not found", beanFactoryKey));
+			"BeanFactory for key [%s] was not found".formatted(beanFactoryKey));
 
 		return beanFactory;
 	}
@@ -183,7 +183,7 @@ public class GemfireBeanFactoryLocator implements BeanFactoryAware, BeanNameAwar
 			}
 
 			Assert.state(allTheSameBeanFactory,
-				String.format("BeanFactory key must be specified when more than one BeanFactory %s is registered",
+				"BeanFactory key must be specified when more than one BeanFactory %s is registered".formatted(
 					new TreeSet<>(BEAN_FACTORIES.keySet())));
 
 			return BEAN_FACTORIES.values().iterator().next();
@@ -215,7 +215,7 @@ public class GemfireBeanFactoryLocator implements BeanFactoryAware, BeanNameAwar
 			BeanFactory existingBeanFactory = BEAN_FACTORIES.putIfAbsent(name, beanFactory);
 
 			Assert.isTrue(nullOrEquals(existingBeanFactory, beanFactory),
-				String.format("BeanFactory reference already exists for key [%s]", name));
+				"BeanFactory reference already exists for key [%s]".formatted(name));
 		}
 	}
 

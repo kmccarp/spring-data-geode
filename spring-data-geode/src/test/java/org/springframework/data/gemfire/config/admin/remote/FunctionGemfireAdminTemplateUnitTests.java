@@ -96,10 +96,10 @@ public class FunctionGemfireAdminTemplateUnitTests {
 
 		Region mockRegion = mock(Region.class, name);
 
-		when(mockRegion.getFullPath()).thenReturn(String.format("%1$s%2$s", Region.SEPARATOR, name));
+		when(mockRegion.getFullPath()).thenReturn("%1$s%2$s".formatted(Region.SEPARATOR, name));
 
 		RegionAttributes mockRegionAttributes = mock(RegionAttributes.class,
-			String.format("Mock%sRegionAttributes", name));
+			"Mock%sRegionAttributes".formatted(name));
 
 		when(mockRegionAttributes.getDataPolicy()).thenReturn(DataPolicy.PARTITION);
 		when(mockRegionAttributes.getScope()).thenReturn(Scope.DISTRIBUTED_ACK);

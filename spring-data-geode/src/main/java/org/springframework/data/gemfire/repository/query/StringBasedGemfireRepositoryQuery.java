@@ -20,6 +20,7 @@ import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newI
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.apache.geode.cache.query.SelectResults;
 
@@ -378,7 +379,7 @@ public class StringBasedGemfireRepositoryQuery extends GemfireRepositoryQuery {
 			: source instanceof SelectResults ? ((SelectResults) source).asList()
 			: source instanceof Collection ? (Collection<?>) source
 			: source.getClass().isArray() ? CollectionUtils.arrayToList(source)
-			: Collections.singletonList(source);
+			: List.of(source);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -618,13 +619,13 @@ public class StringBasedGemfireRepositoryQuery extends GemfireRepositoryQuery {
 					int startIndex = PagingUtils.getQueryResultSetStartIndexForPage(pageRequest);
 
 					Assert.state(queryLimit > startIndex,
-						() -> String.format("The user-defined OQL query result set LIMIT [%d] must be greater than the requested page offset [%d]",
+						() -> "The user-defined OQL query result set LIMIT [%d] must be greater than the requested page offset [%d]".formatted(
 							queryLimit, startIndex));
 
 					int endIndex = PagingUtils.getQueryResultSetEndIndexForPage(pageRequest);
 
 					if (queryLimit < endIndex) {
-						getLogger().warn(String.format("The requested page ending at index [%d] may be truncated by the user-defined OQL query result set LIMIT [%d]",
+						getLogger().warn("The requested page ending at index [%d] may be truncated by the user-defined OQL query result set LIMIT [%d]".formatted(
 							endIndex, queryLimit));
 					}
 				}

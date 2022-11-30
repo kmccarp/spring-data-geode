@@ -87,7 +87,7 @@ public class IncompatibleRegionKeyRepositoryIdAndEntityIdRepositoryIntegrationTe
 		usingTestConfigurationExpectIllegalArgumentExceptionWithMessage(
 			TestIncompatibleRegionKeyRepositoryIdTypeConfiguration.class,
 			RabbitRepository.class,
-			() -> String.format("Region [/Rabbits] requires keys of type [%1$s], but Repository [%2$s] declared an id of type [%3$s]",
+			() -> "Region [/Rabbits] requires keys of type [%1$s], but Repository [%2$s] declared an id of type [%3$s]".formatted(
 				String.class.getName(), RabbitRepository.class.getName(), Long.class.getName()));
 	}
 
@@ -97,7 +97,7 @@ public class IncompatibleRegionKeyRepositoryIdAndEntityIdRepositoryIntegrationTe
 		usingTestConfigurationExpectIllegalArgumentExceptionWithMessage(
 			TestIncompatibleRepositoryIdEntityIdTypeConfiguration.class,
 			PlantRepository.class,
-			() -> String.format("Repository [%1$s] declared an id of type [%2$s], but entity [%3$s] has an id of type [%4$s]",
+			() -> "Repository [%1$s] declared an id of type [%2$s], but entity [%3$s] has an id of type [%4$s]".formatted(
 				PlantRepository.class.getName(), String.class.getName(), Plant.class.getName(), Long.class.getName()));
 	}
 

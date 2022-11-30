@@ -18,8 +18,8 @@ package org.springframework.data.gemfire.repository.query;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -42,7 +42,7 @@ public class PredicatesUnitTests {
 
 		Part part = new Part("firstname", Person.class);
 
-		Iterator<Integer> indexes = Collections.singletonList(1).iterator();
+		Iterator<Integer> indexes = List.of(1).iterator();
 
 		Predicate predicate = new AtomicPredicate(part, indexes);
 
@@ -82,7 +82,7 @@ public class PredicatesUnitTests {
 
 		Part part = new Part("activeTrue", User.class);
 
-		Iterator<Integer> indexes = Collections.singletonList(1).iterator();
+		Iterator<Integer> indexes = List.of(1).iterator();
 
 		Predicates predicate = Predicates.create(part, indexes);
 

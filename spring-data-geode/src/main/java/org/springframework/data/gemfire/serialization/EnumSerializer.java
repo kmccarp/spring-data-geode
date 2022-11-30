@@ -68,7 +68,7 @@ public class EnumSerializer extends DataSerializer implements Serializable {
 		return Optional.ofNullable(type).filter(Class::isEnum).map(enumType -> {
 			int ordinal = safeReadInt(in);
 			return supportedEnumTypes.get(addEnum(enumType))[ordinal];
-		}).orElseThrow(() -> new IOException(String.format("Non-enum type [%s] read from the stream", type)));
+		}).orElseThrow(() -> new IOException("Non-enum type [%s] read from the stream".formatted(type)));
 	}
 
 	/* (non-Javadoc) */

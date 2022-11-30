@@ -58,8 +58,7 @@ public class DiskStoreFactoryBeanUnitTests {
 			factoryBean.validateCompactionThreshold(-1);
 		}
 		catch (IllegalArgumentException expected) {
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.",
+			assertThat(expected.getMessage()).isEqualTo("The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.".formatted(
 				factoryBean.resolveDiskStoreName(), -1));
 			throw expected;
 		}
@@ -72,8 +71,7 @@ public class DiskStoreFactoryBeanUnitTests {
 			factoryBean.validateCompactionThreshold(101);
 		}
 		catch (IllegalArgumentException expected) {
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.",
+			assertThat(expected.getMessage()).isEqualTo("The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.".formatted(
 				factoryBean.resolveDiskStoreName(), 101));
 			throw expected;
 		}
@@ -91,8 +89,7 @@ public class DiskStoreFactoryBeanUnitTests {
 			factoryBean.setCompactionThreshold(200);
 		}
 		catch (IllegalArgumentException expected) {
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.",
+			assertThat(expected.getMessage()).isEqualTo("The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.".formatted(
 				factoryBean.resolveDiskStoreName(), 200));
 			throw expected;
 		}

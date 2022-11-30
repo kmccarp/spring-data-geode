@@ -58,7 +58,7 @@ public class KeyInterest<K> extends Interest<K> {
 	 */
 	@Override
 	public void setType(Type type) {
-		logger.warn(String.format("Setting the Type [%1$s] of Interest on [%2$s] is ignored",
+		logger.warn("Setting the Type [%1$s] of Interest on [%2$s] is ignored".formatted(
 			type, getClass().getName()));
 	}
 }

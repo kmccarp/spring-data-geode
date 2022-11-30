@@ -99,7 +99,7 @@ public class GemfireTemplateIntegrationTests extends IntegrationTestsSupport {
 	}
 
 	private static User newUser(String username, Boolean active) {
-		return newUser(username, String.format("%1$s@companyx.com", username), Instant.now(), active);
+		return newUser(username, "%1$s@companyx.com".formatted(username), Instant.now(), active);
 	}
 
 	private static User newUser(String username, String email, Instant since, Boolean active) {

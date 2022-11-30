@@ -88,7 +88,7 @@ public enum OqlKeyword {
 			}
 		}
 
-		throw new IllegalArgumentException(String.format("[%s] is not a valid GemFire OQL Keyword", keyword));
+		throw new IllegalArgumentException("[%s] is not a valid GemFire OQL Keyword".formatted(keyword));
 	}
 
 	/**

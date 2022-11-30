@@ -95,7 +95,7 @@ public class ClusterDefinedRegionsConfiguration extends AbstractAnnotationConfig
 	@Bean
 	Object nullCacheDependentBean(GemFireCache cache) {
 
-		Assert.isTrue(CacheUtils.isClient(cache), String.format("GemFireCache [%s] must be a %s",
+		Assert.isTrue(CacheUtils.isClient(cache), "GemFireCache [%s] must be a %s".formatted(
 			ObjectUtils.nullSafeClassName(cache), ClientCache.class.getName()));
 
 		return null;

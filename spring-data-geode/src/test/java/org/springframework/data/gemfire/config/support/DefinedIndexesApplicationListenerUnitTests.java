@@ -27,8 +27,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -78,7 +78,7 @@ public class DefinedIndexesApplicationListenerUnitTests {
 	}
 
 	protected <K, V> HashMap<K, V> newHashMap(K key, V value) {
-		return new HashMap<>(Collections.singletonMap(key, value));
+		return new HashMap<>(Map.of(key, value));
 	}
 
 	protected MultiIndexCreationException newMultiIndexCreationException(String key, Exception cause) {

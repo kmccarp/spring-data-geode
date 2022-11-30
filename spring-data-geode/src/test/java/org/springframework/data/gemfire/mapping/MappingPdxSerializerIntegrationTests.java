@@ -34,6 +34,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Base64;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.After;
@@ -178,7 +179,7 @@ public class MappingPdxSerializerIntegrationTests {
 		MappingPdxSerializer serializer = ((MappingPdxSerializer) cache.getPdxSerializer());
 
 		try {
-			serializer.setEntityInstantiators(Collections.singletonMap(Person.class, mockEntityInstantiator));
+			serializer.setEntityInstantiators(Map.of(Person.class, mockEntityInstantiator));
 
 			assertThat(serializer.resolveEntityInstantiator(entity)).isEqualTo(mockEntityInstantiator);
 		}
@@ -202,7 +203,7 @@ public class MappingPdxSerializerIntegrationTests {
 		MappingPdxSerializer serializer = ((MappingPdxSerializer) cache.getPdxSerializer());
 
 		try {
-			serializer.setEntityInstantiators(Collections.singletonMap(Person.class, mockEntityInstantiator));
+			serializer.setEntityInstantiators(Map.of(Person.class, mockEntityInstantiator));
 
 			assertThat(serializer.resolveEntityInstantiator(entity)).isNotEqualTo(mockEntityInstantiator);
 		}
@@ -308,7 +309,7 @@ public class MappingPdxSerializerIntegrationTests {
 				String passwordPropertyName = User.class.getName().concat(".password");
 
 				((MappingPdxSerializer) pdxSerializer)
-					.setCustomPdxSerializers(Collections.singletonMap(passwordPropertyName, mockPasswordSerializer));
+					.setCustomPdxSerializers(Map.of(passwordPropertyName, mockPasswordSerializer));
 
 			});
 
@@ -373,7 +374,7 @@ public class MappingPdxSerializerIntegrationTests {
 			.map(regionService -> ((Cache) regionService).getPdxSerializer())
 			.filter(pdxSerializer -> pdxSerializer instanceof MappingPdxSerializer)
 			.ifPresent(pdxSerializer -> ((MappingPdxSerializer) pdxSerializer)
-				.setCustomPdxSerializers(Collections.singletonMap(CreditCard.class, mockCreditCardSerializer)));
+				.setCustomPdxSerializers(Map.of(CreditCard.class, mockCreditCardSerializer)));
 
 		CreditCard creditCard = CreditCard.of(LocalDate.of(2020, Month.FEBRUARY, 12),
 			"8842-6789-4186-7981", CreditCard.Type.VISA);

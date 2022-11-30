@@ -393,8 +393,8 @@ public class CollectionUtilsUnitTests {
 	@Test
 	public void nullSafeIterableWithNonNullNonEmptyIterableReturnsIterable() {
 
-		Iterable<Object> iterable = Collections.singleton(1);
-		Iterable<Object> defaultIterable = Collections.singleton(2);
+		Iterable<Object> iterable = Set.of(1);
+		Iterable<Object> defaultIterable = Set.of(2);
 
 		assertThat(CollectionUtils.nullSafeIterable(iterable, defaultIterable)).isSameAs(iterable);
 	}
@@ -403,7 +403,7 @@ public class CollectionUtilsUnitTests {
 	public void nullSafeIterableWithEmptyIterableReturnsDefault() {
 
 		Iterable<Object> iterable = Collections.emptySet();
-		Iterable<Object> defaultIterable = Collections.singleton(2);
+		Iterable<Object> defaultIterable = Set.of(2);
 
 		assertThat(CollectionUtils.nullSafeIterable(iterable, defaultIterable)).isSameAs(defaultIterable);
 	}
@@ -411,7 +411,7 @@ public class CollectionUtilsUnitTests {
 	@Test
 	public void nullSafeIterableWithNullIterableReturnsDefault() {
 
-		Iterable<?> defaultIterable = Collections.singleton(2);
+		Iterable<?> defaultIterable = Set.of(2);
 
 		assertThat(CollectionUtils.nullSafeIterable(null, defaultIterable)).isSameAs(defaultIterable);
 	}
@@ -491,8 +491,8 @@ public class CollectionUtilsUnitTests {
 
 	@Test
 	public void nullSafeIsEmptyCollectionWithNonNulNonEmptyCollectionReturnsFalse() {
-		assertThat(CollectionUtils.nullSafeIsEmpty(Collections.singleton(1))).isFalse();
-		assertThat(CollectionUtils.nullSafeIsEmpty(Collections.singletonList(1))).isFalse();
+		assertThat(CollectionUtils.nullSafeIsEmpty(Set.of(1))).isFalse();
+		assertThat(CollectionUtils.nullSafeIsEmpty(List.of(1))).isFalse();
 	}
 
 	@Test
@@ -541,7 +541,7 @@ public class CollectionUtilsUnitTests {
 
 	@Test
 	public void nullSafeIsEmptyMapWithNonNullNonEmptyMapReturnsFalse() {
-		assertThat(CollectionUtils.isEmpty(Collections.singletonMap("key", "value"))).isFalse();
+		assertThat(CollectionUtils.isEmpty(Map.of("key", "value"))).isFalse();
 	}
 
 	@Test
@@ -556,8 +556,8 @@ public class CollectionUtilsUnitTests {
 
 	@Test
 	public void nullSafeCollectionSizeWithNonNullNonEmptyCollectionReturnsSize() {
-		assertThat(CollectionUtils.nullSafeSize(Collections.singleton(1))).isEqualTo(1);
-		assertThat(CollectionUtils.nullSafeSize(Collections.singletonList(1))).isEqualTo(1);
+		assertThat(CollectionUtils.nullSafeSize(Set.of(1))).isEqualTo(1);
+		assertThat(CollectionUtils.nullSafeSize(List.of(1))).isEqualTo(1);
 	}
 
 	@Test
@@ -582,7 +582,7 @@ public class CollectionUtilsUnitTests {
 	@Test
 	public void nullSafeIterableSizeWithSingleElementIterable() {
 
-		Iterable<String> iterable = () -> Collections.singleton("mock").iterator();
+		Iterable<String> iterable = () -> Set.of("mock").iterator();
 
 		assertThat(CollectionUtils.nullSafeSize(iterable)).isOne();
 	}
@@ -602,7 +602,7 @@ public class CollectionUtilsUnitTests {
 
 	@Test
 	public void nullSafeMapSizeWithNonNullNonEmptyMapReturnsSize() {
-		assertThat(CollectionUtils.nullSafeSize(Collections.singletonMap("key", "value"))).isEqualTo(1);
+		assertThat(CollectionUtils.nullSafeSize(Map.of("key", "value"))).isEqualTo(1);
 	}
 
 	@Test
@@ -698,7 +698,7 @@ public class CollectionUtilsUnitTests {
 	@Test
 	public void toStringOfSingleEntryMap() {
 
-		String mapString = CollectionUtils.toString(Collections.singletonMap("key", "value"));
+		String mapString = CollectionUtils.toString(Map.of("key", "value"));
 
 		assertThat(mapString).isNotNull();
 		assertThat(mapString).isEqualTo("{\n\tkey = value\n}");

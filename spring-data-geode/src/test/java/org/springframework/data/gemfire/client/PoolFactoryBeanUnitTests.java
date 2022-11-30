@@ -32,6 +32,7 @@ import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newI
 
 import java.net.InetSocketAddress;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -104,7 +105,7 @@ public class PoolFactoryBeanUnitTests {
 		poolFactoryBean.setIdleTimeout(120000L);
 		poolFactoryBean.setKeepAlive(false);
 		poolFactoryBean.setLoadConditioningInterval(15000);
-		poolFactoryBean.setLocators(Collections.singletonList(newConnectionEndpoint("localhost", 54321)));
+		poolFactoryBean.setLocators(List.of(newConnectionEndpoint("localhost", 54321)));
 		poolFactoryBean.setMaxConnections(50);
 		poolFactoryBean.setMinConnections(5);
 		poolFactoryBean.setMultiUserAuthentication(false);
@@ -115,7 +116,7 @@ public class PoolFactoryBeanUnitTests {
 		poolFactoryBean.setRetryAttempts(10);
 		poolFactoryBean.setServerConnectionTimeout(10000);
 		poolFactoryBean.setServerGroup("TestServerGroup");
-		poolFactoryBean.setServers(Collections.singletonList(newConnectionEndpoint("localhost", 12345)));
+		poolFactoryBean.setServers(List.of(newConnectionEndpoint("localhost", 12345)));
 		poolFactoryBean.setSocketBufferSize(32768);
 		poolFactoryBean.setSocketConnectTimeout(5000);
 		poolFactoryBean.setSocketFactory(mockSocketFactory);
@@ -405,7 +406,7 @@ public class PoolFactoryBeanUnitTests {
 		assertThat(pool.getFreeConnectionTimeout()).isEqualTo(5000);
 		assertThat(pool.getIdleTimeout()).isEqualTo(120000L);
 		assertThat(pool.getLoadConditioningInterval()).isEqualTo(300000);
-		assertThat(pool.getLocators()).isEqualTo(Collections.singletonList(newSocketAddress("skullbox", 11235)));
+		assertThat(pool.getLocators()).isEqualTo(List.of(newSocketAddress("skullbox", 11235)));
 		assertThat(pool.getMaxConnections()).isEqualTo(500);
 		assertThat(pool.getMinConnections()).isEqualTo(50);
 		assertThat(pool.getMultiuserAuthentication()).isTrue();
@@ -416,7 +417,7 @@ public class PoolFactoryBeanUnitTests {
 		assertThat(pool.getRetryAttempts()).isEqualTo(1);
 		assertThat(pool.getServerConnectionTimeout()).isEqualTo(10000);
 		assertThat(pool.getServerGroup()).isEqualTo("TestGroup");
-		assertThat(pool.getServers()).isEqualTo(Collections.singletonList(newSocketAddress("boombox", 12480)));
+		assertThat(pool.getServers()).isEqualTo(List.of(newSocketAddress("boombox", 12480)));
 		assertThat(pool.getSocketBufferSize()).isEqualTo(16384);
 		assertThat(pool.getSocketConnectTimeout()).isEqualTo(5000);
 		assertThat(pool.getSocketFactory()).isEqualTo(mockSocketFactory);

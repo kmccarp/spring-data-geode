@@ -252,7 +252,7 @@ public class PropertiesBuilder implements FactoryBean<Properties> {
 	 */
 	public @NonNull PropertiesBuilder setProperty(@NonNull String name, @NonNull String value) {
 
-		Assert.hasText(name, String.format("Name [%s] must be specified", name));
+		Assert.hasText(name, "Name [%s] must be specified".formatted(name));
 
 		if (isValuable(value)) {
 			this.properties.setProperty(name, value);
@@ -286,7 +286,7 @@ public class PropertiesBuilder implements FactoryBean<Properties> {
 	 */
 	public @NonNull PropertiesBuilder unsetProperty(@NonNull String name) {
 
-		Assert.hasText(name, String.format("Name [%s] mut be specified", name));
+		Assert.hasText(name, "Name [%s] mut be specified".formatted(name));
 
 		this.properties.setProperty(name, "");
 

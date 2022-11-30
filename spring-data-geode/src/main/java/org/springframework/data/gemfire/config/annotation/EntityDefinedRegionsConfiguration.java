@@ -245,7 +245,7 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 				switch (filterType) {
 					case ANNOTATION:
 						Assert.isAssignable(Annotation.class, filterClass,
-							String.format("@ComponentScan.Filter class [%s] must be an Annotation", filterClass));
+							"@ComponentScan.Filter class [%s] must be an Annotation".formatted(filterClass));
 						typeFilters.add(new AnnotationTypeFilter((Class<Annotation>) filterClass));
 						break;
 					case ASSIGNABLE_TYPE:
@@ -253,7 +253,7 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 						break;
 					case CUSTOM:
 						Assert.isAssignable(TypeFilter.class, filterClass,
-							String.format("@ComponentScan.Filter class [%s] must be a TypeFilter", filterClass));
+							"@ComponentScan.Filter class [%s] must be a TypeFilter".formatted(filterClass));
 						typeFilters.add(BeanUtils.instantiateClass(filterClass, TypeFilter.class));
 						break;
 					default:
@@ -355,7 +355,7 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 		return Optional.ofNullable(this.regionConfigurers)
 			.filter(regionConfigurers -> !regionConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableRegionConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableRegionConfigurer.create(getBeanFactory())));
 	}
 
 	protected BeanDefinitionBuilder setRegionAttributes(BeanDefinitionBuilder regionFactoryBeanBuilder,

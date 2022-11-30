@@ -86,7 +86,7 @@ public class ProjectingLuceneTemplateUnitTests {
 	@SuppressWarnings("unchecked")
 	protected <K, V> LuceneResultStruct<K, V> mockLuceneResultStruct(K key, V value) {
 		LuceneResultStruct<K, V> mockLuceneResultStruct =
-			mock(LuceneResultStruct.class, String.format("MockLuceneResultStruct%s", key));
+			mock(LuceneResultStruct.class, "MockLuceneResultStruct%s".formatted(key));
 
 		when(mockLuceneResultStruct.getValue()).thenReturn(value);
 

@@ -286,7 +286,7 @@ public class ClientRegionFactoryBean<K, V> extends ConfigurableRegionFactoryBean
 			.map(it -> {
 
 				Assert.isTrue(eagerlyInitializePool(it),
-					String.format("[%s] is not resolvable as a Pool in the application context", it));
+					"[%s] is not resolvable as a Pool in the application context".formatted(it));
 
 				return it;
 			})

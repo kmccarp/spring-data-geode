@@ -64,6 +64,6 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return String.format("%1$s %2$s, %3$s", this.street, this.city, this.zipCode);
+		return "%1$s %2$s, %3$s".formatted(this.street, this.city, this.zipCode);
 	}
 }

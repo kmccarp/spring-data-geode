@@ -67,7 +67,7 @@ public final class TestSecurityManager implements org.apache.geode.security.Secu
 		String password = credentials.getProperty(SECURITY_PASSWORD_PROPERTY);
 
 		return Optional.ofNullable(identify(username, password)).orElseThrow(() ->
-			new AuthenticationFailedException(String.format("User [%s] is not authorized", username)));
+			new AuthenticationFailedException("User [%s] is not authorized".formatted(username)));
 	}
 
 	private Principal identify(String username, String password) {

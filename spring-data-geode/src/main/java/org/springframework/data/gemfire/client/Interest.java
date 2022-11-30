@@ -300,7 +300,7 @@ public class Interest<K> implements InitializingBean {
 			this.policy = (InterestResultPolicy) constants.asObject(String.valueOf(policy));
 		}
 		else {
-			throw new IllegalArgumentException(String.format("Unknown argument type [%s] for property policy", policy));
+			throw new IllegalArgumentException("Unknown argument type [%s] for property policy".formatted(policy));
 		}
 	}
 
@@ -369,7 +369,7 @@ public class Interest<K> implements InitializingBean {
 	 */
 	@Override
 	public String toString() {
-		return String.format("{ @type = %1$s, key = %2$s, durable = %3$s, policy = %4$s, receiveValues = %5$s, type = %6$s }",
+		return "{ @type = %1$s, key = %2$s, durable = %3$s, policy = %4$s, receiveValues = %5$s, type = %6$s }".formatted(
 			getClass().getName(), getKey(), isDurable(), getPolicy(), isReceiveValues(), getType());
 	}
 

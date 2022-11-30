@@ -49,6 +49,6 @@ public class Wrapper<T, KEY> {
 
 	@Override
 	public String toString() {
-		return String.format("{ key: %1$s, value: %2$s }", getKey(), getEntity());
+		return "{ key: %1$s, value: %2$s }".formatted(getKey(), getEntity());
 	}
 }

@@ -395,9 +395,8 @@ public abstract class LuceneAccessor extends LuceneOperationsSupport implements 
 			return queryExecutor.execute();
 		}
 		catch (LuceneQueryException e) {
-			throw new DataRetrievalFailureException(String.format(
-				"Failed to execute Lucene Query [%1$s] on Region [%2$s] with Lucene Index [%3$s]",
-					query, regionPath, indexName), e);
+			throw new DataRetrievalFailureException("Failed to execute Lucene Query [%1$s] on Region [%2$s] with Lucene Index [%3$s]".formatted(
+				query, regionPath, indexName), e);
 		}
 	}
 

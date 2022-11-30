@@ -95,8 +95,8 @@ public class TransactionApplicationEvent extends ApplicationEvent {
 	public String toString() {
 
 		return getDetails()
-			.map(details -> String.format("%s - %s", getTimestampAsString(), details))
-			.orElse(String.format("%s[%s]", getClass().getSimpleName(), getTimestampAsString()));
+			.map(details -> "%s - %s".formatted(getTimestampAsString(), details))
+			.orElse("%s[%s]".formatted(getClass().getSimpleName(), getTimestampAsString()));
 	}
 
 	public TransactionApplicationEvent with(String details) {

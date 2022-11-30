@@ -103,7 +103,7 @@ public class RegionDataAccessTracingAspect {
 		return Optional.ofNullable(joinPoint)
 			.map(JoinPoint::getSignature)
 			.map(signature ->
-				String.format("%1$s.%2$s", ObjectUtils.nullSafeClassName(joinPoint.getTarget()), signature.getName()))
+				"%1$s.%2$s".formatted(ObjectUtils.nullSafeClassName(joinPoint.getTarget()), signature.getName()))
 			.orElse("");
 	}
 }

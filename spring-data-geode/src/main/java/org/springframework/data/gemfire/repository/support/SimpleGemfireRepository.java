@@ -213,7 +213,7 @@ public class SimpleGemfireRepository<T, ID> implements GemfireRepository<T, ID> 
 	public long count() {
 
 		String regionPath = getRegion().getFullPath();
-		String countQuery = String.format(SELECT_COUNT_OQL_QUERY, regionPath);
+		String countQuery = SELECT_COUNT_OQL_QUERY.formatted(regionPath);
 
 		SelectResults<Integer> results = getTemplate().find(countQuery);
 
@@ -244,7 +244,7 @@ public class SimpleGemfireRepository<T, ID> implements GemfireRepository<T, ID> 
 	public @NonNull Iterable<T> findAll() {
 
 		String regionPath = getRegion().getFullPath();
-		String query = String.format("SELECT * FROM %s", regionPath);
+		String query = "SELECT * FROM %s".formatted(regionPath);
 
 		SelectResults<T> selectResults = getTemplate().find(query);
 

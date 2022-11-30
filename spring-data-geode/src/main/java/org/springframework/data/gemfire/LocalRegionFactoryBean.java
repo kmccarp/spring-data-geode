@@ -106,7 +106,7 @@ public class LocalRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K, V> {
 
 		if (dataPolicy != null) {
 			resolvedDataPolicy = new DataPolicyConverter().convert(dataPolicy);
-			Assert.notNull(resolvedDataPolicy, String.format("Data Policy [%s] is invalid", dataPolicy));
+			Assert.notNull(resolvedDataPolicy, "Data Policy [%s] is invalid".formatted(dataPolicy));
 		}
 
 		resolveDataPolicy(regionFactory, persistent, resolvedDataPolicy);

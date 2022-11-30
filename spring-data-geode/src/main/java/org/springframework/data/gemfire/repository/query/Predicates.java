@@ -59,7 +59,7 @@ class Predicates implements Predicate {
 		return create(new Predicate() {
 			@Override
 			public String toString(String alias) {
-				return String.format("%s AND %s", Predicates.this.current.toString(alias), predicate.toString(alias));
+				return "%s AND %s".formatted(Predicates.this.current.toString(alias), predicate.toString(alias));
 			}
 		});
 	}
@@ -74,7 +74,7 @@ class Predicates implements Predicate {
 		return create(new Predicate() {
 			@Override
 			public String toString(String alias) {
-				return String.format("%s OR %s", Predicates.this.current.toString(alias), predicate.toString(alias));
+				return "%s OR %s".formatted(Predicates.this.current.toString(alias), predicate.toString(alias));
 			}
 		});
 	}
@@ -118,7 +118,7 @@ class Predicates implements Predicate {
 		@Override
 		public String toString(String alias) {
 			if (isIgnoreCase()) {
-				return String.format("%s.equalsIgnoreCase($%d)", resolveProperty(alias), indexes.next());
+				return "%s.equalsIgnoreCase($%d)".formatted(resolveProperty(alias), indexes.next());
 			}
 			else {
 				Type partType = part.getType();
@@ -126,13 +126,13 @@ class Predicates implements Predicate {
 				switch (partType) {
 					case IS_NULL:
 					case IS_NOT_NULL:
-						return String.format("%s %s NULL", resolveProperty(alias), resolveOperator(partType));
+						return "%s %s NULL".formatted(resolveProperty(alias), resolveOperator(partType));
 					case FALSE:
 					case TRUE:
-						return String.format("%s %s %s", resolveProperty(alias), resolveOperator(partType),
+						return "%s %s %s".formatted(resolveProperty(alias), resolveOperator(partType),
 							Type.TRUE.equals(partType));
 					default:
-						return String.format("%s %s $%d", resolveProperty(alias), resolveOperator(partType),
+						return "%s %s $%d".formatted(resolveProperty(alias), resolveOperator(partType),
 							indexes.next());
 				}
 			}
@@ -150,7 +150,7 @@ class Predicates implements Predicate {
 		}
 
 		String resolveProperty(String alias) {
-			return String.format("%1$s.%2$s", resolveAlias(alias), part.getProperty().toDotPath());
+			return "%1$s.%2$s".formatted(resolveAlias(alias), part.getProperty().toDotPath());
 		}
 
 		String resolveAlias(String alias) {
@@ -196,7 +196,7 @@ class Predicates implements Predicate {
 				case CONTAINING:
 					return "LIKE";
 				default:
-					throw new IllegalArgumentException(String.format("Unsupported operator: %s", partType));
+					throw new IllegalArgumentException("Unsupported operator: %s".formatted(partType));
 			}
 		}
 	}

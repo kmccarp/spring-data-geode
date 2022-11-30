@@ -132,7 +132,7 @@ public abstract class FactoryDefaultsPoolAdapter extends PoolAdapter {
 
 	@Override
 	public List<InetSocketAddress> getServers() {
-		return Collections.singletonList(new InetSocketAddress(LOCALHOST, GemfireUtils.DEFAULT_CACHE_SERVER_PORT));
+		return List.of(new InetSocketAddress(LOCALHOST, GemfireUtils.DEFAULT_CACHE_SERVER_PORT));
 	}
 
 	@Override

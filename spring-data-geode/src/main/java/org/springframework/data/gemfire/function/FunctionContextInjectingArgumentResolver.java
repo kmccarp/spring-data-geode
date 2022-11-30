@@ -71,9 +71,8 @@ class FunctionContextInjectingArgumentResolver extends PdxFunctionArgumentResolv
 		int regionTypeParameterPosition = getArgumentTypePosition(method, Region.class);
 
 		if (regionDataAnnotationParameterPosition >= 0 && regionTypeParameterPosition >= 0) {
-			Assert.isTrue(regionDataAnnotationParameterPosition == regionTypeParameterPosition, String.format(
-				"Function method signature for method %s cannot contain an @RegionData parameter and a different Region type parameter",
-					method.getName()));
+			Assert.isTrue(regionDataAnnotationParameterPosition == regionTypeParameterPosition, "Function method signature for method %s cannot contain an @RegionData parameter and a different Region type parameter".formatted(
+				method.getName()));
 		}
 
 		regionParameterPosition = (regionDataAnnotationParameterPosition >= 0 ? regionDataAnnotationParameterPosition
@@ -123,7 +122,7 @@ class FunctionContextInjectingArgumentResolver extends PdxFunctionArgumentResolv
 		}
 
 		Assert.isTrue(args.length == this.method.getParameterTypes().length,
-			String.format("Wrong number of arguments for method [%s]; Expected [%d], but was [%d]",
+			"Wrong number of arguments for method [%s]; Expected [%d], but was [%d]".formatted(
 				this.method.getName(), this.method.getParameterTypes().length, args.length));
 
 		return args;
@@ -158,7 +157,7 @@ class FunctionContextInjectingArgumentResolver extends PdxFunctionArgumentResolv
 			if (requiredType.isAssignableFrom(parameterType)) {
 
 				Assert.state(position < 0,
-					String.format("Method [%1$s] signature cannot contain more than one parameter of type [%2$s].",
+					"Method [%1$s] signature cannot contain more than one parameter of type [%2$s].".formatted(
 						method.getName(), requiredType.getName()));
 
 				position = index;

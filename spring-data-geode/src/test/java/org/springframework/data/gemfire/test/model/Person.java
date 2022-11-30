@@ -138,7 +138,7 @@ public class Person implements Comparable<Person>, Serializable {
 	}
 
 	public String getName() {
-		return String.format("%1$s %2$s", getFirstName(), getLastName());
+		return "%1$s %2$s".formatted(getFirstName(), getLastName());
 	}
 
 	@Override
@@ -194,7 +194,7 @@ public class Person implements Comparable<Person>, Serializable {
 
 	@Override
 	public String toString() {
-		return String.format(PERSON_TO_STRING, getClass().getName(), getId(), getFirstName(), getLastName(),
+		return PERSON_TO_STRING.formatted(getClass().getName(), getId(), getFirstName(), getLastName(),
 			toString(getBirthDate(), BIRTH_DATE_PATTERN), getGender());
 	}
 

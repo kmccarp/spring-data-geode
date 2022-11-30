@@ -64,7 +64,7 @@ class FunctionExecutionConfiguration  {
 
 		boolean valid = this.functionExecutionInterface != null && this.functionExecutionInterface.isInterface();
 
-		Assert.isTrue(valid, String.format("The annotation [%1$s] only applies to an interface; It is not valid for type [%2$s]",
+		Assert.isTrue(valid, "The annotation [%1$s] only applies to an interface; It is not valid for type [%2$s]".formatted(
 			annotationType, SpringExtensions.nullSafeName(this.functionExecutionInterface)));
 	}
 

@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -90,7 +89,7 @@ public class GemfireRepositoryExtensionTest {
 		Bean<Region> mockBean = mock(Bean.class);
 
 		when(mockProcessBean.getBean()).thenReturn(mockBean);
-		when(mockBean.getTypes()).thenReturn(Collections.singleton(Region.class));
+		when(mockBean.getTypes()).thenReturn(Set.of(Region.class));
 
 		assertThat(repositoryExtension.regionBeans.isEmpty()).isTrue();
 
@@ -111,7 +110,7 @@ public class GemfireRepositoryExtensionTest {
 			mockAnnotation(GemfireRepo.class));
 
 		when(mockProcessBean.getBean()).thenReturn(mockBean);
-		when(mockBean.getTypes()).thenReturn(Collections.singleton(GemfireMappingContext.class));
+		when(mockBean.getTypes()).thenReturn(Set.of(GemfireMappingContext.class));
 		when(mockBean.getQualifiers()).thenReturn(expectedQualifiers);
 
 		assertThat(repositoryExtension.mappingContexts.isEmpty()).isTrue();
@@ -132,7 +131,7 @@ public class GemfireRepositoryExtensionTest {
 		Bean<Object> mockBean = mock(Bean.class);
 
 		when(mockProcessBean.getBean()).thenReturn(mockBean);
-		when(mockBean.getTypes()).thenReturn(Collections.singleton(Object.class));
+		when(mockBean.getTypes()).thenReturn(Set.of(Object.class));
 
 		assertThat(repositoryExtension.mappingContexts.isEmpty()).isTrue();
 		assertThat(repositoryExtension.regionBeans.isEmpty()).isTrue();
@@ -168,7 +167,7 @@ public class GemfireRepositoryExtensionTest {
 
 			@Override
 			protected Iterable<Map.Entry<Class<?>, Set<Annotation>>> getRepositoryTypes() {
-				return Collections.<Class<?>, Set<Annotation>>singletonMap(TestRepository.class, expectedQualifiers).entrySet();
+				return Map.of(TestRepository.class, expectedQualifiers).entrySet();
 			}
 		};
 

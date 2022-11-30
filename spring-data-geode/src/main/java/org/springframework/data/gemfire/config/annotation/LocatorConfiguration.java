@@ -71,7 +71,7 @@ public class LocatorConfiguration extends EmbeddedServiceConfigurationSupport {
 					(Integer) annotationAttributes.get("port")), DEFAULT_LOCATOR_PORT);
 
 				return PropertiesBuilder.create()
-					.setProperty(START_LOCATOR_GEMFIRE_PROPERTY_NAME, String.format("%s[%d]", host, port))
+					.setProperty(START_LOCATOR_GEMFIRE_PROPERTY_NAME, "%s[%d]".formatted(host, port))
 					.build();
 
 			}).orElseGet(Properties::new);

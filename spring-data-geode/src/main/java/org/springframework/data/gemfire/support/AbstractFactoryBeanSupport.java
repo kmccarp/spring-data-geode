@@ -239,7 +239,7 @@ public abstract class AbstractFactoryBeanSupport<T>
 	 * @see #logDebug(Supplier)
 	 */
 	protected void logDebug(String message, Object... args) {
-		logDebug(() -> String.format(message, args));
+		logDebug(() -> message.formatted(args));
 	}
 
 	/**
@@ -264,7 +264,7 @@ public abstract class AbstractFactoryBeanSupport<T>
 	 * @see #logInfo(Supplier)
 	 */
 	protected void logInfo(String message, Object... args) {
-		logInfo(() -> String.format(message, args));
+		logInfo(() -> message.formatted(args));
 	}
 
 	/**
@@ -289,7 +289,7 @@ public abstract class AbstractFactoryBeanSupport<T>
 	 * @see #logWarning(Supplier)
 	 */
 	protected void logWarning(String message, Object... args) {
-		logWarning(() -> String.format(message, args));
+		logWarning(() -> message.formatted(args));
 	}
 
 	/**
@@ -314,7 +314,7 @@ public abstract class AbstractFactoryBeanSupport<T>
 	 * @see #logError(Supplier)
 	 */
 	protected void logError(String message, Object... args) {
-		logError(() -> String.format(message, args));
+		logError(() -> message.formatted(args));
 	}
 
 	/**

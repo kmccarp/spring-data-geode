@@ -107,7 +107,7 @@ public class ConnectionEndpoint implements Cloneable, Comparable<ConnectionEndpo
 	 */
 	public static ConnectionEndpoint parse(String hostPort, int defaultPort) {
 
-		Assert.hasText(hostPort, String.format("Host & Port [%s] must be specified", hostPort));
+		Assert.hasText(hostPort, "Host & Port [%s] must be specified".formatted(hostPort));
 
 		String host = StringUtils.trimAllWhitespace(hostPort);
 
@@ -165,7 +165,7 @@ public class ConnectionEndpoint implements Cloneable, Comparable<ConnectionEndpo
 	 */
 	public ConnectionEndpoint(String host, int port) {
 
-		Assert.isTrue(isValidPort(port), String.format("port number [%d] must be between 0 and 65535", port));
+		Assert.isTrue(isValidPort(port), "port number [%d] must be between 0 and 65535".formatted(port));
 
 		this.host = SpringExtensions.defaultIfEmpty(host, DEFAULT_HOST);
 		this.port = port;
@@ -250,6 +250,6 @@ public class ConnectionEndpoint implements Cloneable, Comparable<ConnectionEndpo
 
 	@Override
 	public String toString() {
-		return String.format("%1$s[%2$d]", getHost(), getPort());
+		return "%1$s[%2$d]".formatted(getHost(), getPort());
 	}
 }

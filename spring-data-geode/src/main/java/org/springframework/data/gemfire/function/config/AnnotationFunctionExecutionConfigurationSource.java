@@ -18,7 +18,6 @@ import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newI
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -100,7 +99,7 @@ public class AnnotationFunctionExecutionConfigurationSource extends AbstractFunc
 
 			String className = this.metadata.getClassName();
 
-			return Collections.singleton(className.substring(0, className.lastIndexOf('.')));
+			return Set.of(className.substring(0, className.lastIndexOf('.')));
 		}
 
 		Set<String> packages = new HashSet<>();

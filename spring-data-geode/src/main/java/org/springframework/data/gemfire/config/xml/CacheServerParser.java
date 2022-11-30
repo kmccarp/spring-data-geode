@@ -117,6 +117,6 @@ class CacheServerParser extends AbstractSimpleBeanDefinitionParser {
 		String name = super.resolveId(element, definition, parserContext);
 
 		return StringUtils.hasText(name) ? name
-			: String.format("gemfireServer%d", cacheServerIdentifier.incrementAndGet());
+			: "gemfireServer%d".formatted(cacheServerIdentifier.incrementAndGet());
 	}
 }

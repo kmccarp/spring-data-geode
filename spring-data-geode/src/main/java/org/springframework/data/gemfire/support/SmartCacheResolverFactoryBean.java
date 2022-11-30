@@ -93,7 +93,7 @@ public class SmartCacheResolverFactoryBean extends AbstractFactoryBeanSupport<Ca
 		this.cacheResolver = getCompositionStrategy().use(this);
 
 		Assert.state(this.cacheResolver != null,
-			() -> String.format("No CacheResolver was composed with CompositionStrategy [%s]",
+			() -> "No CacheResolver was composed with CompositionStrategy [%s]".formatted(
 				getCompositionStrategy()));
 
 	}
@@ -267,7 +267,7 @@ public class SmartCacheResolverFactoryBean extends AbstractFactoryBeanSupport<Ca
 		BeanFactory beanFactory = getBeanFactory();
 
 		Assert.state(beanFactory != null,
-			() -> String.format("A Spring context is not present and is required to use [%1$s.%2$s.%3$s]",
+			() -> "A Spring context is not present and is required to use [%1$s.%2$s.%3$s]".formatted(
 				CompositionStrategy.class.getEnclosingClass().getSimpleName(),
 				CompositionStrategy.class.getSimpleName(), CompositionStrategy.USER_DEFINED.name()));
 

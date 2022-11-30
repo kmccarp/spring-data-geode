@@ -230,7 +230,7 @@ public class LookupRegionFactoryBean<K, V> extends ResolvableRegionFactoryBean<K
 		Region localRegion = getRegion();
 
 		Assert.state(localRegion.getAttributes().getStatisticsEnabled(),
-			String.format("Statistics for Region [%s] must be enabled to change Entry & Region TTL/TTI Expiration settings",
+			"Statistics for Region [%s] must be enabled to change Entry & Region TTL/TTI Expiration settings".formatted(
 				localRegion.getFullPath()));
 	}
 }

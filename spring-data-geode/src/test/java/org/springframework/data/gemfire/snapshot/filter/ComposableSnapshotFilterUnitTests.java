@@ -48,7 +48,7 @@ public class ComposableSnapshotFilterUnitTests {
 	private SnapshotFilter<Object, Object> mockSnapshotFilter(boolean accept) {
 
 		SnapshotFilter<Object, Object> mockSnapshotFilter =
-			mock(SnapshotFilter.class, String.format("MockSnapshotFilter-%1$d", ID_SEQUENCE.incrementAndGet()));
+			mock(SnapshotFilter.class, "MockSnapshotFilter-%1$d".formatted(ID_SEQUENCE.incrementAndGet()));
 
 		when(mockSnapshotFilter.accept(any())).thenReturn(accept);
 

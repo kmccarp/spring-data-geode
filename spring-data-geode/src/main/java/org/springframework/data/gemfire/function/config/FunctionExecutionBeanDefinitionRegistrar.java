@@ -124,7 +124,7 @@ public class FunctionExecutionBeanDefinitionRegistrar implements ImportBeanDefin
 			if (functionExecutionAnnotationTypeNames.contains(annotationType)) {
 
 				Assert.isNull(existingFunctionExecutionAnnotation,
-					String.format("Interface [%1$s] contains multiple Function Execution Annotations: %2$s, %3$s",
+					"Interface [%1$s] contains multiple Function Execution Annotations: %2$s, %3$s".formatted(
 						beanDefinition.getBeanClassName(), existingFunctionExecutionAnnotation, annotationType));
 
 				existingFunctionExecutionAnnotation = annotationType;

@@ -53,12 +53,12 @@ public class ContinuousQueryDefinition implements InitializingBean {
 
 		ContinuousQuery continuousQuery = method.getAnnotation(ContinuousQuery.class);
 
-		Assert.notNull(continuousQuery, () -> String.format("Method [%1$s] must be annotated with [%2$s]",
+		Assert.notNull(continuousQuery, () -> "Method [%1$s] must be annotated with [%2$s]".formatted(
 			method, ContinuousQuery.class.getName()));
 
 		String name = Optional.of(continuousQuery.name())
 			.filter(org.springframework.util.StringUtils::hasText)
-			.orElseGet(() -> String.format("%1$s.%2$s", method.getDeclaringClass().getName(), method.getName()));
+			.orElseGet(() -> "%1$s.%2$s".formatted(method.getDeclaringClass().getName(), method.getName()));
 
 		String query = continuousQuery.query();
 

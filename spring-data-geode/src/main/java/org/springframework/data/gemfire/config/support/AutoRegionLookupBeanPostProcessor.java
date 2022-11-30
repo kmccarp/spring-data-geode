@@ -69,7 +69,7 @@ public class AutoRegionLookupBeanPostProcessor implements BeanPostProcessor, Bea
 	public final void setBeanFactory(BeanFactory beanFactory) throws BeansException {
 
 		Assert.isInstanceOf(ConfigurableListableBeanFactory.class, beanFactory,
-			String.format("BeanFactory [%1$s] must be an instance of %2$s",
+			"BeanFactory [%1$s] must be an instance of %2$s".formatted(
 				ObjectUtils.nullSafeClassName(beanFactory), ConfigurableListableBeanFactory.class.getSimpleName()));
 
 		this.beanFactory = (ConfigurableListableBeanFactory) beanFactory;

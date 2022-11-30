@@ -16,7 +16,6 @@
 package org.springframework.data.gemfire.function.result;
 
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.geode.cache.execute.Function;
@@ -45,7 +44,7 @@ public class MixedResultTypeFunctions {
 
 	@GemfireFunction(id = "returnList", hasResult = true)
 	public List<BigDecimal> returnList() {
-		return Collections.singletonList(new BigDecimal(10));
+		return List.of(new BigDecimal(10));
 	}
 
 	@GemfireFunction(id = "returnPrimitive", hasResult = true)

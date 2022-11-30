@@ -160,11 +160,11 @@ public class TemplateClientRegionNamespaceIntegrationTests extends IntegrationTe
 
 	private static void assertRegionMetaData(Region<?, ?> region, String expectedRegionName, String expectedRegionPath) {
 
-		assertThat(region).as(String.format("The '%1$s' Region was not properly configured and initialized",
+		assertThat(region).as("The '%1$s' Region was not properly configured and initialized".formatted(
 			expectedRegionName)).isNotNull();
 		assertThat(region.getName()).isEqualTo(expectedRegionName);
 		assertThat(region.getFullPath()).isEqualTo(expectedRegionPath);
-		assertThat(region.getAttributes()).as(String.format("The '%1$s' Region must have RegionAttributes defined",
+		assertThat(region.getAttributes()).as("The '%1$s' Region must have RegionAttributes defined".formatted(
 			expectedRegionName)).isNotNull();
 	}
 

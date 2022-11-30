@@ -159,7 +159,7 @@ class PartitionedRegionParser extends AbstractPeerRegionParser {
 			else {
 
 				String message =
-					String.format("The Region template [%1$s] must be defined before the Region [%2$s] referring to the template",
+					"The Region template [%1$s] must be defined before the Region [%2$s] referring to the template".formatted(
 						regionTemplateName, resolveId(element, regionBuilder.getRawBeanDefinition(), parserContext));
 
 				parserContext.getReaderContext().error(message, element);

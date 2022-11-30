@@ -62,10 +62,10 @@ public class ClientCacheSecurityIntegrationTests extends ForkingClientServerInte
 
 		//System.err.printf("trusted.keystore file is located at [%s]%n", trustedKeystore.getFile().getAbsolutePath());
 
-		arguments.add(String.format("-Dgemfire.name=%s",
+		arguments.add("-Dgemfire.name=%s".formatted(
 			asApplicationName(ClientCacheSecurityIntegrationTests.class).concat("Server")));
 
-		arguments.add(String.format("-Djavax.net.ssl.keyStore=%s", trustedKeystore.getFile().getAbsolutePath()));
+		arguments.add("-Djavax.net.ssl.keyStore=%s".formatted(trustedKeystore.getFile().getAbsolutePath()));
 
 		arguments.add(getServerContextXmlFileLocation(ClientCacheSecurityIntegrationTests.class));
 

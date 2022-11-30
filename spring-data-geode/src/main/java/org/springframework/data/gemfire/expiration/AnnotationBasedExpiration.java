@@ -516,8 +516,7 @@ public class AnnotationBasedExpiration<K, V> implements BeanFactoryAware, Custom
 			catch (IllegalArgumentException cause) {
 
 				// Next, try to parse the 'action' as a Spring Expression using SpEL.
-				EvaluationException evaluationException = new EvaluationException(String.format(
-					"[%s] is not resolvable as an ExpirationAction(Type)", action), cause);
+				EvaluationException evaluationException = new EvaluationException("[%s] is not resolvable as an ExpirationAction(Type)".formatted(action), cause);
 
 				EvaluationContext evaluationContext = EVALUATION_CONTEXT_REFERENCE.get();
 
@@ -611,7 +610,7 @@ public class AnnotationBasedExpiration<K, V> implements BeanFactoryAware, Custom
 		 */
 		@Override
 		public String toString() {
-			return String.format("{ @type = %1$s, timeout = %2$d, action = %3$s }",
+			return "{ @type = %1$s, timeout = %2$d, action = %3$s }".formatted(
 				getClass().getName(), timeout(), action());
 		}
 	}

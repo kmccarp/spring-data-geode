@@ -47,7 +47,7 @@ public abstract class AbstractPropertyEditorConverterSupport<T> extends Property
 	 */
 	protected T assertConverted(String source, T convertedValue, Class<T> type) {
 
-		Assert.notNull(convertedValue, String.format("[%1$s] is not a valid %2$s", source, type.getSimpleName()));
+		Assert.notNull(convertedValue, "[%1$s] is not a valid %2$s".formatted(source, type.getSimpleName()));
 
 		return convertedValue;
 	}

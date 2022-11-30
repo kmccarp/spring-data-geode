@@ -148,7 +148,7 @@ public class GenericRegionFactoryBeanIntegrationTests extends IntegrationTestsSu
 	protected void assertRegionAttributes(Region<?, ?> region, String expectedRegionName, DataPolicy expectedDataPolicy,
 			Scope expectedScope) {
 
-		assertRegionAttributes(region, expectedRegionName, String.format("%1$s%2$s", Region.SEPARATOR, expectedRegionName),
+		assertRegionAttributes(region, expectedRegionName, "%1$s%2$s".formatted(Region.SEPARATOR, expectedRegionName),
 			expectedDataPolicy, expectedScope);
 	}
 

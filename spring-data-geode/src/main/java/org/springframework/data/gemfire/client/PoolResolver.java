@@ -110,7 +110,7 @@ public interface PoolResolver {
 		Pool pool = resolve(poolName);
 
 		Assert.state(pool != null,
-			() -> String.format("Pool with name [%s] not found", poolName));
+			() -> "Pool with name [%s] not found".formatted(poolName));
 
 		return pool;
 	}

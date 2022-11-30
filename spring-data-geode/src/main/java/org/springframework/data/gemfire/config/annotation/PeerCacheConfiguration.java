@@ -100,7 +100,7 @@ public class PeerCacheConfiguration extends AbstractCacheConfiguration {
         return Optional.ofNullable(this.peerCacheConfigurers)
             .filter(peerCacheConfigurers -> !peerCacheConfigurers.isEmpty())
             .orElseGet(() ->
-                Collections.singletonList(LazyResolvingComposablePeerCacheConfigurer.create(getBeanFactory())));
+									List.of(LazyResolvingComposablePeerCacheConfigurer.create(getBeanFactory())));
     }
 
     /**

@@ -128,7 +128,7 @@ class BatchingResultSender {
 	public void sendArrayResults(Object result) {
 
 		Assert.isTrue(ObjectUtils.isArray(result),
-			() -> String.format("Object must be an array; was [%s]", ObjectUtils.nullSafeClassName(result)));
+			() -> "Object must be an array; was [%s]".formatted(ObjectUtils.nullSafeClassName(result)));
 
 		int arrayLength = Array.getLength(result);
 

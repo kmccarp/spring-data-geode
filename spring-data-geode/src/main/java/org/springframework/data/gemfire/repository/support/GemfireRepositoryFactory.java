@@ -224,13 +224,13 @@ public class GemfireRepositoryFactory extends RepositoryFactorySupport {
 
 		Optional.ofNullable(region.getAttributes().getKeyConstraint())
 			.ifPresent(regionKeyType -> Assert.isTrue(regionKeyType.isAssignableFrom(repositoryIdType),
-				() -> String.format(REGION_REPOSITORY_ID_TYPE_MISMATCH, region.getFullPath(), regionKeyType.getName(),
+				() -> REGION_REPOSITORY_ID_TYPE_MISMATCH.formatted(region.getFullPath(), regionKeyType.getName(),
 					repositoryMetadata.getRepositoryInterface().getName(), repositoryIdType.getName())));
 
 		Optional.ofNullable(entity)
 			.map(GemfirePersistentEntity::getIdProperty)
 			.ifPresent(entityIdProperty -> Assert.isTrue(repositoryIdType.isAssignableFrom(entityIdProperty.getType()),
-				() -> String.format(REPOSITORY_ENTITY_ID_TYPE_MISMATCH, repositoryMetadata.getRepositoryInterface().getName(),
+				() -> REPOSITORY_ENTITY_ID_TYPE_MISMATCH.formatted(repositoryMetadata.getRepositoryInterface().getName(),
 					repositoryIdType.getName(), entityIdProperty.getOwner().getName(), entityIdProperty.getTypeName())));
 
 		return region;

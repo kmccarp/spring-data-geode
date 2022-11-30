@@ -94,7 +94,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return String.format("Customer (%1$d) Account (%2$d) #(%3$s)", getCustomerId(), getId(), getNumber());
+		return "Customer (%1$d) Account (%2$d) #(%3$s)".formatted(getCustomerId(), getId(), getNumber());
 	}
 
 }

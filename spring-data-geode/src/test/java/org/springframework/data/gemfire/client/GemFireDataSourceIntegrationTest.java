@@ -66,7 +66,7 @@ public class GemFireDataSourceIntegrationTest extends ForkingClientServerIntegra
 
 		List<String> arguments = new ArrayList<>();
 
-		arguments.add(String.format("-Dgemfire.name=%s",
+		arguments.add("-Dgemfire.name=%s".formatted(
 			GemFireDataSourceIntegrationTest.class.getSimpleName().concat("Server")));
 
 		arguments.add(getServerContextXmlFileLocation(GemFireDataSourceIntegrationTest.class));

@@ -148,7 +148,7 @@ public class AuthenticationBeanConfiguration extends AbstractAnnotationConfigSup
 		}
 
 		private <T> T require(T target, String message, Object... arguments) {
-			Assert.notNull(target, String.format(message, arguments));
+			Assert.notNull(target, message.formatted(arguments));
 			return target;
 		}
 

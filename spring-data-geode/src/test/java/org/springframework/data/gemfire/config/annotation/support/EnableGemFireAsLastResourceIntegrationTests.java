@@ -171,7 +171,7 @@ public class EnableGemFireAsLastResourceIntegrationTests extends SpringApplicati
 		}
 		catch (BeanCreationException expected) {
 
-			assertThat(expected).hasMessageStartingWith(String.format("Error creating bean with name '%s'",
+			assertThat(expected).hasMessageStartingWith("Error creating bean with name '%s'".formatted(
 				GemFireAsLastResourceConfiguration.class.getName()));
 
 			assertThat(expected).hasCauseInstanceOf(IllegalStateException.class);
@@ -193,7 +193,7 @@ public class EnableGemFireAsLastResourceIntegrationTests extends SpringApplicati
 		}
 		catch (BeanCreationException expected) {
 
-			assertThat(expected).hasMessageStartingWith(String.format("Error creating bean with name '%s'",
+			assertThat(expected).hasMessageStartingWith("Error creating bean with name '%s'".formatted(
 				GemFireAsLastResourceConfiguration.class.getName()));
 
 			assertThat(expected).hasCauseInstanceOf(IllegalArgumentException.class);

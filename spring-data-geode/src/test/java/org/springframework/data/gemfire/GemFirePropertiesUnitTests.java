@@ -19,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -64,7 +63,7 @@ public class GemFirePropertiesUnitTests {
 
 	@SuppressWarnings("unchecked")
 	private static <T> Set<T> asUnmodifiableSet(T... array) {
-		return Collections.unmodifiableSet(new HashSet<>(Arrays.asList(array)));
+		return Set.of(array);
 	}
 
 	private Set<String> resolveActualGemFirePropertyNames() {

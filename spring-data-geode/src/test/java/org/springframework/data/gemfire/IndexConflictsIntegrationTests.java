@@ -166,12 +166,11 @@ public class IndexConflictsIntegrationTests extends SpringApplicationContextInte
 
 			assertThat(expected).hasCauseInstanceOf(GemfireIndexException.class);
 
-			String existingIndexDefinition = String.format(IndexFactoryBean.BASIC_INDEX_DEFINITION,
+			String existingIndexDefinition = (IndexFactoryBean.BASIC_INDEX_DEFINITION).formatted(
 				"id", "/Customers", IndexType.PRIMARY_KEY);
 
-			assertThat(expected.getCause()).hasMessageStartingWith(String.format(
-				"An Index with a different name [customerIdIndex] having the same definition [%s] already exists",
-					existingIndexDefinition));
+			assertThat(expected.getCause()).hasMessageStartingWith("An Index with a different name [customerIdIndex] having the same definition [%s] already exists".formatted(
+				existingIndexDefinition));
 
 			assertThat(expected.getCause()).hasCauseInstanceOf(IndexExistsException.class);
 
@@ -232,13 +231,12 @@ public class IndexConflictsIntegrationTests extends SpringApplicationContextInte
 
 			assertThat(expected).hasCauseInstanceOf(GemfireIndexException.class);
 
-			assertThat(expected.getCause()).hasMessageStartingWith(String.format(
-				"An Index with the same name [%s] having possibly a different definition already exists;",
-					IndexNameConflictConfiguration.INDEX_NAME));
+			assertThat(expected.getCause()).hasMessageStartingWith("An Index with the same name [%s] having possibly a different definition already exists;".formatted(
+				IndexNameConflictConfiguration.INDEX_NAME));
 
 			assertThat(expected.getCause()).hasCauseInstanceOf(IndexNameConflictException.class);
 
-			assertThat(expected.getCause().getCause()).hasMessage(String.format("Index named ' %s ' already exists.",
+			assertThat(expected.getCause().getCause()).hasMessage("Index named ' %s ' already exists.".formatted(
 				IndexNameConflictConfiguration.INDEX_NAME));
 
 			assertThat(expected.getCause().getCause()).hasNoCause();

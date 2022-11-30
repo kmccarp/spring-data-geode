@@ -17,7 +17,7 @@ package org.springframework.data.gemfire.repository.config;
 
 import java.lang.annotation.Annotation;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
 
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -52,7 +52,7 @@ public class GemfireRepositoryConfigurationExtension extends RepositoryConfigura
 	private static final String MAPPING_CONTEXT_REF_ATTRIBUTE_NAME = "mappingContextRef";
 
 	static final String DEFAULT_MAPPING_CONTEXT_BEAN_NAME =
-		String.format("%1$s.%2$s", GemfireMappingContext.class.getName(), "DEFAULT");
+		"%1$s.%2$s".formatted(GemfireMappingContext.class.getName(), "DEFAULT");
 
 	@Override
 	protected Collection<Class<? extends Annotation>> getIdentifyingAnnotations() {
@@ -61,7 +61,7 @@ public class GemfireRepositoryConfigurationExtension extends RepositoryConfigura
 
 	@Override
 	protected Collection<Class<?>> getIdentifyingTypes() {
-		return Collections.singleton(GemfireRepository.class);
+		return Set.of(GemfireRepository.class);
 	}
 
 	@Override
@@ -145,6 +145,6 @@ public class GemfireRepositoryConfigurationExtension extends RepositoryConfigura
 	 * @return a boolean value indicating whether a {@link GemfireMappingContext} has already been configured.
 	 */
 	private boolean noMappingContextIsConfigured(@NonNull RepositoryConfigurationSource configurationSource) {
-		return !configurationSource.getAttribute(MAPPING_CONTEXT_REF_ATTRIBUTE_NAME).isPresent();
+		return configurationSource.getAttribute(MAPPING_CONTEXT_REF_ATTRIBUTE_NAME).isEmpty();
 	}
 }

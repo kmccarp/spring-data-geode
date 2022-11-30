@@ -22,9 +22,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
-
 import org.junit.Test;
+
+import java.util.List;
 
 import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.wan.GatewayReceiverFactory;
@@ -64,7 +64,7 @@ public class GatewayReceiverFactoryBeanTest {
 		factoryBean.setMaximumTimeBetweenPings(5000);
 		factoryBean.setName("testDoInit");
 		factoryBean.setSocketBufferSize(16384);
-		factoryBean.setTransportFilters(Collections.singletonList(mockGatewayTransportFilter));
+		factoryBean.setTransportFilters(List.of(mockGatewayTransportFilter));
 		factoryBean.afterPropertiesSet();
 
 		verify(mockGatewayReceiverFactory).setBindAddress(eq("10.224.112.77"));

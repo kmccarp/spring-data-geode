@@ -58,7 +58,7 @@ public class User {
 	}
 
 	public @NonNull User withName(@NonNull String name) {
-		Assert.hasText(name, String.format("Name [%s] is required", name));
+		Assert.hasText(name, "Name [%s] is required".formatted(name));
 		setName(name);
 		return this;
 	}

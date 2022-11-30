@@ -452,7 +452,7 @@ public class GatewaySenderConfiguration extends AbstractAnnotationConfigSupport
 		return Optional.ofNullable(this.gatewaySenderConfigurers)
 			.filter(gatewaySenderConfigurers -> !gatewaySenderConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableGatewaySenderConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableGatewaySenderConfigurer.create(getBeanFactory())));
 	}
 
 	@SuppressWarnings("unchecked")

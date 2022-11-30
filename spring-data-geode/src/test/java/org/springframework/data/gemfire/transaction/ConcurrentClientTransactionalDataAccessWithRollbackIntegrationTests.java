@@ -192,7 +192,7 @@ public class ConcurrentClientTransactionalDataAccessWithRollbackIntegrationTests
 						optimisticLockingFailureExceptionIsPresent.set(true);
 					}
 					else if (cause instanceof NoTransactionException) {
-						fail(String.format("%s was incorrectly thrown", cause.getClass().getName()));
+						fail("%s was incorrectly thrown".formatted(cause.getClass().getName()));
 					}
 
 					cause = cause.getCause();

@@ -77,7 +77,7 @@ public class LucenePageUnitTests {
 	@SuppressWarnings("unchecked")
 	private <K, V> LuceneResultStruct<K, V> mockLuceneResultStruct(K key, V value) {
 		LuceneResultStruct<K, V> mockLuceneResultStruct =
-			mock(LuceneResultStruct.class, String.format("MockLuceneResultStruct$%1$s", key));
+			mock(LuceneResultStruct.class, "MockLuceneResultStruct$%1$s".formatted(key));
 
 		when(mockLuceneResultStruct.getValue()).thenReturn(value);
 
@@ -204,7 +204,7 @@ public class LucenePageUnitTests {
 			newLucenePage(mockTemplate, mockQueryResults, 1, Person.class, firstPage);
 
 		assertThat(secondPage).isNotNull();
-		assertThat(secondPage.getContent()).isEqualTo(Collections.singletonList(expectedContent.get(1)));
+		assertThat(secondPage.getContent()).isEqualTo(List.of(expectedContent.get(1)));
 		assertThat(secondPage.getPageSize()).isEqualTo(1);
 		assertThat(secondPage.getPrevious()).isEqualTo(firstPage);
 		assertThat(secondPage.getProjectionType()).isEqualTo(Person.class);
@@ -288,12 +288,12 @@ public class LucenePageUnitTests {
 			newLucenePage(prepare(mockTemplate), mockQueryResults, 20, Person.class);
 
 		assertThat(firstPage).isNotNull();
-		assertThat(firstPage.getContent()).isEqualTo(Collections.singletonList(expectedContent.get(0)));
+		assertThat(firstPage.getContent()).isEqualTo(List.of(expectedContent.get(0)));
 
 		LucenePage<Person, Long, String> nextPage = firstPage.getNext();
 
 		assertThat(nextPage).isNotNull();
-		assertThat(nextPage.getContent()).isEqualTo(Collections.singletonList(expectedContent.get(1)));
+		assertThat(nextPage.getContent()).isEqualTo(List.of(expectedContent.get(1)));
 
 		verify(mockQueryResults, times(3)).hasNext();
 		verify(mockQueryResults, times(2)).next();

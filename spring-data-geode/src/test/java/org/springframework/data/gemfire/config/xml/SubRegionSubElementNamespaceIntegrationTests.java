@@ -76,8 +76,8 @@ public class SubRegionSubElementNamespaceIntegrationTests extends IntegrationTes
 		}
 
 		assertThat(found)
-			.describedAs(String.format("Expected a GemFire CacheListener of type (%1$s) to be registered on Region (%2$s)",
-				TestNoOpCacheListener.class.getName(), customersAccountsRegion.getName())).isTrue();
+			.describedAs("Expected a GemFire CacheListener of type (%1$s) to be registered on Region (%2$s)".formatted(
+			TestNoOpCacheListener.class.getName(), customersAccountsRegion.getName())).isTrue();
 	}
 
 	@Test

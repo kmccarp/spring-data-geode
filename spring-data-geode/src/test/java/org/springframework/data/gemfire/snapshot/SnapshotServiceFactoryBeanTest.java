@@ -84,7 +84,7 @@ public class SnapshotServiceFactoryBeanTest {
 		File mockFile = mock(File.class, filename);
 
 		when(mockFile.isFile()).thenReturn(true);
-		when(mockFile.getAbsolutePath()).thenReturn(String.format("/path/to/%s", filename));
+		when(mockFile.getAbsolutePath()).thenReturn("/path/to/%s".formatted(filename));
 		when(mockFile.getName()).thenReturn(filename);
 
 		return mockFile;
@@ -1091,8 +1091,7 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ImportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to load snapshots from directory [%1$s] in format [GEMFIRE]",
+			assertThat(expected.getMessage()).isEqualTo("Failed to load snapshots from directory [%1$s] in format [GEMFIRE]".formatted(
 				FileSystemUtils.WORKING_DIRECTORY));
 			assertThat(expected.getCause()).isInstanceOf(IOException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
@@ -1125,9 +1124,8 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ImportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to load snapshots [%1$s] in format [GEMFIRE] using options [%2$s]",
-				Arrays.toString(new File[] { snapshotDat }), mockSnapshotOptions));
+			assertThat(expected.getMessage()).isEqualTo("Failed to load snapshots [%1$s] in format [GEMFIRE] using options [%2$s]".formatted(
+				Arrays.toString(new File[]{snapshotDat}), mockSnapshotOptions));
 			assertThat(expected.getCause()).isInstanceOf(ClassCastException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
 
@@ -1156,8 +1154,7 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ExportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to save snapshots to directory [%1$s] in format [GEMFIRE]",
+			assertThat(expected.getMessage()).isEqualTo("Failed to save snapshots to directory [%1$s] in format [GEMFIRE]".formatted(
 				FileSystemUtils.WORKING_DIRECTORY));
 			assertThat(expected.getCause()).isInstanceOf(IOException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
@@ -1190,8 +1187,7 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ExportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to save snapshots to directory [%1$s] in format [GEMFIRE] using options [%2$s]",
+			assertThat(expected.getMessage()).isEqualTo("Failed to save snapshots to directory [%1$s] in format [GEMFIRE] using options [%2$s]".formatted(
 				FileSystemUtils.USER_HOME, mockSnapshotOptions));
 			assertThat(expected.getCause()).isInstanceOf(ClassCastException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
@@ -1222,8 +1218,7 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ImportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to load snapshot from file [%1$s] in format [GEMFIRE]", snapshotDat));
+			assertThat(expected.getMessage()).isEqualTo("Failed to load snapshot from file [%1$s] in format [GEMFIRE]".formatted(snapshotDat));
 			assertThat(expected.getCause()).isInstanceOf(IOException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
 
@@ -1254,9 +1249,8 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ImportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to load snapshots [%1$s] in format [GEMFIRE] using options [%2$s]",
-				Arrays.toString(new File[] { snapshotDat }), mockSnapshotOptions));
+			assertThat(expected.getMessage()).isEqualTo("Failed to load snapshots [%1$s] in format [GEMFIRE] using options [%2$s]".formatted(
+				Arrays.toString(new File[]{snapshotDat}), mockSnapshotOptions));
 			assertThat(expected.getCause()).isInstanceOf(ClassCastException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
 
@@ -1286,8 +1280,7 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ExportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to save snapshot to file [%1$s] in format [GEMFIRE]", snapshotDat));
+			assertThat(expected.getMessage()).isEqualTo("Failed to save snapshot to file [%1$s] in format [GEMFIRE]".formatted(snapshotDat));
 			assertThat(expected.getCause()).isInstanceOf(IOException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");
 
@@ -1319,8 +1312,7 @@ public class SnapshotServiceFactoryBeanTest {
 		}
 		catch (ExportSnapshotException expected) {
 
-			assertThat(expected.getMessage()).isEqualTo(String.format(
-				"Failed to save snapshot to file [%1$s] in format [GEMFIRE] using options [%2$s]",
+			assertThat(expected.getMessage()).isEqualTo("Failed to save snapshot to file [%1$s] in format [GEMFIRE] using options [%2$s]".formatted(
 				snapshotDat, mockSnapshotOptions));
 			assertThat(expected.getCause()).isInstanceOf(ClassCastException.class);
 			assertThat(expected.getCause().getMessage()).isEqualTo("TEST");

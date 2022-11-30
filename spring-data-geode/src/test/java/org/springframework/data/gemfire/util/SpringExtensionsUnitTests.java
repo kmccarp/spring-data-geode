@@ -34,7 +34,7 @@ import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newI
 import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newRuntimeException;
 
 import java.sql.Time;
-import java.util.Collections;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
@@ -206,7 +206,7 @@ public class SpringExtensionsUnitTests {
 	public void getPropertyValueForExistingPropertyHavingValueReturnsValue() {
 
 		MutablePropertyValues propertyValues =
-			new MutablePropertyValues(Collections.singletonMap("testProperty", "testValue"));
+			new MutablePropertyValues(Map.of("testProperty", "testValue"));
 
 		when(this.mockBeanDefinition.getPropertyValues()).thenReturn(propertyValues);
 

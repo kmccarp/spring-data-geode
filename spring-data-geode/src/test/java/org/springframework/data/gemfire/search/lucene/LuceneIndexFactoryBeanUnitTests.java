@@ -170,7 +170,7 @@ public class LuceneIndexFactoryBeanUnitTests {
 	@Test
 	public void createLuceneIndexWithFieldAnalyzerMapping() {
 
-		Map<String, Analyzer> fieldAnalyzers = Collections.singletonMap("fieldOne", mockAnalyzer);
+		Map<String, Analyzer> fieldAnalyzers = Map.of("fieldOne", mockAnalyzer);
 
 		factoryBean.setFieldAnalyzers(fieldAnalyzers);
 		factoryBean.setLuceneSerializer(mockLuceneSerializer);
@@ -403,13 +403,13 @@ public class LuceneIndexFactoryBeanUnitTests {
 	@Test
 	public void resolveFieldsWithEmptyListReturnsAllFields() {
 		assertThat(factoryBean.resolveFields(Collections.emptyList()))
-			.isEqualTo(Collections.singletonList(LuceneService.REGION_VALUE_FIELD));
+			.isEqualTo(List.of(LuceneService.REGION_VALUE_FIELD));
 	}
 
 	@Test
 	public void resolveFieldsWithNullReturnsAllFields() {
 		assertThat(factoryBean.resolveFields(null))
-			.isEqualTo(Collections.singletonList(LuceneService.REGION_VALUE_FIELD));
+			.isEqualTo(List.of(LuceneService.REGION_VALUE_FIELD));
 	}
 
 	@Test
@@ -630,7 +630,7 @@ public class LuceneIndexFactoryBeanUnitTests {
 		assertThat(fieldAnalyzers).isNotNull();
 		assertThat(fieldAnalyzers).isEmpty();
 
-		fieldAnalyzers = Collections.singletonMap("mockField", mockAnalyzer);
+		fieldAnalyzers = Map.of("mockField", mockAnalyzer);
 		factoryBean.setFieldAnalyzers(fieldAnalyzers);
 
 		assertThat(factoryBean.getFieldAnalyzers()).isEqualTo(fieldAnalyzers);
@@ -705,7 +705,7 @@ public class LuceneIndexFactoryBeanUnitTests {
 
 		factoryBean.setCache(mockCache);
 		factoryBean.setDestroy(true);
-		factoryBean.setFieldAnalyzers(Collections.singletonMap("fieldThree", mockAnalyzer));
+		factoryBean.setFieldAnalyzers(Map.of("fieldThree", mockAnalyzer));
 		factoryBean.setFields("fieldOne", "fieldTwo");
 		factoryBean.setIndexName("TestIndex");
 		factoryBean.setLuceneService(mockLuceneService);
@@ -714,7 +714,7 @@ public class LuceneIndexFactoryBeanUnitTests {
 
 		assertThat(factoryBean.getCache()).isSameAs(mockCache);
 		assertThat(factoryBean.isDestroy()).isTrue();
-		assertThat(factoryBean.getFieldAnalyzers()).isEqualTo(Collections.singletonMap("fieldThree", mockAnalyzer));
+		assertThat(factoryBean.getFieldAnalyzers()).isEqualTo(Map.of("fieldThree", mockAnalyzer));
 		assertThat(factoryBean.getFields()).containsAll(Arrays.asList("fieldOne", "fieldTwo"));
 		assertThat(factoryBean.getIndexName()).isEqualTo("TestIndex");
 		assertThat(factoryBean.getLuceneService()).isSameAs(mockLuceneService);

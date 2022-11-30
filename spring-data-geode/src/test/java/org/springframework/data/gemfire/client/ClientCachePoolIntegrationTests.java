@@ -87,7 +87,7 @@ public class ClientCachePoolIntegrationTests extends ForkingClientServerIntegrat
 			Long number = helper.getKey();
 
 			Assert.notNull(number, "number must not be null");
-			Assert.isTrue(number >= 0, String.format("number [%1$d] must be greater than equal to 0", number));
+			Assert.isTrue(number >= 0, "number [%1$d] must be greater than equal to 0".formatted(number));
 
 			if (number <= 2l) {
 				return (number < 2l ? 1l : 2l);

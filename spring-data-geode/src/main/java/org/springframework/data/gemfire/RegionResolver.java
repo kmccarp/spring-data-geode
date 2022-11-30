@@ -62,7 +62,7 @@ public interface RegionResolver {
 		Region<K, V> region = StringUtils.hasText(regionName) ? resolve(regionName) : null;
 
 		Assert.state(region != null,
-			() -> String.format("Region with name [%s] not found", regionName));
+			() -> "Region with name [%s] not found".formatted(regionName));
 
 		return region;
 	}

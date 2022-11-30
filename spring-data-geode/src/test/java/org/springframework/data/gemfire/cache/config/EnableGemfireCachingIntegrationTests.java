@@ -108,7 +108,7 @@ public class EnableGemfireCachingIntegrationTests extends IntegrationTestsSuppor
 			Assert.notNull(number, "Number to compute the factorial of must not be null");
 
 			Assert.isTrue(number > -1,
-				String.format("Number [%d] must be greater than equal to 0", number));
+				"Number [%d] must be greater than equal to 0".formatted(number));
 
 			cacheMiss = true;
 

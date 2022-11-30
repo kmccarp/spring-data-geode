@@ -82,8 +82,8 @@ public class ClientCacheVariableServersIntegrationTests extends ForkingClientSer
 
 		List<String> arguments = new ArrayList<>();
 
-		arguments.add(String.format("-Dtest.cache.server.port.one=%d", cacheServerPortOne));
-		arguments.add(String.format("-Dtest.cache.server.port.two=%d", cacheServerPortTwo));
+		arguments.add("-Dtest.cache.server.port.one=%d".formatted(cacheServerPortOne));
+		arguments.add("-Dtest.cache.server.port.two=%d".formatted(cacheServerPortTwo));
 		arguments.add(getServerContextXmlFileLocation(ClientCacheVariableServersIntegrationTests.class));
 
 		startGemFireServer(ServerProcess.class, arguments.toArray(new String[0]));

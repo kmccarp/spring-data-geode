@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -84,7 +84,7 @@ public class DiskStoreDirectoryBeanPostProcessorIntegrationTests extends Integra
 		DiskStoreFactoryBean diskStoreOne(GemFireCache gemfireCache) {
 			DiskStoreFactoryBean diskStoreOne = new DiskStoreFactoryBean();
 			diskStoreOne.setCache(gemfireCache);
-			diskStoreOne.setDiskDirs(Collections.singletonList(newDiskDir("./gemfire/disk-stores/ds1")));
+			diskStoreOne.setDiskDirs(List.of(newDiskDir("./gemfire/disk-stores/ds1")));
 			return diskStoreOne;
 		}
 
@@ -101,7 +101,7 @@ public class DiskStoreDirectoryBeanPostProcessorIntegrationTests extends Integra
 		DiskStoreFactoryBean diskStoreThree(GemFireCache gemfireCache) {
 			DiskStoreFactoryBean diskStoreThree = new DiskStoreFactoryBean();
 			diskStoreThree.setCache(gemfireCache);
-			diskStoreThree.setDiskDirs(Collections.singletonList(newDiskDir("./gfe/ds/store3/local")));
+			diskStoreThree.setDiskDirs(List.of(newDiskDir("./gfe/ds/store3/local")));
 			return diskStoreThree;
 		}
 	}

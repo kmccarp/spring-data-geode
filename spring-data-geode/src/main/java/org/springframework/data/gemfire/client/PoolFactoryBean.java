@@ -174,7 +174,7 @@ public class PoolFactoryBean extends AbstractFactoryBeanSupport<Pool> implements
 			this.pool = existingPool;
 			this.springManagedPool = false;
 
-			logDebug(() -> String.format("Pool [%s] already exists; Using existing Pool; PoolConfigurers will not be applied",
+			logDebug(() -> "Pool [%s] already exists; Using existing Pool; PoolConfigurers will not be applied".formatted(
 				this.pool.getName()));
 		}
 		else {

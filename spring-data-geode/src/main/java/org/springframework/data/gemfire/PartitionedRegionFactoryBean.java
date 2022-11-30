@@ -44,7 +44,7 @@ public class PartitionedRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K,
 			// Validate that the user-defined Data Policy matches the appropriate Spring GemFire XML namespace
 			// configuration meta-data element for Region (i.e. <gfe:partitioned-region .../>)!
 			Assert.isTrue(dataPolicy.withPartitioning(),
-				String.format("Data Policy [%s] is not supported in Partitioned Regions.", dataPolicy));
+				"Data Policy [%s] is not supported in Partitioned Regions.".formatted(dataPolicy));
 		}
 
 		// Validate the data-policy and persistent attributes are compatible when specified!
@@ -61,7 +61,7 @@ public class PartitionedRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K,
 
 		if (dataPolicy != null) {
 			resolvedDataPolicy = new DataPolicyConverter().convert(dataPolicy);
-			Assert.notNull(resolvedDataPolicy, String.format("Data Policy [%s] is invalid.", dataPolicy));
+			Assert.notNull(resolvedDataPolicy, "Data Policy [%s] is invalid.".formatted(dataPolicy));
 		}
 
 		resolveDataPolicy(regionFactory, persistent, resolvedDataPolicy);

@@ -110,9 +110,8 @@ class GemfireRepositoryBean<T> extends CdiRepositoryBean<T> {
 			}
 		}
 
-		throw new IllegalStateException(String.format(
-			"unable to resolve bean instance of type [%1$s] from bean definition [%2$s]",
-				targetType, bean));
+		throw new IllegalStateException("unable to resolve bean instance of type [%1$s] from bean definition [%2$s]".formatted(
+			targetType, bean));
 	}
 
 	Iterable<Region<?, ?>> resolveGemfireRegions() {

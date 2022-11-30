@@ -129,7 +129,7 @@ public abstract class WiringDeclarableSupport extends DeclarableSupport {
 		if (StringUtils.hasText(templateBeanName)) {
 
 			Assert.isTrue(beanFactory.containsBean(templateBeanName),
-				String.format("Cannot find bean with name [%s]", templateBeanName));
+				"Cannot find bean with name [%s]".formatted(templateBeanName));
 
 			beanConfigurer.setBeanWiringInfoResolver(beanInstance -> new BeanWiringInfo(templateBeanName));
 		}

@@ -219,8 +219,8 @@ public class LocatorApplicationConfiguration extends AbstractAnnotationConfigSup
 
 		return Optional.ofNullable(this.locatorConfigurers)
 			.filter(locatorConfigurers -> !locatorConfigurers.isEmpty())
-			.orElseGet(() -> Collections.singletonList(LazyResolvingComposableLocatorConfigurer
-				.create(getBeanFactory())));
+			.orElseGet(() -> List.of(LazyResolvingComposableLocatorConfigurer
+			.create(getBeanFactory())));
 	}
 
 	public void setBindAddress(@Nullable String bindAddress) {

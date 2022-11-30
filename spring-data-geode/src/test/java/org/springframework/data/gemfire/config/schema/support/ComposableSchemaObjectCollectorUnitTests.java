@@ -25,6 +25,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.data.gemfire.util.CollectionUtils.asSet;
 
 import java.util.Collections;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -100,7 +101,7 @@ public class ComposableSchemaObjectCollectorUnitTests {
 
 	@Test
 	public void composableIterableWithOneElement() {
-		assertThat(ComposableSchemaObjectCollector.compose(Collections.singleton(this.mockSchemaObjectCollectorTwo)))
+		assertThat(ComposableSchemaObjectCollector.compose(Set.of(this.mockSchemaObjectCollectorTwo)))
 			.isSameAs(this.mockSchemaObjectCollectorTwo);
 	}
 

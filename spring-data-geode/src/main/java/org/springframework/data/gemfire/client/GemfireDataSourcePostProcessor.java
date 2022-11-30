@@ -233,7 +233,7 @@ public class GemfireDataSourcePostProcessor implements BeanFactoryAware, BeanPos
 		Logger logger = getLogger();
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format(message, arguments));
+			logger.debug(message.formatted(arguments));
 		}
 	}
 

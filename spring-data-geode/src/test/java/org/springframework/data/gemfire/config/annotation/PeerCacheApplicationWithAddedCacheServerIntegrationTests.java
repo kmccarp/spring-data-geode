@@ -67,14 +67,14 @@ public class PeerCacheApplicationWithAddedCacheServerIntegrationTests
 
 		gemfireLocator = run(TestLocatorConfiguration.class,
 "-Dspring.data.gemfire.locator.port=" + locatorPort,
-			String.format("-D%1$s%2$s=%3$s", GemFireProperties.GEMFIRE_PROPERTY_NAME_PREFIX,
+			"-D%1$s%2$s=%3$s".formatted(GemFireProperties.GEMFIRE_PROPERTY_NAME_PREFIX,
 				GemFireProperties.ENABLE_CLUSTER_CONFIGURATION.getName(), false));
 
 		waitForServerToStart("localhost", locatorPort);
 
 		cacheServerPort = findAvailablePort();
 
-		System.setProperty("spring.data.gemfire.cache.peer.locators", String.format("localhost[%d]", locatorPort));
+		System.setProperty("spring.data.gemfire.cache.peer.locators", "localhost[%d]".formatted(locatorPort));
 		System.setProperty("spring.data.gemfire.cache.server.port", String.valueOf(cacheServerPort));
 	}
 
@@ -94,7 +94,7 @@ public class PeerCacheApplicationWithAddedCacheServerIntegrationTests
 		assertThat(this.cache.getDistributedSystem()).isNotNull();
 		assertThat(this.cache.getDistributedSystem().getProperties()).isNotNull();
 		assertThat(this.cache.getDistributedSystem().getProperties().getProperty(GemFireProperties.LOCATORS.getName()))
-			.isEqualTo(String.format("localhost[%d]", locatorPort));
+			.isEqualTo("localhost[%d]".formatted(locatorPort));
 		assertThat(this.cache.getDistributedSystem().getProperties().getProperty(GemFireProperties.NAME.getName()))
 			.isEqualTo("PeerCacheApplicationWithAddedCacheServerIntegrationTests");
 	}

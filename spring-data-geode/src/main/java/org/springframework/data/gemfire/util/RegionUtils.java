@@ -56,11 +56,11 @@ public abstract class RegionUtils extends CacheUtils {
 
 		if (ClientRegionShortcutWrapper.valueOf(clientRegionShortcut).isPersistent()) {
 			Assert.isTrue(persistentUnspecified || Boolean.TRUE.equals(persistent),
-				String.format("Client Region Shortcut [%s] is not valid when persistent is false", clientRegionShortcut));
+				"Client Region Shortcut [%s] is not valid when persistent is false".formatted(clientRegionShortcut));
 		}
 		else {
 			Assert.isTrue(persistentUnspecified || Boolean.FALSE.equals(persistent),
-				String.format("Client Region Shortcut [%s] is not valid when persistent is true", clientRegionShortcut));
+				"Client Region Shortcut [%s] is not valid when persistent is true".formatted(clientRegionShortcut));
 		}
 	}
 
@@ -78,11 +78,11 @@ public abstract class RegionUtils extends CacheUtils {
 
 		if (dataPolicy.withPersistence()) {
 			Assert.isTrue(persistentUnspecified || Boolean.TRUE.equals(persistent),
-				String.format("Data Policy [%s] is not valid when persistent is false", dataPolicy));
+				"Data Policy [%s] is not valid when persistent is false".formatted(dataPolicy));
 		}
 		else {
 			Assert.isTrue(persistentUnspecified || Boolean.FALSE.equals(persistent),
-				String.format("Data Policy [%s] is not valid when persistent is true", dataPolicy));
+				"Data Policy [%s] is not valid when persistent is true".formatted(dataPolicy));
 		}
 	}
 
@@ -173,7 +173,7 @@ public abstract class RegionUtils extends CacheUtils {
 
 	@NonNull
 	public static String toRegionPath(String regionName) {
-		return String.format("%1$s%2$s", Region.SEPARATOR, regionName);
+		return "%1$s%2$s".formatted(Region.SEPARATOR, regionName);
 	}
 
 	/**

@@ -236,12 +236,12 @@ public class ContinuousQueryListenerAdapter implements ContinuousQueryListener {
 			}
 			else {
 				throw new GemfireListenerExecutionFailedException(
-					String.format("Listener method [%s] threw Exception", methodName), cause.getTargetException());
+					"Listener method [%s] threw Exception".formatted(methodName), cause.getTargetException());
 			}
 		}
 		catch (Throwable cause) {
 			throw new GemfireListenerExecutionFailedException(
-				String.format("Failed to invoke the target listener method [%s]", methodName), cause);
+				"Failed to invoke the target listener method [%s]".formatted(methodName), cause);
 		}
 	}
 
@@ -263,9 +263,9 @@ public class ContinuousQueryListenerAdapter implements ContinuousQueryListener {
 				this.methods.add(method);
 			}, method -> isValidEventHandlerMethodSignature(method, methodName));
 
-			Assert.isTrue(!this.methods.isEmpty(), String.format("Cannot find a suitable method named [%1$s#%2$s];"
-				+ " Is the method public and does it have the proper arguments",
-					delegateType.getName(), methodName));
+			Assert.isTrue(!this.methods.isEmpty(), ("Cannot find a suitable method named [%1$s#%2$s];"
+				+ " Is the method public and does it have the proper arguments").formatted(
+				delegateType.getName(), methodName));
 		}
 
 		private boolean isValidEventHandlerMethodSignature(Method method, String methodName) {

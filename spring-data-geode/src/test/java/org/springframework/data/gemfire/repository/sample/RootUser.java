@@ -36,7 +36,7 @@ public class RootUser extends User {
 
 	@Override
 	public String toString() {
-		return String.format("Root User '%1$s'", getUsername());
+		return "Root User '%1$s'".formatted(getUsername());
 	}
 
 }

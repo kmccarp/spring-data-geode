@@ -94,13 +94,13 @@ public class GemFireDataSourceUsingNonSpringConfiguredGemFireServerIntegrationTe
 			serverWorkingDirectory);
 
 		Assert.isTrue(new File(serverWorkingDirectory, "cache.xml").isFile(),
-			String.format("Expected a cache.xml file to exist in directory [%s]", serverWorkingDirectory));
+			"Expected a cache.xml file to exist in directory [%s]".formatted(serverWorkingDirectory));
 
 		List<String> arguments = new ArrayList<>(5);
 
 		arguments.add(ServerLauncher.Command.START.getName());
-		arguments.add(String.format("-Dgemfire.name=%s", serverName));
-		arguments.add(String.format("-DCACHE_SERVER_PORT=%d", serverPort));
+		arguments.add("-Dgemfire.name=%s".formatted(serverName));
+		arguments.add("-DCACHE_SERVER_PORT=%d".formatted(serverPort));
 
 		gemfireServer = run(serverWorkingDirectory, customClasspath(),
 			GemFireBasedServerProcess.class, arguments.toArray(new String[0]));

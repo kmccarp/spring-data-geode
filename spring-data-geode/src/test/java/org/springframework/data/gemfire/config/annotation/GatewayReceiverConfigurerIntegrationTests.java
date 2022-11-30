@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
 
 import org.junit.Test;
@@ -187,7 +187,7 @@ public class GatewayReceiverConfigurerIntegrationTests extends SpringApplication
 				bean.setManualStart(false);
 				bean.setMaximumTimeBetweenPings(1234567);
 				bean.setSocketBufferSize(987654);
-				bean.setTransportFilters(Collections.singletonList(createGatewayTransportBean1()));
+				bean.setTransportFilters(List.of(createGatewayTransportBean1()));
 			};
 		}
 	}

@@ -128,9 +128,8 @@ abstract class ParsingUtils {
 		if (StringUtils.hasText(refAttributeValue)) {
 			if (!DomUtils.getChildElements(element).isEmpty()) {
 
-				String message = String.format(
-					"Use either the [%1$s] attribute or a nested bean declaration for [%2$s] element, not both",
-						refAttributeName, element.getLocalName());
+				String message = "Use either the [%1$s] attribute or a nested bean declaration for [%2$s] element, not both".formatted(
+					refAttributeName, element.getLocalName());
 
 				parserContext.getReaderContext().error(message, element);
 			}
@@ -214,7 +213,7 @@ abstract class ParsingUtils {
 			// TODO also triggered when there are no child elements; need to change the message...
 			if (single) {
 
-				String message = String.format("The element [%s] does not support multiple, nested bean definitions",
+				String message = "The element [%s] does not support multiple, nested bean definitions".formatted(
 					element.getLocalName());
 
 				parserContext.getReaderContext().error(message, element);
@@ -462,7 +461,7 @@ abstract class ParsingUtils {
 
 		if (GemfireUtils.isGemfireFeatureUnavailable(element)) {
 
-			String message = String.format("[%1$s] is not supported in %2$s v%3$s",
+			String message = "[%1$s] is not supported in %2$s v%3$s".formatted(
 				element.getLocalName(), GemfireUtils.GEMFIRE_NAME, GemfireUtils.GEMFIRE_VERSION);
 
 			parserContext.getReaderContext().error(message, element);
@@ -495,10 +494,10 @@ abstract class ParsingUtils {
 		if (GemfireUtils.isGemfireFeatureUnavailable(feature)) {
 
 			String messagePrefix = attributeName != null
-				? String.format("Attribute [%1$s] of element [%2$s]", attributeName, elementName)
-				: String.format("Element [%s]", elementName);
+				? "Attribute [%1$s] of element [%2$s]".formatted(attributeName, elementName)
+				: "Element [%s]".formatted(elementName);
 
-			String message = String.format("%1$s requires VMware Tanzu GemFire version 7 or later; Current version is %2$s",
+			String message = "%1$s requires VMware Tanzu GemFire version 7 or later; Current version is %2$s".formatted(
 				messagePrefix, GemfireUtils.GEMFIRE_VERSION);
 
 			parserContext.getReaderContext().error(message, null);

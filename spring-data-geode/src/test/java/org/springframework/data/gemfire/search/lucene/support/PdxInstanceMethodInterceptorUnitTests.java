@@ -88,8 +88,7 @@ public class PdxInstanceMethodInterceptorUnitTests {
 			newPdxInstanceMethodInterceptor(new Object());
 		}
 		catch (IllegalArgumentException expected) {
-			assertThat(expected).hasMessageStartingWith(String.format(
-				"Source [java.lang.Object] is not an instance of [%s]", PdxInstance.class.getName()));
+			assertThat(expected).hasMessageStartingWith("Source [java.lang.Object] is not an instance of [%s]".formatted(PdxInstance.class.getName()));
 			assertThat(expected).hasNoCause();
 
 			throw expected;

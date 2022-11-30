@@ -239,7 +239,7 @@ public class GatewayReceiverConfiguration extends AbstractAnnotationConfigSuppor
 		return Optional.ofNullable(this.gatewayReceiverConfigurers)
 			.filter(gatewayReceiverConfigurers -> !gatewayReceiverConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableGatewayReceiverConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableGatewayReceiverConfigurer.create(getBeanFactory())));
 	}
 
 	private ManagedList<BeanReference> resolveGatewayTransportFilterBeanReferences(

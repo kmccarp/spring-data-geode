@@ -189,7 +189,7 @@ public class ClientCacheConfiguration extends AbstractCacheConfiguration {
 		return Optional.ofNullable(this.clientCacheConfigurers)
 			.filter(clientCacheConfigurers -> !clientCacheConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableClientCacheConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableClientCacheConfigurer.create(getBeanFactory())));
 	}
 
 	/**

@@ -19,9 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-import java.util.Collections;
-
 import org.junit.Before;
+
+import java.util.Map;
 import org.junit.Test;
 
 import org.apache.geode.cache.Region;
@@ -79,7 +79,7 @@ public class GemfireRepositoryFactoryBeanUnitTests {
 
 		ApplicationContext mockApplicationContext = mock(ApplicationContext.class);
 
-		doReturn(Collections.singletonMap("simple", mockRegion))
+		doReturn(Map.of("simple", mockRegion))
 			.when(mockApplicationContext).getBeansOfType(Region.class);
 
 		repositoryFactoryBean.setApplicationContext(mockApplicationContext);

@@ -64,7 +64,7 @@ public class GemfireFunctionBeanPostProcessor implements BeanPostProcessor {
 			if (gemfireFunctionAnnotation != null) {
 
 				Assert.isTrue(Modifier.isPublic(method.getModifiers()),
-					String.format("The bean [%s] method [%s] annotated with [%s] must be public",
+					"The bean [%s] method [%s] annotated with [%s] must be public".formatted(
 						bean.getClass().getName(), method.getName(), GemfireFunction.class.getName()));
 
 				AnnotationAttributes gemfireFunctionAttributes = resolveAnnotationAttributes(gemfireFunctionAnnotation);

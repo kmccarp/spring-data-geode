@@ -29,6 +29,8 @@ import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newU
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -115,7 +117,7 @@ public class GemfireRepositoryFactoryUnitTests {
 	public void constructGemfireRepositoryFactorySuccessfully() {
 
 		GemfireRepositoryFactory repositoryFactory =
-			new GemfireRepositoryFactory(Collections.singletonList(this.mockRegion), this.mappingContext);
+			new GemfireRepositoryFactory(List.of(this.mockRegion), this.mappingContext);
 
 		assertThat(repositoryFactory).isNotNull();
 		assertThat(repositoryFactory.getMappingContext()).isEqualTo(this.mappingContext);
@@ -357,7 +359,7 @@ public class GemfireRepositoryFactoryUnitTests {
 			mockRepositoryMetadata(Person.class, Long.class, TestGemfireRepository.class);
 
 		GemfireRepositoryFactory gemfireRepositoryFactory =
-			new GemfireRepositoryFactory(Collections.singleton(this.mockRegion), this.mappingContext);
+			new GemfireRepositoryFactory(Set.of(this.mockRegion), this.mappingContext);
 
 		GemfireTemplate gemfireTemplate = gemfireRepositoryFactory.newTemplate(mockRepositoryMetadata);
 
@@ -381,7 +383,7 @@ public class GemfireRepositoryFactoryUnitTests {
 		Region<Integer, Person> mockPeopleRegion = mockRegion("People", Integer.class);
 
 		GemfireRepositoryFactory gemfireRepositoryFactory =
-			new GemfireRepositoryFactory(Collections.singleton(mockPeopleRegion), this.mappingContext);
+			new GemfireRepositoryFactory(Set.of(mockPeopleRegion), this.mappingContext);
 
 		try {
 			gemfireRepositoryFactory.newTemplate(mockRepositoryMetadata);
@@ -415,7 +417,7 @@ public class GemfireRepositoryFactoryUnitTests {
 		Region<String, Person> mockPeopleRegion = mockRegion("People", null);
 
 		GemfireRepositoryFactory gemfireRepositoryFactory =
-			new GemfireRepositoryFactory(Collections.singleton(mockPeopleRegion), this.mappingContext);
+			new GemfireRepositoryFactory(Set.of(mockPeopleRegion), this.mappingContext);
 
 		try {
 			gemfireRepositoryFactory.newTemplate(mockRepositoryMetadata);
@@ -448,7 +450,7 @@ public class GemfireRepositoryFactoryUnitTests {
 			mockRepositoryMetadata(Person.class, Long.class, PeopleRepository.class);
 
 		GemfireRepositoryFactory gemfireRepositoryFactory =
-			new GemfireRepositoryFactory(Collections.singleton(this.mockRegion), this.mappingContext);
+			new GemfireRepositoryFactory(Set.of(this.mockRegion), this.mappingContext);
 
 		try {
 			gemfireRepositoryFactory.newTemplate(mockRepositoryMetadata);
@@ -474,7 +476,7 @@ public class GemfireRepositoryFactoryUnitTests {
 	public void acceptsInterfacesExtendingPagingAndSortingRepository() {
 
 		GemfireRepositoryFactory repositoryFactory =
-			new GemfireRepositoryFactory(Collections.singletonList(this.mockRegion), new GemfireMappingContext());
+			new GemfireRepositoryFactory(List.of(this.mockRegion), new GemfireMappingContext());
 
 		repositoryFactory.getRepository(SamplePagingAndSortingRepository.class);
 	}
@@ -484,7 +486,7 @@ public class GemfireRepositoryFactoryUnitTests {
 	public void usesConfiguredRepositoryBaseClass() {
 
 		GemfireRepositoryFactory repositoryFactory =
-			new GemfireRepositoryFactory(Collections.singletonList(this.mockRegion), this.mappingContext);
+			new GemfireRepositoryFactory(List.of(this.mockRegion), this.mappingContext);
 
 		repositoryFactory.setRepositoryBaseClass(TestCustomBaseRepository.class);
 

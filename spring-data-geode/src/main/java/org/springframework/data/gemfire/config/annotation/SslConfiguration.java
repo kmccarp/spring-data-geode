@@ -18,7 +18,6 @@ package org.springframework.data.gemfire.config.annotation;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
@@ -152,7 +151,7 @@ public class SslConfiguration extends EmbeddedServiceConfigurationSupport {
 			? CollectionUtils.asSet((EnableSsl.Component[]) annotationAttributes.get("components"))
 			: components;
 
-		components = components.isEmpty() ? Collections.singleton(EnableSsl.Component.ALL) : components;
+		components = components.isEmpty() ? Set.of(EnableSsl.Component.ALL) : components;
 
 		return components;
 	}
@@ -168,17 +167,17 @@ public class SslConfiguration extends EmbeddedServiceConfigurationSupport {
 			EnableSsl.Component component = aliasAttributes.getEnum("component");
 			String alias = aliasAttributes.getString("alias");
 
-			gemfireProperties.setProperty(String.format("ssl-%s-alias", component), alias);
+			gemfireProperties.setProperty("ssl-%s-alias".formatted(component), alias);
 		});
 
 		Arrays.stream(EnableSsl.Component.values()).forEach(component -> {
 
-			String propertyNameSuffix = String.format("certificate.alias.%s", component);
+			String propertyNameSuffix = "certificate.alias.%s".formatted(component);
 
 			Optional.ofNullable(resolveProperty(sslProperty(propertyNameSuffix), ""))
 				.filter(StringUtils::hasText)
 				.ifPresent(alias ->
-					gemfireProperties.setProperty(String.format("ssl-%s-alias", component),
+					gemfireProperties.setProperty("ssl-%s-alias".formatted(component),
 						StringUtils.trimWhitespace(alias)));
 		});
 	}

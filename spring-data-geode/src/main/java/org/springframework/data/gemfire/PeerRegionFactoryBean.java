@@ -622,7 +622,7 @@ public abstract class PeerRegionFactoryBean<K, V> extends ConfigurableRegionFact
 
 			DataPolicy resolvedDataPolicy = new DataPolicyConverter().convert(dataPolicy);
 
-			Assert.notNull(resolvedDataPolicy, String.format("Data Policy [%s] is invalid", dataPolicy));
+			Assert.notNull(resolvedDataPolicy, "Data Policy [%s] is invalid".formatted(dataPolicy));
 
 			RegionUtils.assertDataPolicyAndPersistentAttributeAreCompatible(resolvedDataPolicy, this.persistent);
 

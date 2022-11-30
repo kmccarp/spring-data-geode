@@ -75,7 +75,7 @@ public class ClientSubRegionIntegrationTests extends ForkingClientServerIntegrat
 	private Region<?, ?> child;
 
 	private void assertRegion(Region<?, ?> region, String name) {
-		assertRegion(region, name, String.format("%1$s%2$s", Region.SEPARATOR, name));
+		assertRegion(region, name, "%1$s%2$s".formatted(Region.SEPARATOR, name));
 	}
 
 	private void assertRegion(Region<?, ?> region, String name, String fullPath) {

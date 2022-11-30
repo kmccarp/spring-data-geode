@@ -160,6 +160,6 @@ public abstract class RuntimeExceptionFactory {
 	 * @see java.text.MessageFormat#format(String, Object...)
 	 */
 	protected static String format(String message, Object... args) {
-		return MessageFormat.format(String.format(message, args), args);
+		return MessageFormat.format(message.formatted(args), args);
 	}
 }

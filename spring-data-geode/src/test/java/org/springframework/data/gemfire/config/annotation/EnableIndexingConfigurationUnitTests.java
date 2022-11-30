@@ -348,9 +348,8 @@ public class EnableIndexingConfigurationUnitTests extends SpringApplicationConte
 					&& index.getFromClause().equalsIgnoreCase(fromClause)
 					&& index.getType().equals(type.getGemfireIndexType())) {
 
-					throw new IndexExistsException(String.format(
-						"Index [%1$s] has the same definition as existing Index [%2$s]",
-							name, index.getName()));
+					throw new IndexExistsException("Index [%1$s] has the same definition as existing Index [%2$s]".formatted(
+						name, index.getName()));
 
 				}
 			}
@@ -360,7 +359,7 @@ public class EnableIndexingConfigurationUnitTests extends SpringApplicationConte
 
 			for (Index index : indexes) {
 				if (index.getName().equalsIgnoreCase(name)) {
-					throw new IndexNameConflictException(String.format("Index with name [%s] already exists", name));
+					throw new IndexNameConflictException("Index with name [%s] already exists".formatted(name));
 				}
 			}
 		}

@@ -153,7 +153,7 @@ public class QueryString {
 	}
 
 	static String asQuery(Class<?> domainType, boolean isCountQuery) {
-		return String.format(SELECT_OQL_TEMPLATE, resolveProjection(isCountQuery), resolveFrom(domainType));
+		return SELECT_OQL_TEMPLATE.formatted(resolveProjection(isCountQuery), resolveFrom(domainType));
 	}
 
 	static String resolveFrom(@NonNull Class<?> domainType) {
@@ -176,7 +176,7 @@ public class QueryString {
 	}
 
 	static @NonNull String validateQuery(@NonNull String query) {
-		Assert.hasText(query, String.format("Query [%s] is required", query));
+		Assert.hasText(query, "Query [%s] is required".formatted(query));
 		return query;
 	}
 
@@ -332,7 +332,7 @@ public class QueryString {
 
 		return query.contains(OqlKeyword.DISTINCT.getKeyword()) ? query
 			: query.replaceFirst(OqlKeyword.SELECT.getKeyword(),
-				String.format("%1$s %2$s", OqlKeyword.SELECT.getKeyword(), OqlKeyword.DISTINCT.getKeyword()));
+				"%1$s %2$s".formatted(OqlKeyword.SELECT.getKeyword(), OqlKeyword.DISTINCT.getKeyword()));
 	}
 
 	/**
@@ -354,7 +354,7 @@ public class QueryString {
 			String prefix = isNumeric ? "" : "'";
 			String suffix = prefix;
 
-			String query = getQuery().replaceFirst(IN_PATTERN, String.format(IN_VALUES_TEMPLATE,
+			String query = getQuery().replaceFirst(IN_PATTERN, IN_VALUES_TEMPLATE.formatted(
 				StringUtils.collectionToDelimitedString(values, delimiter, prefix, suffix)));
 
 			return QueryString.of(query);
@@ -406,10 +406,10 @@ public class QueryString {
 
 			for (Sort.Order order : sort) {
 				orderByClause.append(count++ > 0 ? ", " : "");
-				orderByClause.append(String.format("%1$s %2$s", order.getProperty(), order.getDirection()));
+				orderByClause.append("%1$s %2$s".formatted(order.getProperty(), order.getDirection()));
 			}
 
-			return new QueryString(String.format("%1$s %2$s", asDistinct(getQuery()), orderByClause.toString()));
+			return new QueryString("%1$s %2$s".formatted(asDistinct(getQuery()), orderByClause.toString()));
 		}
 
 		return this;
@@ -440,10 +440,10 @@ public class QueryString {
 
 			for (String hint : hints) {
 				builder.append(builder.length() > 0 ? ", " : "");
-				builder.append(String.format("'%s'", hint));
+				builder.append("'%s'".formatted(hint));
 			}
 
-			return QueryString.of(String.format(HINTS_OQL_TEMPLATE, builder.toString(), getQuery()));
+			return QueryString.of(HINTS_OQL_TEMPLATE.formatted(builder.toString(), getQuery()));
 		}
 
 		return this;
@@ -458,7 +458,7 @@ public class QueryString {
 	public @NonNull QueryString withImport(@NonNull String importExpression) {
 
 		return StringUtils.hasText(importExpression)
-			? QueryString.of(String.format(IMPORT_OQL_TEMPLATE, importExpression, getQuery()))
+			? QueryString.of(IMPORT_OQL_TEMPLATE.formatted(importExpression, getQuery()))
 			: this;
 	}
 
@@ -471,7 +471,7 @@ public class QueryString {
 	public @NonNull QueryString withLimit(@NonNull Integer limit) {
 
 		return limit != null
-			? QueryString.of(String.format(LIMIT_OQL_TEMPLATE, getQuery(), limit))
+			? QueryString.of(LIMIT_OQL_TEMPLATE.formatted(getQuery(), limit))
 			: this;
 	}
 
@@ -481,7 +481,7 @@ public class QueryString {
 	 * @return a new {@link QueryString} with tracing enabled.
 	 */
 	public @NonNull QueryString withTrace() {
-		return QueryString.of(String.format(TRACE_OQL_TEMPLATE, getQuery()));
+		return QueryString.of(TRACE_OQL_TEMPLATE.formatted(getQuery()));
 	}
 
 	/**

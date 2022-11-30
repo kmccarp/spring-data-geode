@@ -58,7 +58,7 @@ public class LookupRegionFactoryBeanUnitTests {
 
 	private AsyncEventQueue mockAsyncEventQueue(String id) {
 
-		AsyncEventQueue mockQueue = mock(AsyncEventQueue.class, String.format("MockAsyncEventQueue.%1$s", id));
+		AsyncEventQueue mockQueue = mock(AsyncEventQueue.class, "MockAsyncEventQueue.%1$s".formatted(id));
 
 		when(mockQueue.getId()).thenReturn(id);
 
@@ -67,7 +67,7 @@ public class LookupRegionFactoryBeanUnitTests {
 
 	private GatewaySender mockGatewaySender(String id) {
 
-		GatewaySender mockGatewaySender = mock(GatewaySender.class, String.format("MockGatewaySender.%1$s", id));
+		GatewaySender mockGatewaySender = mock(GatewaySender.class, "MockGatewaySender.%1$s".formatted(id));
 
 		when(mockGatewaySender.getId()).thenReturn(id);
 

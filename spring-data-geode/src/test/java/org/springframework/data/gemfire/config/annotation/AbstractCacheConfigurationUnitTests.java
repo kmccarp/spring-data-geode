@@ -94,7 +94,7 @@ public class AbstractCacheConfigurationUnitTests {
 		GatewayConflictResolver mockGatewayConflictResolver = mock(GatewayConflictResolver.class);
 
 		List<CacheFactoryBean.JndiDataSource> jndiDataSources = Collections.emptyList();
-		List<TransactionListener> transactionListeners = Collections.singletonList(mock(TransactionListener.class));
+		List<TransactionListener> transactionListeners = List.of(mock(TransactionListener.class));
 
 		Properties gemfireProperties = new Properties();
 

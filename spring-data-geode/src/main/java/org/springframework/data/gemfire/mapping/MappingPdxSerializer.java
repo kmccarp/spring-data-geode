@@ -522,7 +522,7 @@ public class MappingPdxSerializer implements PdxSerializer, ApplicationContextAw
 				PdxSerializer customPdxSerializer = resolveCustomPdxSerializer(persistentProperty);
 
 				Supplier<String> messageSuffix = () -> customPdxSerializer != null
-					? String.format(" using custom PdxSerializer [%s]", customPdxSerializer)
+					? " using custom PdxSerializer [%s]".formatted(customPdxSerializer)
 					: "";
 
 				try {
@@ -543,7 +543,7 @@ public class MappingPdxSerializer implements PdxSerializer, ApplicationContextAw
 				}
 				catch (Exception cause) {
 
-					String message = String.format("An error occurred while setting value [%1$s] of property [%2$s] for entity of type [%3$s] from PDX%4$s",
+					String message = "An error occurred while setting value [%1$s] of property [%2$s] for entity of type [%3$s] from PDX%4$s".formatted(
 						value, persistentProperty.getName(), type, messageSuffix.get());
 
 					throw new MappingException(message, cause);
@@ -625,7 +625,7 @@ public class MappingPdxSerializer implements PdxSerializer, ApplicationContextAw
 					String propertyName = persistentProperty.getName();
 
 					Supplier<String> messageSuffix = () -> customPdxSerializer != null
-						? String.format(" using custom PdxSerializer [%s]", customPdxSerializer)
+						? " using custom PdxSerializer [%s]".formatted(customPdxSerializer)
 						: "";
 
 					try {
@@ -648,7 +648,7 @@ public class MappingPdxSerializer implements PdxSerializer, ApplicationContextAw
 					}
 					catch (Exception cause) {
 
-						String message = String.format("An error occurred while serializing entity [%1$s] property [%2$s] value [%3$s] of type [%4$s] to PDX%5$s",
+						String message = "An error occurred while serializing entity [%1$s] property [%2$s] value [%3$s] of type [%4$s] to PDX%5$s".formatted(
 							entity.getType().getName(), persistentProperty.getName(), propertyValue,
 							ObjectUtils.nullSafeClassName(propertyValue), messageSuffix.get());
 

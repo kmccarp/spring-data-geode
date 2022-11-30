@@ -31,13 +31,13 @@ public class NetworkUtilsUnitTests {
 
 	@Test
 	public void invalidPortMessageIsCorrect() {
-		assertThat(String.format(NetworkUtils.INVALID_PORT_MESSAGE, -1))
+		assertThat((NetworkUtils.INVALID_PORT_MESSAGE).formatted(-1))
 			.isEqualTo("Port [-1] must be greater than equal to 0 and less than 65536");
 	}
 
 	@Test
 	public void invalidNonEphemeralPortMessageIsCorrect() {
-		assertThat(String.format(NetworkUtils.INVALID_NO_EPHEMERAL_PORT_MESSAGE, -1))
+		assertThat((NetworkUtils.INVALID_NO_EPHEMERAL_PORT_MESSAGE).formatted(-1))
 			.isEqualTo("Port [-1] must be greater than 0 and less than 65536");
 	}
 

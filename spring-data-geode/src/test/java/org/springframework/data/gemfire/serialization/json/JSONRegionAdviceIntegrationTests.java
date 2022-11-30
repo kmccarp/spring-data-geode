@@ -135,7 +135,7 @@ public class JSONRegionAdviceIntegrationTests extends IntegrationTestsSupport {
 
 		this.jsonRegion.put("dave", davidTuranski);
 
-		SelectResults<String> results = this.template.find(String.format("SELECT * FROM %s WHERE firstname=$1",
+		SelectResults<String> results = this.template.find("SELECT * FROM %s WHERE firstname=$1".formatted(
 			this.jsonRegion.getFullPath()), davidTuranski.getFirstname());
 
 		assertThat(results.iterator().next()).isEqualTo(toJson(davidTuranski));
@@ -148,7 +148,7 @@ public class JSONRegionAdviceIntegrationTests extends IntegrationTestsSupport {
 
 		this.jsonRegion.put("dave", davidTuranski);
 
-		String json = this.template.findUnique(String.format("SELECT * FROM %s WHERE firstname=$1",
+		String json = this.template.findUnique("SELECT * FROM %s WHERE firstname=$1".formatted(
 			this.jsonRegion.getFullPath()), davidTuranski.getFirstname());
 
 		assertThat(json).isEqualTo(toJson(davidTuranski));
@@ -162,7 +162,7 @@ public class JSONRegionAdviceIntegrationTests extends IntegrationTestsSupport {
 		this.jsonRegion.put("dave", davidTuranski);
 
 		SelectResults<String> results =
-			this.template.query(String.format("firstname='%s'", davidTuranski.getFirstname()));
+			this.template.query("firstname='%s'".formatted(davidTuranski.getFirstname()));
 
 		assertThat(results.iterator().next()).isEqualTo(toJson(davidTuranski));
 	}

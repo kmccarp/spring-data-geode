@@ -111,7 +111,7 @@ public class Person implements Serializable {
 	 */
 	@Transient
 	public String getName() {
-		return String.format("%1$s %2$s", getFirstname(), getLastname());
+		return "%1$s %2$s".formatted(getFirstname(), getLastname());
 	}
 
 	@Override
@@ -137,6 +137,6 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("{ @type = %1$s, id = %2$d, name = %3$s }", getClass().getName(), id, getName());
+		return "{ @type = %1$s, id = %2$d, name = %3$s }".formatted(getClass().getName(), id, getName());
 	}
 }

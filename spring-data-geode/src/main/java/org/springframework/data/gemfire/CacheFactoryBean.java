@@ -273,7 +273,7 @@ public class CacheFactoryBean extends AbstractResolvableCacheFactoryBean {
 			JndiDataSourceType jndiDataSourceType = JndiDataSourceType.valueOfIgnoreCase(type);
 
 			Assert.notNull(jndiDataSourceType,
-				String.format("'jndi-binding' 'type' [%1$s] is invalid; 'type' must be one of %2$s",
+				"'jndi-binding' 'type' [%1$s] is invalid; 'type' must be one of %2$s".formatted(
 					type, Arrays.toString(JndiDataSourceType.values())));
 
 			jndiDataSource.getAttributes().put("type", jndiDataSourceType.getName());

@@ -21,7 +21,6 @@ import static org.assertj.core.data.Offset.offset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -101,7 +100,7 @@ public class LookupRegionMutationIntegrationTests extends IntegrationTestsSuppor
 		String description, int expectedTimeout, ExpirationAction expectedAction) {
 
 		assertThat(expirationAttributes)
-			.as(String.format("ExpirationAttributes for '%1$s' must not be null", description)).isNotNull();
+			.as("ExpirationAttributes for '%1$s' must not be null".formatted(description)).isNotNull();
 		assertThat(expirationAttributes.getAction()).isEqualTo(expectedAction);
 		assertThat(expirationAttributes.getTimeout()).isEqualTo(expectedTimeout);
 	}
@@ -122,14 +121,14 @@ public class LookupRegionMutationIntegrationTests extends IntegrationTestsSuppor
 
 	private void assertRegionAttributes(Region<?, ?> region, String expectedName, DataPolicy expectedDataPolicy) {
 
-		assertRegionAttributes(region, expectedName, String.format("%1$s%2$s", Region.SEPARATOR, expectedName),
+		assertRegionAttributes(region, expectedName, "%1$s%2$s".formatted(Region.SEPARATOR, expectedName),
 			expectedDataPolicy);
 	}
 
 	private void assertRegionAttributes(Region<?, ?> region, String expectedName, String expectedFullPath,
 			DataPolicy expectedDataPolicy) {
 
-		assertThat(String.format("'%1$s' Region was not properly initialized", region)).isNotNull();
+		assertThat("'%1$s' Region was not properly initialized".formatted(region)).isNotNull();
 		assertThat(region.getName()).isEqualTo(expectedName);
 		assertThat(region.getFullPath()).isEqualTo(expectedFullPath);
 		assertThat(region.getAttributes()).isNotNull();
@@ -171,7 +170,7 @@ public class LookupRegionMutationIntegrationTests extends IntegrationTestsSuppor
 		assertThat(example.getAttributes().getAsyncEventQueueIds()).isNotNull();
 		assertThat(example.getAttributes().getAsyncEventQueueIds().size()).isEqualTo(1);
 		assertThat(example.getAttributes().getAsyncEventQueueIds().iterator().next()).isEqualTo("AEQ");
-		assertGatewaySenders(example, Collections.singletonList("GWS"));
+		assertGatewaySenders(example, List.of("GWS"));
 	}
 
 	interface Nameable extends BeanNameAware {

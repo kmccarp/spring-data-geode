@@ -182,7 +182,7 @@ public @interface EnableExpiration {
 		 */
 		@Override
 		public String toString() {
-			return String.format("%1$s (%2$s)", name(), abbreviation());
+			return "%1$s (%2$s)".formatted(name(), abbreviation());
 		}
 	}
 }

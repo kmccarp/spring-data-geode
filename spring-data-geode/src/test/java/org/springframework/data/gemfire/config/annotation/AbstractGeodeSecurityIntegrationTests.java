@@ -109,15 +109,15 @@ public abstract class AbstractGeodeSecurityIntegrationTests extends ForkingClien
 
 	protected static void runGeodeServer(String geodeSecurityProfile) throws IOException {
 
-		Assert.hasText(geodeSecurityProfile, String.format("[%s] System property is required",
+		Assert.hasText(geodeSecurityProfile, "[%s] System property is required".formatted(
 			GEODE_SECURITY_PROFILE_PROPERTY));
 
 		String debugEndpoint = Boolean.getBoolean(DEBUGGING_ENABLED_PROPERTY) ? DEBUG_ENDPOINT : null;
 
 		startGemFireServer(GeodeServerConfiguration.class,
-			String.format("-Dgemfire.log-file=%s", logFile()),
-			String.format("-Dgemfire.log-level=%s", logLevel(TEST_GEMFIRE_LOG_LEVEL)),
-			String.format("-Dspring.profiles.active=apache-geode-server,%s", geodeSecurityProfile),
+			"-Dgemfire.log-file=%s".formatted(logFile()),
+			"-Dgemfire.log-level=%s".formatted(logLevel(TEST_GEMFIRE_LOG_LEVEL)),
+			"-Dspring.profiles.active=apache-geode-server,%s".formatted(geodeSecurityProfile),
 			debugEndpoint);
 	}
 

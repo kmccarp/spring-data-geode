@@ -24,7 +24,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -145,7 +144,7 @@ public class StringBasedGemfireRepositoryQueryUnitTests {
 		GemfireQueryMethod mockQueryMethod = mock(GemfireQueryMethod.class, "MockGemfireQueryMethod");
 
 		when(mockQueryMethod.hasHint()).thenReturn(true);
-		when(mockQueryMethod.getHints()).thenReturn(Collections.singletonList("FirstNameIdx").toArray(new String[1]));
+		when(mockQueryMethod.getHints()).thenReturn(List.of("FirstNameIdx").toArray(new String[1]));
 		when(mockQueryMethod.hasImport()).thenReturn(false);
 		when(mockQueryMethod.hasLimit()).thenReturn(true);
 		when(mockQueryMethod.getLimit()).thenReturn(50);

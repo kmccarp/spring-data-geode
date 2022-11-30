@@ -27,6 +27,7 @@ import static org.mockito.Mockito.when;
 
 import java.net.InetSocketAddress;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -80,12 +81,12 @@ public class DelegatingPoolAdapterTest {
 		when(this.mockPool.getFreeConnectionTimeout()).thenReturn(10000);
 		when(this.mockPool.getIdleTimeout()).thenReturn(120000L);
 		when(this.mockPool.getLoadConditioningInterval()).thenReturn(300000);
-		when(this.mockPool.getLocators()).thenReturn(Collections.singletonList(newSocketAddress("skullbox", 11235)));
+		when(this.mockPool.getLocators()).thenReturn(List.of(newSocketAddress("skullbox", 11235)));
 		when(this.mockPool.getMaxConnections()).thenReturn(500);
 		when(this.mockPool.getMinConnections()).thenReturn(50);
 		when(this.mockPool.getMultiuserAuthentication()).thenReturn(true);
 		when(this.mockPool.getName()).thenReturn("MockPool");
-		when(this.mockPool.getOnlineLocators()).thenReturn(Collections.singletonList(newSocketAddress("trinity", 10101)));
+		when(this.mockPool.getOnlineLocators()).thenReturn(List.of(newSocketAddress("trinity", 10101)));
 		when(this.mockPool.getPendingEventCount()).thenReturn(2);
 		when(this.mockPool.getPingInterval()).thenReturn(15000L);
 		when(this.mockPool.getPRSingleHopEnabled()).thenReturn(true);
@@ -94,7 +95,7 @@ public class DelegatingPoolAdapterTest {
 		when(this.mockPool.getRetryAttempts()).thenReturn(1);
 		when(this.mockPool.getServerConnectionTimeout()).thenReturn(10000);
 		when(this.mockPool.getServerGroup()).thenReturn("TestGroup");
-		when(this.mockPool.getServers()).thenReturn(Collections.singletonList(newSocketAddress("xghost", 12480)));
+		when(this.mockPool.getServers()).thenReturn(List.of(newSocketAddress("xghost", 12480)));
 		when(this.mockPool.getSocketBufferSize()).thenReturn(16384);
 		when(this.mockPool.getSocketConnectTimeout()).thenReturn(5000);
 		when(this.mockPool.getSocketFactory()).thenReturn(this.mockSocketFactory);
@@ -124,9 +125,9 @@ public class DelegatingPoolAdapterTest {
 		assertThat(pool.getMaxConnections()).isEqualTo(500);
 		assertThat(pool.getMinConnections()).isEqualTo(50);
 		assertThat(pool.getMultiuserAuthentication()).isTrue();
-		assertThat(pool.getLocators()).isEqualTo(Collections.singletonList(newSocketAddress("skullbox", 11235)));
+		assertThat(pool.getLocators()).isEqualTo(List.of(newSocketAddress("skullbox", 11235)));
 		assertThat(pool.getName()).isEqualTo("MockPool");
-		assertThat(pool.getOnlineLocators()).isEqualTo(Collections.singletonList(newSocketAddress("trinity", 10101)));
+		assertThat(pool.getOnlineLocators()).isEqualTo(List.of(newSocketAddress("trinity", 10101)));
 		assertThat(pool.getPendingEventCount()).isEqualTo(2);
 		assertThat(pool.getPingInterval()).isEqualTo(15000L);
 		assertThat(pool.getPRSingleHopEnabled()).isTrue();
@@ -135,7 +136,7 @@ public class DelegatingPoolAdapterTest {
 		assertThat(pool.getRetryAttempts()).isEqualTo(1);
 		assertThat(pool.getServerConnectionTimeout()).isEqualTo(10000);
 		assertThat(pool.getServerGroup()).isEqualTo("TestGroup");
-		assertThat(pool.getServers()).isEqualTo(Collections.singletonList(newSocketAddress("xghost", 12480)));
+		assertThat(pool.getServers()).isEqualTo(List.of(newSocketAddress("xghost", 12480)));
 		assertThat(pool.getSocketBufferSize()).isEqualTo(16384);
 		assertThat(pool.getSocketConnectTimeout()).isEqualTo(5000);
 		assertThat(pool.getSocketFactory()).isEqualTo(this.mockSocketFactory);
@@ -270,8 +271,7 @@ public class DelegatingPoolAdapterTest {
 
 	@Test
 	public void serversWithNullIsEqualToLocalhostListeningOnDefaultCacheServerPort() {
-		assertThat(DelegatingPoolAdapter.from(null).getServers()).isEqualTo(Collections.singletonList(
-			newSocketAddress("localhost", GemfireUtils.DEFAULT_CACHE_SERVER_PORT)));
+		assertThat(DelegatingPoolAdapter.from(null).getServers()).isEqualTo(List.of(newSocketAddress("localhost", GemfireUtils.DEFAULT_CACHE_SERVER_PORT)));
 	}
 
 	@Test

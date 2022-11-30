@@ -39,8 +39,7 @@ public class ReplicatedRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K, 
 		else {
 			// Validate that the user-defined Data Policy matches the appropriate Spring GemFire XML namespace
 			// configuration meta-data element for the Region (i.e. <gfe:replicated-region .../>)!
-			Assert.isTrue(dataPolicy.withReplication(), String.format(
-				"Data Policy [%s] is not supported in Replicated Regions.", dataPolicy));
+			Assert.isTrue(dataPolicy.withReplication(), "Data Policy [%s] is not supported in Replicated Regions.".formatted(dataPolicy));
 		}
 
 		// Validate that the data-policy and persistent attributes are compatible when both are specified!
@@ -57,7 +56,7 @@ public class ReplicatedRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K, 
 
 		if (dataPolicy != null) {
 			resolvedDataPolicy = new DataPolicyConverter().convert(dataPolicy);
-			Assert.notNull(resolvedDataPolicy, String.format("Data Policy [%s] is invalid.", dataPolicy));
+			Assert.notNull(resolvedDataPolicy, "Data Policy [%s] is invalid.".formatted(dataPolicy));
 		}
 
 		resolveDataPolicy(regionFactory, persistent, resolvedDataPolicy);

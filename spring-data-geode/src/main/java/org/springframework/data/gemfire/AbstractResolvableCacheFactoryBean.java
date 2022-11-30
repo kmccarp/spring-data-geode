@@ -90,7 +90,7 @@ public abstract class AbstractResolvableCacheFactoryBean extends AbstractConfigu
 			.filter(cache -> isInfoLoggingEnabled())
 			.ifPresent(cache -> {
 
-				logInfo(() -> String.format("%1$s %2$s version [%3$s] Cache [%4$s]", this.cacheResolutionMessagePrefix,
+				logInfo(() -> "%1$s %2$s version [%3$s] Cache [%4$s]".formatted(this.cacheResolutionMessagePrefix,
 					apacheGeodeProductName(), apacheGeodeVersion(), cache.getName()));
 
 				Optional.ofNullable(cache.getDistributedSystem())
@@ -100,7 +100,7 @@ public abstract class AbstractResolvableCacheFactoryBean extends AbstractConfigu
 						String message = "Connected to Distributed System [%1$s] as Member [%2$s] in Group(s) [%3$s]"
 							+ " with Role(s) [%4$s] on Host [%5$s] having PID [%6$d]";
 
-						logInfo(() -> String.format(message,
+						logInfo(() -> message.formatted(
 							cache.getDistributedSystem().getName(), member.getId(), member.getGroups(),
 							member.getRoles(), member.getHost(), member.getProcessId()));
 					});

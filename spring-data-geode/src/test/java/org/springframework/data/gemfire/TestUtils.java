@@ -31,7 +31,7 @@ public abstract class TestUtils {
 		Field field = findField(name, target);
 
 		if (field == null) {
-			throw new IllegalArgumentException(String.format("Cannot find field [%1$s] in class [%2$s]",
+			throw new IllegalArgumentException("Cannot find field [%1$s] in class [%2$s]".formatted(
 				name, target.getClass().getName()));
 		}
 

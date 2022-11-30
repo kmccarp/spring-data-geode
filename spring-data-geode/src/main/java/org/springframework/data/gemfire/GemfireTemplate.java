@@ -318,7 +318,7 @@ public class GemfireTemplate extends GemfireAccessor implements GemfireOperation
 			else {
 
 				String message =
-					String.format("The result from executing query [%1$s] was not an instance of SelectResults [%2$s]",
+					"The result from executing query [%1$s] was not an instance of SelectResults [%2$s]".formatted(
 						query, result);
 
 				throw new InvalidDataAccessApiUsageException(message);
@@ -366,7 +366,7 @@ public class GemfireTemplate extends GemfireAccessor implements GemfireOperation
 				}
 				else {
 
-					String message = String.format("The result returned from query [%1$s]) was not unique [%2$s]",
+					String message = "The result returned from query [%1$s]) was not unique [%2$s]".formatted(
 						query, result);
 
 					throw new InvalidDataAccessApiUsageException(message);

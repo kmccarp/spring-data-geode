@@ -43,7 +43,7 @@ class QueryBuilder {
 
 		String distinctKeyword = tree.isDistinct() ? OqlKeyword.DISTINCT.toString() : "";
 		String regionName = entity.getRegionName();
-		String query = String.format(SELECT_OQL_TEMPLATE, distinctKeyword, regionName, DEFAULT_ALIAS)
+		String query = SELECT_OQL_TEMPLATE.formatted(distinctKeyword, regionName, DEFAULT_ALIAS)
 			.replaceAll("\\s{2,}", " "); // single space tokens
 
 		return query;
@@ -103,7 +103,7 @@ class QueryBuilder {
 	protected String withPredicate(String query, @Nullable Predicate predicate) {
 
 		return predicate != null
-			? String.format(WHERE_CLAUSE_TEMPLATE, query, predicate.toString(DEFAULT_ALIAS))
+			? WHERE_CLAUSE_TEMPLATE.formatted(query, predicate.toString(DEFAULT_ALIAS))
 			: query;
 	}
 

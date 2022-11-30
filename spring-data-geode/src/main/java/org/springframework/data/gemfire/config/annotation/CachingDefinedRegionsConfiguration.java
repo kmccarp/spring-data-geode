@@ -332,7 +332,7 @@ public class CachingDefinedRegionsConfiguration extends AbstractAnnotationConfig
 				}
 				catch (Exception cause) {
 					throw new BeanInstantiationException(Region.class,
-						String.format("Failed to create Region for cache [%s]", cacheName), cause);
+						"Failed to create Region for cache [%s]".formatted(cacheName), cause);
 				}
 			}
 		});
@@ -345,7 +345,7 @@ public class CachingDefinedRegionsConfiguration extends AbstractAnnotationConfig
 		return Optional.ofNullable(this.regionConfigurers)
 			.filter(regionConfigurers -> !regionConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableRegionConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableRegionConfigurer.create(getBeanFactory())));
 	}
 
 	@Bean

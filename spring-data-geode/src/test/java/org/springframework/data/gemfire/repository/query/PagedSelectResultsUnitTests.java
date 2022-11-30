@@ -26,7 +26,6 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -221,7 +220,7 @@ public class PagedSelectResultsUnitTests {
 	@Test
 	public void asSetCallsAsList() {
 
-		List<Object> list = Collections.singletonList("mock");
+		List<Object> list = List.of("mock");
 
 		PagedSelectResults<Object> selectResults =
 			spy(new PagedSelectResults<>(this.mockSelectResults, this.mockPageable));
@@ -237,7 +236,7 @@ public class PagedSelectResultsUnitTests {
 	@Test(expected = UnsupportedOperationException.class)
 	public void iteratorCallsAsList() {
 
-		List<Object> list = Collections.singletonList("test");
+		List<Object> list = List.of("test");
 
 		PagedSelectResults<Object> selectResults =
 			spy(new PagedSelectResults<>(this.mockSelectResults, this.mockPageable));

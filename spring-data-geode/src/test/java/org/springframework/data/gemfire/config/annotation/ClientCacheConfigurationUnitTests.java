@@ -69,7 +69,7 @@ public class ClientCacheConfigurationUnitTests {
 		GatewayConflictResolver mockGatewayConflictResolver = mock(GatewayConflictResolver.class);
 
 		List<ConnectionEndpoint> poolLocators =
-			Collections.singletonList(new ConnectionEndpoint("localhost", 12345));
+			List.of(new ConnectionEndpoint("localhost", 12345));
 
 		Properties gemfireProperties = new Properties();
 
@@ -99,7 +99,7 @@ public class ClientCacheConfigurationUnitTests {
 		configuration.setEvictionHeapPercentage(75.0f);
 		configuration.setEvictionOffHeapPercentage(90.0f);
 		configuration.setGatewayConflictResolver(mockGatewayConflictResolver);
-		configuration.setTransactionListeners(Collections.singletonList(mockTransactionListener));
+		configuration.setTransactionListeners(List.of(mockTransactionListener));
 		configuration.setTransactionWriter(mockTransactionWriter);
 		configuration.setUseBeanFactoryLocator(true);
 		configuration.setDurableClientId("abc123");
@@ -142,7 +142,7 @@ public class ClientCacheConfigurationUnitTests {
 		verify(clientCacheFactoryBean, times(1)).setEvictionOffHeapPercentage(eq(90.0f));
 		verify(clientCacheFactoryBean, times(1)).setGatewayConflictResolver(eq(mockGatewayConflictResolver));
 		verify(clientCacheFactoryBean, times(1)).setJndiDataSources(eq(Collections.emptyList()));
-		verify(clientCacheFactoryBean, times(1)).setTransactionListeners(eq(Collections.singletonList(mockTransactionListener)));
+		verify(clientCacheFactoryBean, times(1)).setTransactionListeners(eq(List.of(mockTransactionListener)));
 		verify(clientCacheFactoryBean, times(1)).setTransactionWriter(eq(mockTransactionWriter));
 		verify(clientCacheFactoryBean, times(1)).setUseBeanFactoryLocator(eq(true));
 		verify(clientCacheFactoryBean, times(1)).setDurableClientId(eq("abc123"));

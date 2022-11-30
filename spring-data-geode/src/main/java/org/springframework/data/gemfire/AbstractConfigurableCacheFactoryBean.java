@@ -240,7 +240,7 @@ public abstract class AbstractConfigurableCacheFactoryBean extends AbstractBasic
 	 * @see #isUseBeanFactoryLocator()
 	 */
 	private boolean useBeanFactoryLocator() {
-		return isUseBeanFactoryLocator() && !getOptionalBeanFactoryLocator().isPresent();
+		return isUseBeanFactoryLocator() && getOptionalBeanFactoryLocator().isEmpty();
 	}
 
 	/**

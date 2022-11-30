@@ -215,7 +215,7 @@ public class ContinuousQueryConfiguration extends AbstractAnnotationConfigSuppor
 
 		return Optional.ofNullable(this.configurers)
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableContinuousQueryListenerContainerConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableContinuousQueryListenerContainerConfigurer.create(getBeanFactory())));
 	}
 
 	protected Optional<ErrorHandler> resolveErrorHandler() {

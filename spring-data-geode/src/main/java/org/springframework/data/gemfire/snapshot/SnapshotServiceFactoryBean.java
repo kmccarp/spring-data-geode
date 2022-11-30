@@ -483,7 +483,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 						new File(TEMPORARY_DIRECTORY, file.getName().replaceAll("\\.", "-"));
 
 					Assert.state(extractedArchiveDirectory.isDirectory() || extractedArchiveDirectory.mkdirs(),
-						String.format("Failed create directory (%1$s) in which to extract archive (%2$s)",
+						"Failed create directory (%1$s) in which to extract archive (%2$s)".formatted(
 							extractedArchiveDirectory, file));
 
 					ZipFile zipFile = (ArchiveFileFilter.INSTANCE.isJarFile(file)
@@ -512,7 +512,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				}
 				catch (Throwable cause) {
 					throw new ImportSnapshotException(
-						String.format("Failed to extract archive [%1$s] to import", file), cause);
+						"Failed to extract archive [%1$s] to import".formatted(file), cause);
 				}
 			}
 
@@ -534,7 +534,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 		protected void logDebug(Throwable cause, String message, Object... arguments) {
 
 			if (logger.isDebugEnabled()) {
-				logger.debug(String.format(message, arguments), cause);
+				logger.debug(message.formatted(arguments), cause);
 			}
 		}
 
@@ -603,9 +603,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().load(directory, format);
 			}
 			catch (Throwable cause) {
-				throw new ImportSnapshotException(String.format(
-					"Failed to load snapshots from directory [%1$s] in format [%2$s]",
-						directory, format), cause);
+				throw new ImportSnapshotException("Failed to load snapshots from directory [%1$s] in format [%2$s]".formatted(
+					directory, format), cause);
 			}
 		}
 
@@ -616,9 +615,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().load(snapshots, format, options);
 			}
 			catch (Throwable cause) {
-				throw new ImportSnapshotException(String.format(
-					"Failed to load snapshots [%1$s] in format [%2$s] using options [%3$s]",
-						Arrays.toString(snapshots), format, options), cause);
+				throw new ImportSnapshotException("Failed to load snapshots [%1$s] in format [%2$s] using options [%3$s]".formatted(
+					Arrays.toString(snapshots), format, options), cause);
 			}
 		}
 
@@ -629,9 +627,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().save(directory, format);
 			}
 			catch (Throwable cause) {
-				throw new ExportSnapshotException(String.format(
-					"Failed to save snapshots to directory [%1$s] in format [%2$s]",
-						directory, format), cause);
+				throw new ExportSnapshotException("Failed to save snapshots to directory [%1$s] in format [%2$s]".formatted(
+					directory, format), cause);
 			}
 		}
 
@@ -642,9 +639,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().save(directory, format, options);
 			}
 			catch (Throwable cause) {
-				throw new ExportSnapshotException(String.format(
-					"Failed to save snapshots to directory [%1$s] in format [%2$s] using options [%3$s]",
-						directory, format, options), cause);
+				throw new ExportSnapshotException("Failed to save snapshots to directory [%1$s] in format [%2$s] using options [%3$s]".formatted(
+					directory, format, options), cause);
 			}
 		}
 	}
@@ -684,9 +680,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().load(snapshot, format);
 			}
 			catch (Throwable cause) {
-				throw new ImportSnapshotException(String.format(
-					"Failed to load snapshot from file [%1$s] in format [%2$s]",
-						snapshot, format), cause);
+				throw new ImportSnapshotException("Failed to load snapshot from file [%1$s] in format [%2$s]".formatted(
+					snapshot, format), cause);
 			}
 		}
 
@@ -699,9 +694,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				}
 			}
 			catch (Throwable cause) {
-				throw new ImportSnapshotException(String.format(
-					"Failed to load snapshots [%1$s] in format [%2$s] using options [%3$s]",
-						Arrays.toString(snapshots), format, options), cause);
+				throw new ImportSnapshotException("Failed to load snapshots [%1$s] in format [%2$s] using options [%3$s]".formatted(
+					Arrays.toString(snapshots), format, options), cause);
 			}
 		}
 
@@ -712,9 +706,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().save(snapshot, format);
 			}
 			catch (Throwable cause) {
-				throw new ExportSnapshotException(String.format(
-					"Failed to save snapshot to file [%1$s] in format [%2$s]",
-						snapshot, format), cause);
+				throw new ExportSnapshotException("Failed to save snapshot to file [%1$s] in format [%2$s]".formatted(
+					snapshot, format), cause);
 			}
 		}
 
@@ -725,9 +718,8 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 				getSnapshotService().save(snapshot, format, options);
 			}
 			catch (Throwable cause) {
-				throw new ExportSnapshotException(String.format(
-					"Failed to save snapshot to file [%1$s] in format [%2$s] using options [%3$s]",
-						snapshot, format, options), cause);
+				throw new ExportSnapshotException("Failed to save snapshot to file [%1$s] in format [%2$s] using options [%3$s]".formatted(
+					snapshot, format, options), cause);
 			}
 		}
 	}
@@ -815,10 +807,9 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 		@Override
 		public String toString() {
 
-			return String.format(
-				"{ @type = %1$s, location = %2$s, format = %3$s, filter = %4$s, invokeCallbacks = %5$s, parallel = %6$s }",
-					getClass().getName(), getLocation().getAbsolutePath(), getFormat(), getFilter(),
-						isInvokeCallbacks(), isParallel());
+			return "{ @type = %1$s, location = %2$s, format = %3$s, filter = %4$s, invokeCallbacks = %5$s, parallel = %6$s }".formatted(
+				getClass().getName(), getLocation().getAbsolutePath(), getFormat(), getFilter(),
+				isInvokeCallbacks(), isParallel());
 		}
 	}
 

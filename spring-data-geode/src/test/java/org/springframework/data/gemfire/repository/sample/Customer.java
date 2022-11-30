@@ -57,7 +57,7 @@ public class Customer {
 	}
 
 	public String getName() {
-		return String.format("%1$s %2$s", getFirstName(), getLastName());
+		return "%1$s %2$s".formatted(getFirstName(), getLastName());
 	}
 
 	public void setId(Long id) {

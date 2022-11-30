@@ -75,7 +75,7 @@ public class Animal implements Identifiable<Long> {
 
 	@Override
 	public String toString() {
-		return String.format("{ @type = %1$s, id = %2$d, name = %3$s }",
+		return "{ @type = %1$s, id = %2$d, name = %3$s }".formatted(
 			getClass().getSimpleName(), getId(), getName());
 	}
 }

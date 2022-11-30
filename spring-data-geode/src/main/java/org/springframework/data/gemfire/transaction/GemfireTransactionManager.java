@@ -146,7 +146,7 @@ public class GemfireTransactionManager extends AbstractPlatformTransactionManage
 			GemFireCache cache = getCache();
 
 			if (logger.isDebugEnabled()) {
-				logger.debug(String.format("Acquired GemFire Cache [%s] for local cache transaction", cache));
+				logger.debug("Acquired GemFire Cache [%s] for local cache transaction".formatted(cache));
 			}
 
 			CacheTransactionManager cacheTransactionManager = getCacheTransactionManager();
@@ -162,7 +162,7 @@ public class GemfireTransactionManager extends AbstractPlatformTransactionManage
 			}
 		}
 		catch (Exception cause) {
-			throw new CannotCreateTransactionException(String.format("%1$s; %2$s",
+			throw new CannotCreateTransactionException("%1$s; %2$s".formatted(
 				"An existing, ongoing transaction is already associated with the current thread;",
 				" Are multiple transaction managers present"), cause);
 		}

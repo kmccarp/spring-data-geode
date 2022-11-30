@@ -135,8 +135,8 @@ public class AsyncEventQueueWithListenerIntegrationTests extends IntegrationTest
 
 		public AsyncEventQueue getQueue() {
 
-			Assert.state(queue != null, String.format("A reference to the AsyncEventQueue on which this listener"
-				+ " [%s] has been registered was not properly configured", this));
+			Assert.state(queue != null, ("A reference to the AsyncEventQueue on which this listener"
+				+ " [%s] has been registered was not properly configured").formatted(this));
 
 			return queue;
 		}

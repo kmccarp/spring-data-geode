@@ -28,6 +28,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Collections;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -107,7 +108,7 @@ public class CreateIndexFunctionUnitTests {
 		when(this.mockIndex.getIndexedExpression()).thenReturn("name");
 		when(this.mockIndex.getFromClause()).thenReturn("/Customers");
 		when(this.mockIndex.getType()).thenReturn(IndexType.HASH.getGemfireIndexType());
-		when(this.mockQueryService.getIndexes()).thenReturn(Collections.singleton(mockIndexTwo));
+		when(this.mockQueryService.getIndexes()).thenReturn(Set.of(mockIndexTwo));
 
 		IndexDefinition indexDefinition = IndexDefinition.from(this.mockIndex);
 
@@ -141,7 +142,7 @@ public class CreateIndexFunctionUnitTests {
 	@Test
 	public void doesNotCreateIndexWhenIndexAlreadyExists() throws QueryException {
 
-		when(this.mockQueryService.getIndexes()).thenReturn(Collections.singleton(this.mockIndex));
+		when(this.mockQueryService.getIndexes()).thenReturn(Set.of(this.mockIndex));
 
 		IndexDefinition indexDefinition = IndexDefinition.from(this.mockIndex);
 

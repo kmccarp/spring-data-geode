@@ -98,7 +98,7 @@ public abstract class LazyWiringDeclarableSupport extends WiringDeclarableSuppor
 	protected void assertInitialized() {
 
 		Assert.state(isInitialized(),
-			String.format("This Declarable object [%s] has not been properly configured and initialized",
+			"This Declarable object [%s] has not been properly configured and initialized".formatted(
 				getClass().getName()));
 	}
 
@@ -117,7 +117,7 @@ public abstract class LazyWiringDeclarableSupport extends WiringDeclarableSuppor
 	protected void assertUninitialized() {
 
 		Assert.state(isNotInitialized(),
-			String.format("This Declarable object [%s] has already been configured and initialized",
+			"This Declarable object [%s] has already been configured and initialized".formatted(
 				getClass().getName()));
 	}
 
@@ -246,7 +246,7 @@ public abstract class LazyWiringDeclarableSupport extends WiringDeclarableSuppor
 		ApplicationContext applicationContext = event.getApplicationContext();
 
 		Assert.isTrue(applicationContext instanceof ConfigurableApplicationContext,
-			String.format("The Spring ApplicationContext [%s] must be an instance of ConfigurableApplicationContext",
+			"The Spring ApplicationContext [%s] must be an instance of ConfigurableApplicationContext".formatted(
 				applicationContext));
 
 		ConfigurableListableBeanFactory beanFactory =

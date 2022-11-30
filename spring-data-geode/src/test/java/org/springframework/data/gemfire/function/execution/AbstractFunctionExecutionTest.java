@@ -104,7 +104,7 @@ public class AbstractFunctionExecutionTest {
 	@Test
 	public void executeAndExtractWithSingleResult() {
 
-		List<String> results = Collections.singletonList("test");
+		List<String> results = List.of("test");
 
 		AbstractFunctionExecution functionExecution = new AbstractFunctionExecution() {
 
@@ -185,7 +185,7 @@ public class AbstractFunctionExecutionTest {
 
 		AbstractFunctionExecution functionExecution = mock(AbstractFunctionExecution.class);
 
-		doReturn(Collections.singleton(new IllegalArgumentException("test"))).when(functionExecution).execute();
+		doReturn(Set.of(new IllegalArgumentException("test"))).when(functionExecution).execute();
 		doCallRealMethod().when(functionExecution).setFunctionId(anyString());
 		doCallRealMethod().when(functionExecution).getFunctionId();
 		doCallRealMethod().when(functionExecution).executeAndExtract();

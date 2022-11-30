@@ -219,7 +219,7 @@ public class TemplateRegionsNamespaceIntegrationTests extends IntegrationTestsSu
 		assertThat(region).describedAs("The Region must not be null").isNotNull();
 
 		assertThat(region.getAttributes())
-			.describedAs(String.format("Region (%1$s) must have 'RegionAttributes' defined",region.getFullPath()))
+			.describedAs("Region (%1$s) must have 'RegionAttributes' defined".formatted(region.getFullPath()))
 			.isNotNull();
 
 		assertThat(region.getAttributes().getCompressor()).isNull();
@@ -263,11 +263,11 @@ public class TemplateRegionsNamespaceIntegrationTests extends IntegrationTestsSu
 
 	private static void assertRegionMetaData(Region<?, ?> region, String expectedRegionName, String expectedRegionPath) {
 
-		assertThat(region).as(String.format("The '%1$s' Region was not properly configured and initialized",
+		assertThat(region).as("The '%1$s' Region was not properly configured and initialized".formatted(
 			expectedRegionName)).isNotNull();
 		assertThat(region.getName()).isEqualTo(expectedRegionName);
 		assertThat(region.getFullPath()).isEqualTo(expectedRegionPath);
-		assertThat(region.getAttributes()).as(String.format("The '%1$s' Region must have RegionAttributes defined",
+		assertThat(region.getAttributes()).as("The '%1$s' Region must have RegionAttributes defined".formatted(
 			expectedRegionName)).isNotNull();
 	}
 
@@ -288,9 +288,8 @@ public class TemplateRegionsNamespaceIntegrationTests extends IntegrationTestsSu
 
 			try {
 				applicationContext.getBean(beanName);
-				fail(String
-					.format("The abstract bean definition '%1$s' should not exist as a bean in the Spring context",
-						beanName));
+				fail("The abstract bean definition '%1$s' should not exist as a bean in the Spring context".formatted(
+					beanName));
 			}
 			catch (BeansException expected) {
 				assertThat(expected instanceof BeanIsAbstractException).isTrue();

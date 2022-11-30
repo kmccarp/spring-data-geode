@@ -145,10 +145,10 @@ public class SimpleGemfireRepositoryUnitTests {
 
 	private Cache mockCache(String name, boolean transactionExists) {
 
-		Cache mockCache = mock(Cache.class, String.format("%s.MockCache", name));
+		Cache mockCache = mock(Cache.class, "%s.MockCache".formatted(name));
 
 		CacheTransactionManager mockCacheTransactionManager = mock(CacheTransactionManager.class,
-			String.format("%s.MockCacheTransactionManager", name));
+			"%s.MockCacheTransactionManager".formatted(name));
 
 		doReturn(mockCacheTransactionManager).when(mockCache).getCacheTransactionManager();
 		doReturn(transactionExists).when(mockCacheTransactionManager).exists();
@@ -187,7 +187,7 @@ public class SimpleGemfireRepositoryUnitTests {
 
 	private Region mockRegion(String name) {
 
-		Region mockRegion = mock(Region.class, String.format("%s.MockRegion", name));
+		Region mockRegion = mock(Region.class, "%s.MockRegion".formatted(name));
 
 		doReturn(name).when(mockRegion).getName();
 		doReturn(RegionUtils.toRegionPath(name)).when(mockRegion).getFullPath();
@@ -202,7 +202,7 @@ public class SimpleGemfireRepositoryUnitTests {
 		doReturn(mockCache).when(mockRegion).getRegionService();
 
 		RegionAttributes mockRegionAttributes = mock(RegionAttributes.class,
-			String.format("%s.MockRegionAttributes", name));
+			"%s.MockRegionAttributes".formatted(name));
 
 		doReturn(mockRegionAttributes).when(mockRegion).getAttributes();
 		doReturn(dataPolicy).when(mockRegionAttributes).getDataPolicy();
@@ -414,7 +414,7 @@ public class SimpleGemfireRepositoryUnitTests {
 		GemfireTemplate template = spy(newGemfireTemplate(mockRegion));
 
 		doReturn(mockSelectResults).when(template).find(eq("SELECT count(*) FROM /Example"));
-		doReturn(Collections.singletonList(21).iterator()).when(mockSelectResults).iterator();
+		doReturn(List.of(21).iterator()).when(mockSelectResults).iterator();
 
 		SimpleGemfireRepository<Animal, Long> repository =
 			new SimpleGemfireRepository<>(template, mockEntityInformation());

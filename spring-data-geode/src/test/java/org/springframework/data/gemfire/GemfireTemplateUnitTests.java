@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
@@ -218,7 +218,7 @@ public class GemfireTemplateUnitTests extends IntegrationTestsSupport {
 		SelectResults mockSelectResults = mock(SelectResults.class);
 
 		when(mockQuery.execute(any(Object.class))).thenReturn(mockSelectResults);
-		when(mockSelectResults.asList()).thenReturn(Collections.singletonList(1));
+		when(mockSelectResults.asList()).thenReturn(List.of(1));
 
 		assertThat((Object) template.findUnique(expectedQuery, expectedParams)).isEqualTo(1);
 

@@ -63,7 +63,7 @@ public class IndexDefinitionUnitTests {
 	@Before
 	public void setup() {
 		when(this.mockIndex.getName()).thenReturn("MockIndex");
-		when(this.mockRegion.getFullPath()).thenReturn(String.format("%sMockRegion", Region.SEPARATOR));
+		when(this.mockRegion.getFullPath()).thenReturn("%sMockRegion".formatted(Region.SEPARATOR));
 	}
 
 	private Index mockIndex(String name, String expression, String fromClause, IndexType type) {

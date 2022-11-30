@@ -661,7 +661,7 @@ public abstract class AbstractBasicCacheFactoryBean extends AbstractFactoryBeanS
 		Optional.ofNullable(getCriticalHeapPercentage()).ifPresent(criticalHeapPercentage -> {
 
 			Assert.isTrue(isHeapPercentageValid(criticalHeapPercentage),
-				() -> String.format("criticalHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0",
+				() -> "criticalHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0".formatted(
 					criticalHeapPercentage));
 
 			cache.getResourceManager().setCriticalHeapPercentage(criticalHeapPercentage);
@@ -670,7 +670,7 @@ public abstract class AbstractBasicCacheFactoryBean extends AbstractFactoryBeanS
 		Optional.ofNullable(getEvictionHeapPercentage()).ifPresent(evictionHeapPercentage -> {
 
 			Assert.isTrue(isHeapPercentageValid(evictionHeapPercentage),
-				() -> String.format("evictionHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0",
+				() -> "evictionHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0".formatted(
 					evictionHeapPercentage));
 
 			cache.getResourceManager().setEvictionHeapPercentage(evictionHeapPercentage);
@@ -697,7 +697,7 @@ public abstract class AbstractBasicCacheFactoryBean extends AbstractFactoryBeanS
 		Optional.ofNullable(getCriticalOffHeapPercentage()).ifPresent(criticalOffHeapPercentage -> {
 
 			Assert.isTrue(isHeapPercentageValid(criticalOffHeapPercentage),
-				() -> String.format("criticalOffHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0",
+				() -> "criticalOffHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0".formatted(
 					criticalOffHeapPercentage));
 
 			cache.getResourceManager().setCriticalOffHeapPercentage(criticalOffHeapPercentage);
@@ -706,7 +706,7 @@ public abstract class AbstractBasicCacheFactoryBean extends AbstractFactoryBeanS
 		Optional.ofNullable(getEvictionOffHeapPercentage()).ifPresent(evictionOffHeapPercentage -> {
 
 			Assert.isTrue(isHeapPercentageValid(evictionOffHeapPercentage),
-				() -> String.format("evictionOffHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0",
+				() -> "evictionOffHeapPercentage [%s] is not valid; must be >= 0.0 and <= 100.0".formatted(
 					evictionOffHeapPercentage));
 
 			cache.getResourceManager().setEvictionOffHeapPercentage(evictionOffHeapPercentage);

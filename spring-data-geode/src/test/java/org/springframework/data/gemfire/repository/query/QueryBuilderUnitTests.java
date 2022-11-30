@@ -98,7 +98,7 @@ public class QueryBuilderUnitTests {
 		when(mockPredicate.toString(eq(QueryBuilder.DEFAULT_ALIAS))).thenReturn("x.id = 1");
 
 		QueryBuilder queryBuilder =
-			new QueryBuilder(String.format("SELECT * FROM /Example %s", QueryBuilder.DEFAULT_ALIAS));
+			new QueryBuilder("SELECT * FROM /Example %s".formatted(QueryBuilder.DEFAULT_ALIAS));
 
 		QueryString queryString = queryBuilder.create(mockPredicate);
 

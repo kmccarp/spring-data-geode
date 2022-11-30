@@ -209,9 +209,8 @@ abstract class AbstractRegionParser extends AbstractSingleBeanDefinitionParser {
 				}
 			}
 			else {
-				parserContext.getReaderContext().error(String.format(
-					"The Region template [%1$s] must be defined before the Region [%2$s] referring to the template",
-						regionTemplateName, resolveId(element, regionBuilder.getRawBeanDefinition(), parserContext)),
+				parserContext.getReaderContext().error("The Region template [%1$s] must be defined before the Region [%2$s] referring to the template".formatted(
+					regionTemplateName, resolveId(element, regionBuilder.getRawBeanDefinition(), parserContext)),
 							element);
 			}
 		}
@@ -337,7 +336,7 @@ abstract class AbstractRegionParser extends AbstractSingleBeanDefinitionParser {
 
 		if (element.hasAttribute("data-policy") && element.hasAttribute("shortcut")) {
 
-			String message = String.format("Only one of [data-policy, shortcut] may be specified with element [%s]",
+			String message = "Only one of [data-policy, shortcut] may be specified with element [%s]".formatted(
 				element.getTagName());
 
 			parserContext.getReaderContext().error(message, element);

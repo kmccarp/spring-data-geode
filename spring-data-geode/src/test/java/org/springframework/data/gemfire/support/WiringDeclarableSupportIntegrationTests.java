@@ -70,7 +70,7 @@ public class WiringDeclarableSupportIntegrationTests extends IntegrationTestsSup
 
 		assertThat(region).isNotNull();
 		assertThat(region.getName()).isEqualTo(name);
-		assertThat(region.getFullPath()).isEqualTo(String.format("%1$s%2$s", Region.SEPARATOR, name));
+		assertThat(region.getFullPath()).isEqualTo("%1$s%2$s".formatted(Region.SEPARATOR, name));
 		assertThat(region.getAttributes()).isNotNull();
 		assertThat(region.getAttributes().getDataPolicy()).isEqualTo(dataPolicy);
 	}

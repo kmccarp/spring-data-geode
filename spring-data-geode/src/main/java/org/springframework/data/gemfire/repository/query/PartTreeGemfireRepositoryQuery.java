@@ -140,13 +140,13 @@ public class PartTreeGemfireRepositoryQuery extends GemfireRepositoryQuery {
 			else {
 				switch (partsIterator.next().getType()) {
 					case CONTAINING:
-						stringParameters.add(String.format("%%%s%%", parameter.toString()));
+						stringParameters.add("%%%s%%".formatted(parameter.toString()));
 						break;
 					case STARTING_WITH:
-						stringParameters.add(String.format("%s%%", parameter.toString()));
+						stringParameters.add("%s%%".formatted(parameter.toString()));
 						break;
 					case ENDING_WITH:
-						stringParameters.add(String.format("%%%s", parameter.toString()));
+						stringParameters.add("%%%s".formatted(parameter.toString()));
 						break;
 					default:
 						stringParameters.add(parameter);

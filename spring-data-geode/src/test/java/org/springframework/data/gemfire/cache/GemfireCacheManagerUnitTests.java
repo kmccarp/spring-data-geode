@@ -257,7 +257,7 @@ public class GemfireCacheManagerUnitTests {
 
 	@Test
 	public void isSetForNonNullNonEmptyIterableIsTrue() {
-		assertThat(cacheManager.isSet(Collections.singleton(1))).isTrue();
+		assertThat(cacheManager.isSet(Set.of(1))).isTrue();
 	}
 
 	@Test
@@ -307,7 +307,7 @@ public class GemfireCacheManagerUnitTests {
 	@Test
 	public void getMissingCacheReturnsNull() {
 
-		cacheManager.setRegions(Collections.singleton(mockRegion("one")));
+		cacheManager.setRegions(Set.of(mockRegion("one")));
 		cacheManager.afterPropertiesSet();
 
 		assertThat(cacheManager.isDynamic()).isFalse();

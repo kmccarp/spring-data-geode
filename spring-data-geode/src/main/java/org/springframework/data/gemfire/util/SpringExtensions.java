@@ -314,7 +314,7 @@ public abstract class SpringExtensions {
 	}
 
 	public static String dereferenceBean(String beanName) {
-		return String.format("%1$s%2$s", BeanFactory.FACTORY_BEAN_PREFIX, beanName);
+		return "%1$s%2$s".formatted(BeanFactory.FACTORY_BEAN_PREFIX, beanName);
 	}
 
 	public static boolean equalsIgnoreNull(Object obj1, Object obj2) {

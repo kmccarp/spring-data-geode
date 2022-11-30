@@ -76,9 +76,8 @@ public class GatewayReceiverManualStartIntegrationTests extends IntegrationTests
 
 		int gatewayReceiverPort = autoGatewayReceiver.getPort();
 
-		assertGreaterThanEqualToLessThanEqualTo(String.format(
-			"GatewayReceiver 'port' [%1$d] was not greater than equal to [%2$d] and less than equal to [%3$d]",
-				gatewayReceiverPort, autoGatewayReceiver.getStartPort(), autoGatewayReceiver.getEndPort()),
+		assertGreaterThanEqualToLessThanEqualTo("GatewayReceiver 'port' [%1$d] was not greater than equal to [%2$d] and less than equal to [%3$d]".formatted(
+			gatewayReceiverPort, autoGatewayReceiver.getStartPort(), autoGatewayReceiver.getEndPort()),
 					gatewayReceiverPort, autoGatewayReceiver.getStartPort(), autoGatewayReceiver.getEndPort());
 
 		autoGatewayReceiver.stop();
@@ -103,9 +102,8 @@ public class GatewayReceiverManualStartIntegrationTests extends IntegrationTests
 
 		int gatewayReceiverPort = manualGatewayReceiver.getPort();
 
-		assertGreaterThanEqualToLessThanEqualTo(String.format(
-			"GatewayReceiver 'port' [%1$d] was not greater than equal to [%2$d] and less than equal to [%3$d]",
-				gatewayReceiverPort, manualGatewayReceiver.getStartPort(), manualGatewayReceiver.getEndPort()),
+		assertGreaterThanEqualToLessThanEqualTo("GatewayReceiver 'port' [%1$d] was not greater than equal to [%2$d] and less than equal to [%3$d]".formatted(
+			gatewayReceiverPort, manualGatewayReceiver.getStartPort(), manualGatewayReceiver.getEndPort()),
 					gatewayReceiverPort, manualGatewayReceiver.getStartPort(), manualGatewayReceiver.getEndPort());
 
 		manualGatewayReceiver.stop();

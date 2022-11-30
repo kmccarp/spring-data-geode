@@ -169,7 +169,7 @@ public class LazyWiringDeclarableSupportFunctionBasedIntegrationTests extends In
 		}
 
 		protected String formatHelloGreeting(String addressTo) {
-			return String.format(HELLO_GREETING, addressTo);
+			return HELLO_GREETING.formatted(addressTo);
 		}
 	}
 }

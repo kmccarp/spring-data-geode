@@ -59,7 +59,7 @@ public class ServerProcess {
 
 	private static ConfigurableApplicationContext newApplicationContext(String[] configLocations) {
 
-		Assert.notEmpty(configLocations, String.format("Usage: >java -cp ... %1$s %2$s",
+		Assert.notEmpty(configLocations, "Usage: >java -cp ... %1$s %2$s".formatted(
 			ServerProcess.class.getName(), "classpath:/to/applicationContext.xml"));
 
 		ConfigurableApplicationContext applicationContext = new ClassPathXmlApplicationContext(configLocations);

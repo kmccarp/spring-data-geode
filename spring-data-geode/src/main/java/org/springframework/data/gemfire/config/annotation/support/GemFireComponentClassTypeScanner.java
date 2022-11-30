@@ -218,7 +218,7 @@ public class GemFireComponentClassTypeScanner implements Iterable<String> {
 							componentClasses.add(ClassUtils.forName(beanClassName, entityClassLoader));
 						}
 						catch (ClassNotFoundException ignore) {
-							logger.warn(String.format("Class for component type [%s] not found",
+							logger.warn("Class for component type [%s] not found".formatted(
 								beanDefinition.getBeanClassName()));
 						}
 					})

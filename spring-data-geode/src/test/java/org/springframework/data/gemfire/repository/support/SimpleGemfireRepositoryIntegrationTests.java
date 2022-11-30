@@ -18,7 +18,6 @@ package org.springframework.data.gemfire.repository.support;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -242,7 +241,7 @@ public class SimpleGemfireRepositoryIntegrationTests extends IntegrationTestsSup
 		assertThat(this.repository.save(oliverGierke)).isEqualTo(oliverGierke);
 		assertThat(this.repository.count()).isEqualTo(1L);
 		assertThat(this.repository.findById(oliverGierke.getId()).orElse(null)).isEqualTo(oliverGierke);
-		assertThat(this.repository.findAll()).isEqualTo(Collections.singletonList(oliverGierke));
+		assertThat(this.repository.findAll()).isEqualTo(List.of(oliverGierke));
 
 		this.repository.delete(oliverGierke);
 

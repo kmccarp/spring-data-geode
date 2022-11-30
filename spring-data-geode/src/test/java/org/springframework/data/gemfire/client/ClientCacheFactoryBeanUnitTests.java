@@ -36,6 +36,7 @@ import static org.mockito.Mockito.when;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 import java.util.function.Supplier;
 
@@ -585,7 +586,7 @@ public class ClientCacheFactoryBeanUnitTests {
 		when(mockPool.getRetryAttempts()).thenReturn(1);
 		when(mockPool.getServerConnectionTimeout()).thenReturn(12345);
 		when(mockPool.getServerGroup()).thenReturn("TestServerGroup");
-		when(mockPool.getServers()).thenReturn(Collections.singletonList(new InetSocketAddress("localhost", 12480)));
+		when(mockPool.getServers()).thenReturn(List.of(new InetSocketAddress("localhost", 12480)));
 		when(mockPool.getSocketBufferSize()).thenReturn(8192);
 		when(mockPool.getSocketConnectTimeout()).thenReturn(5000);
 		when(mockPool.getSocketFactory()).thenReturn(SocketFactory.DEFAULT);
@@ -698,8 +699,8 @@ public class ClientCacheFactoryBeanUnitTests {
 
 		Pool mockPool = mock(Pool.class);
 
-		when(mockPool.getLocators()).thenReturn(Collections.singletonList(new InetSocketAddress("localhost", 21668)));
-		when(mockPool.getServers()).thenReturn(Collections.singletonList(new InetSocketAddress("localhost", 41414)));
+		when(mockPool.getLocators()).thenReturn(List.of(new InetSocketAddress("localhost", 21668)));
+		when(mockPool.getServers()).thenReturn(List.of(new InetSocketAddress("localhost", 41414)));
 
 		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
 
@@ -725,8 +726,8 @@ public class ClientCacheFactoryBeanUnitTests {
 
 		Pool mockPool = mock(Pool.class);
 
-		when(mockPool.getLocators()).thenReturn(Collections.singletonList(new InetSocketAddress("localhost", 21668)));
-		when(mockPool.getServers()).thenReturn(Collections.singletonList(new InetSocketAddress("localhost", 41414)));
+		when(mockPool.getLocators()).thenReturn(List.of(new InetSocketAddress("localhost", 21668)));
+		when(mockPool.getServers()).thenReturn(List.of(new InetSocketAddress("localhost", 41414)));
 
 		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
 
@@ -752,7 +753,7 @@ public class ClientCacheFactoryBeanUnitTests {
 
 		Pool mockPool = mock(Pool.class);
 
-		when(mockPool.getLocators()).thenReturn(Collections.singletonList(new InetSocketAddress("skullbox", 21668)));
+		when(mockPool.getLocators()).thenReturn(List.of(new InetSocketAddress("skullbox", 21668)));
 		when(mockPool.getServers()).thenReturn(Collections.emptyList());
 
 		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
@@ -779,7 +780,7 @@ public class ClientCacheFactoryBeanUnitTests {
 		Pool mockPool = mock(Pool.class);
 
 		when(mockPool.getLocators()).thenReturn(Collections.emptyList());
-		when(mockPool.getServers()).thenReturn(Collections.singletonList(new InetSocketAddress("boombox", 41414)));
+		when(mockPool.getServers()).thenReturn(List.of(new InetSocketAddress("boombox", 41414)));
 
 		ClientCacheFactoryBean clientCacheFactoryBean = new ClientCacheFactoryBean();
 

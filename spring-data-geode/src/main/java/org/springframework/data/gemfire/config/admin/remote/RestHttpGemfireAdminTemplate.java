@@ -230,8 +230,8 @@ public class RestHttpGemfireAdminTemplate extends FunctionGemfireAdminTemplate {
 	String resolveManagementRestApiUrl(String scheme, String host, int port) {
 
 		return NetworkUtils.isValidNonEphemeralPort(port)
-			? String.format(MANAGEMENT_REST_API_URL_TEMPLATE, scheme, host, port)
-			: String.format(MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE, scheme, host);
+			? MANAGEMENT_REST_API_URL_TEMPLATE.formatted(scheme, host, port)
+			: MANAGEMENT_REST_API_NO_PORT_URL_TEMPLATE.formatted(scheme, host);
 	}
 
 	/**
@@ -331,7 +331,7 @@ public class RestHttpGemfireAdminTemplate extends FunctionGemfireAdminTemplate {
 		public Builder listenOn(int port) {
 
 			Assert.isTrue(NetworkUtils.isValidNonEphemeralPort(port),
-				String.format(NetworkUtils.INVALID_NO_EPHEMERAL_PORT_MESSAGE, port));
+				(NetworkUtils.INVALID_NO_EPHEMERAL_PORT_MESSAGE).formatted(port));
 
 			this.port = port;
 
@@ -348,7 +348,7 @@ public class RestHttpGemfireAdminTemplate extends FunctionGemfireAdminTemplate {
 			scheme = String.valueOf(scheme).trim().toLowerCase();
 
 			Assert.isTrue(VALID_SCHEMES.contains(scheme),
-				String.format("Scheme [%s] is not valid; must be 1 of %s", scheme, VALID_SCHEMES));
+				"Scheme [%s] is not valid; must be 1 of %s".formatted(scheme, VALID_SCHEMES));
 
 			this.scheme = scheme;
 

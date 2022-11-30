@@ -15,10 +15,10 @@ package org.springframework.data.gemfire.function.execution;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -133,7 +133,7 @@ public class FunctionIntegrationTests extends ForkingClientServerIntegrationTest
 		GemfireOnRegionOperations template = new GemfireOnRegionFunctionTemplate(this.region);
 
 		assertThat(template.<Integer>execute("oneArg", "two").iterator().next().intValue()).isEqualTo(2);
-		assertThat(template.<Integer>execute("oneArg", Collections.singleton("one"), "two").iterator().hasNext())
+		assertThat(template.<Integer>execute("oneArg", Set.of("one"), "two").iterator().hasNext())
 			.isFalse();
 		assertThat(template.<Integer>execute("twoArg", "two", "three").iterator().next().intValue()).isEqualTo(5);
 		assertThat(template.<Integer>executeAndExtract("twoArg", "two", "three").intValue()).isEqualTo(5);

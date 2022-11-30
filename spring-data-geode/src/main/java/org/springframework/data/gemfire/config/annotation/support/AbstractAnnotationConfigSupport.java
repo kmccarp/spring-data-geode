@@ -554,7 +554,7 @@ public abstract class AbstractAnnotationConfigSupport
 	 * @see #logDebug(Supplier)
 	 */
 	protected void logDebug(String message, Object... args) {
-		logDebug(() -> String.format(message, args));
+		logDebug(() -> message.formatted(args));
 	}
 
 	/**
@@ -579,7 +579,7 @@ public abstract class AbstractAnnotationConfigSupport
 	 * @see #logInfo(Supplier)
 	 */
 	protected void logInfo(String message, Object... args) {
-		logInfo(() -> String.format(message, args));
+		logInfo(() -> message.formatted(args));
 	}
 
 	/**
@@ -604,7 +604,7 @@ public abstract class AbstractAnnotationConfigSupport
 	 * @see #logWarning(Supplier)
 	 */
 	protected void logWarning(String message, Object... args) {
-		logWarning(() -> String.format(message, args));
+		logWarning(() -> message.formatted(args));
 	}
 
 	/**
@@ -629,7 +629,7 @@ public abstract class AbstractAnnotationConfigSupport
 	 * @see #logError(Supplier)
 	 */
 	protected void logError(String message, Object... args) {
-		logError(() -> String.format(message, args));
+		logError(() -> message.formatted(args));
 	}
 
 	/**
@@ -713,116 +713,116 @@ public abstract class AbstractAnnotationConfigSupport
 	}
 
 	protected String asArrayProperty(String propertyNamePrefix, int index, String propertyNameSuffix) {
-		return String.format("%1$s[%2$d]%3$s", propertyNamePrefix, index,
+		return "%1$s[%2$d]%3$s".formatted(propertyNamePrefix, index,
 			Optional.ofNullable(propertyNameSuffix).filter(StringUtils::hasText).map("."::concat).orElse(""));
 	}
 
 	protected String cacheProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cache."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cache."), propertyNameSuffix);
 	}
 
 	protected String cacheClientProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cache.client."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cache.client."), propertyNameSuffix);
 	}
 
 	protected String cacheCompressionProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cache.compression."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cache.compression."), propertyNameSuffix);
 	}
 
 	protected String cacheOffHeapProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cache.off-heap."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cache.off-heap."), propertyNameSuffix);
 	}
 
 	protected String cachePeerProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cache.peer."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cache.peer."), propertyNameSuffix);
 	}
 
 	protected String cacheServerProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cache.server."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cache.server."), propertyNameSuffix);
 	}
 
 	protected String namedCacheServerProperty(String name, String propertyNameSuffix) {
-		return String.format("%1$s%2$s.%3$s", propertyName("cache.server."), name, propertyNameSuffix);
+		return "%1$s%2$s.%3$s".formatted(propertyName("cache.server."), name, propertyNameSuffix);
 	}
 
 	protected String clusterProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("cluster."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("cluster."), propertyNameSuffix);
 	}
 
 	protected String diskStoreProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("disk.store."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("disk.store."), propertyNameSuffix);
 	}
 
 	protected String namedDiskStoreProperty(String name, String propertyNameSuffix) {
-		return String.format("%1$s%2$s.%3$s", propertyName("disk.store."), name, propertyNameSuffix);
+		return "%1$s%2$s.%3$s".formatted(propertyName("disk.store."), name, propertyNameSuffix);
 	}
 
 	protected String entitiesProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("entities."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("entities."), propertyNameSuffix);
 	}
 
 	protected String locatorProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("locator."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("locator."), propertyNameSuffix);
 	}
 
 	protected String loggingProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("logging."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("logging."), propertyNameSuffix);
 	}
 
 	protected String managementProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("management."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("management."), propertyNameSuffix);
 	}
 
 	protected String managerProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("manager."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("manager."), propertyNameSuffix);
 	}
 
 	protected String pdxProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("pdx."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("pdx."), propertyNameSuffix);
 	}
 
 	protected String poolProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("pool."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("pool."), propertyNameSuffix);
 	}
 
 	protected String namedPoolProperty(String name, String propertyNameSuffix) {
-		return String.format("%1$s%2$s.%3$s", propertyName("pool."), name, propertyNameSuffix);
+		return "%1$s%2$s.%3$s".formatted(propertyName("pool."), name, propertyNameSuffix);
 	}
 
 	protected String securityProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("security."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("security."), propertyNameSuffix);
 	}
 
 	protected String sslProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", securityProperty("ssl."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(securityProperty("ssl."), propertyNameSuffix);
 	}
 
 	protected String statsProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("stats."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("stats."), propertyNameSuffix);
 	}
 
 	protected String serviceProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("service."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("service."), propertyNameSuffix);
 	}
 
 	protected String memcachedServiceProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", serviceProperty("memcached."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(serviceProperty("memcached."), propertyNameSuffix);
 	}
 
 	protected String httpServiceProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", serviceProperty("http."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(serviceProperty("http."), propertyNameSuffix);
 	}
 
 	protected String gatewayReceiverProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("gateway.receiver."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("gateway.receiver."), propertyNameSuffix);
 	}
 
 	protected String gatewaySenderProperty(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", propertyName("gateway.sender."), propertyNameSuffix);
+		return "%1$s%2$s".formatted(propertyName("gateway.sender."), propertyNameSuffix);
 	}
 
 	protected String namedGatewaySenderProperty(String name, String propertyNameSuffix) {
-		return String.format("%1$s%2$s.%3$s", propertyName("gateway.sender."), name, propertyNameSuffix);
+		return "%1$s%2$s.%3$s".formatted(propertyName("gateway.sender."), name, propertyNameSuffix);
 	}
 
 	/**
@@ -837,7 +837,7 @@ public abstract class AbstractAnnotationConfigSupport
 	 * @see java.lang.String
 	 */
 	protected String propertyName(String propertyNameSuffix) {
-		return String.format("%1$s%2$s", SPRING_DATA_GEMFIRE_PROPERTY_PREFIX, propertyNameSuffix);
+		return "%1$s%2$s".formatted(SPRING_DATA_GEMFIRE_PROPERTY_PREFIX, propertyNameSuffix);
 	}
 
 	/**

@@ -121,7 +121,7 @@ public class ApacheGeodeSecurityManagerSecurityIntegrationTests extends Abstract
 			User user = securityRepository.findBy(username);
 
 			if (user == null || !user.getCredentials().equals(password)) {
-				throw new AuthenticationFailedException(String.format("Failed to authenticate user [%s]", username));
+				throw new AuthenticationFailedException("Failed to authenticate user [%s]".formatted(username));
 			}
 
 			return user;

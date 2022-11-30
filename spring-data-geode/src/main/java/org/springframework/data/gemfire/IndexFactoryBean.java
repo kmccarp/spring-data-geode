@@ -289,10 +289,9 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 								.map(Index::getName)
 								.orElse("unknown");
 
-							return new GemfireIndexException(String.format(
-								"An Index with a different name [%1$s] having the same definition [%2$s] already exists;"
-									+ " You may attempt to override the existing Index [%1$s] with the new name [%3$s]"
-									+ " by setting the 'override' property to 'true'",
+							return new GemfireIndexException(("An Index with a different name [%1$s] having the same definition [%2$s] already exists;"
+								+ " You may attempt to override the existing Index [%1$s] with the new name [%3$s]"
+								+ " by setting the 'override' property to 'true'").formatted(
 								existingIndexName, toBasicIndexDefinition(), indexName), cause);
 
 						})
@@ -321,14 +320,13 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 						).orElseThrow(() -> {
 
 							String existingIndexDefinition = existingIndexByName
-								.map(it -> String.format(DETAILED_INDEX_DEFINITION, it.getName(),
+								.map(it -> DETAILED_INDEX_DEFINITION.formatted(it.getName(),
 									it.getIndexedExpression(), it.getFromClause(), "unknown", it.getType()))
 								.orElse("unknown");
 
-							return new GemfireIndexException(String.format(
-								"An Index with the same name [%1$s] having possibly a different definition already exists;"
-									+ " you may choose to ignore this Index definition [%2$s] and use the existing Index"
-									+ " definition [%3$s] by setting the 'ignoreIfExists' property to 'true'",
+							return new GemfireIndexException(("An Index with the same name [%1$s] having possibly a different definition already exists;"
+								+ " you may choose to ignore this Index definition [%2$s] and use the existing Index"
+								+ " definition [%3$s] by setting the 'ignoreIfExists' property to 'true'").formatted(
 								indexName, toDetailedIndexDefinition(), existingIndexDefinition), cause);
 
 						})
@@ -336,7 +334,7 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 		}
 		catch (Exception cause) {
 
-			String message = String.format("Failed to create Index [%s]", toDetailedIndexDefinition());
+			String message = "Failed to create Index [%s]".formatted(toDetailedIndexDefinition());
 
 			throw new GemfireIndexException(message , cause);
 		}
@@ -367,7 +365,7 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 
 		if (isNotIndexDefinitionMatch(existingIndex)) {
 
-			String existingIndexDefinition = String.format(BASIC_INDEX_DEFINITION, existingIndex.getIndexedExpression(),
+			String existingIndexDefinition = BASIC_INDEX_DEFINITION.formatted(existingIndex.getIndexedExpression(),
 				existingIndex.getFromClause(), IndexType.valueOf(existingIndex.getType()));
 
 			logWarning("WARNING; %1$s existing Index [%2$s] having a definition [%3$s]"
@@ -394,10 +392,9 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 			return createIndex(queryService, indexName, true);
 		}
 		catch (Exception cause) {
-			throw new GemfireIndexException(String.format(
-				"Attempt to 'override' existing Index [%1$s] with the Index that would be created"
-					+ " by this IndexFactoryBean [%2$s] failed; you should verify the state of"
-					+ " your system and make sure the previously existing Index [%1$s] still exits",
+			throw new GemfireIndexException(("Attempt to 'override' existing Index [%1$s] with the Index that would be created"
+				+ " by this IndexFactoryBean [%2$s] failed; you should verify the state of"
+				+ " your system and make sure the previously existing Index [%1$s] still exits").formatted(
 				existingIndex.getName(), indexName), cause);
 		}
 	}
@@ -411,11 +408,11 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 	}
 
 	String toBasicIndexDefinition() {
-		return String.format(BASIC_INDEX_DEFINITION, this.expression, this.from, this.indexType);
+		return BASIC_INDEX_DEFINITION.formatted(this.expression, this.from, this.indexType);
 	}
 
 	String toDetailedIndexDefinition() {
-		return String.format(DETAILED_INDEX_DEFINITION,
+		return DETAILED_INDEX_DEFINITION.formatted(
 			this.name, this.expression, this.from, this.imports, this.indexType);
 	}
 
@@ -839,7 +836,7 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 						this.index = it.get();
 						return this.index;
 					}).orElseThrow(() -> new GemfireIndexException(
-						String.format("Index with name [%s] was not found", indexName), (Exception) null));
+						"Index with name [%s] was not found".formatted(indexName), (Exception) null));
 				});
 		}
 

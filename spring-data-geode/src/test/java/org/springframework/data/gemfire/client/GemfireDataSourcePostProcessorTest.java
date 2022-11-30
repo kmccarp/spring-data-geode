@@ -33,7 +33,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.data.gemfire.util.RuntimeExceptionFactory.newIllegalArgumentException;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,7 +93,7 @@ public class GemfireDataSourcePostProcessorTest {
 		Region<Object, Object> mockRegion = mock(Region.class, name);
 
 		RegionAttributes<Object, Object> mockRegionAttributes =
-			mock(RegionAttributes.class, String.format("%s-RegionAttributes", name));
+			mock(RegionAttributes.class, "%s-RegionAttributes".formatted(name));
 
 		when(mockRegion.getParentRegion()).thenReturn(null);
 		when(mockRegion.getFullPath()).thenReturn(RegionUtils.toRegionPath(name));
@@ -370,7 +369,7 @@ public class GemfireDataSourcePostProcessorTest {
 	@Test
 	public void containsRegionInformationWithListOfRegionInformationIsFalse() {
 		assertThat(new GemfireDataSourcePostProcessor()
-			.containsRegionInformation(Collections.singletonList(newRegionInformation(mockRegion("Example")))))
+			.containsRegionInformation(List.of(newRegionInformation(mockRegion("Example")))))
 				.isFalse();
 	}
 
@@ -440,7 +439,7 @@ public class GemfireDataSourcePostProcessorTest {
 
 		GemfireDataSourcePostProcessor postProcessor = new GemfireDataSourcePostProcessor();
 
-		postProcessor.createClientProxyRegions(this.mockBeanFactory, this.mockClientCache, Collections.singletonList("Example"));
+		postProcessor.createClientProxyRegions(this.mockBeanFactory, this.mockClientCache, List.of("Example"));
 
 		verify(this.mockClientCache, times(1)).createClientRegionFactory(eq(ClientRegionShortcut.PROXY));
 		verify(mockClientRegionFactory, never()).create(any(String.class));

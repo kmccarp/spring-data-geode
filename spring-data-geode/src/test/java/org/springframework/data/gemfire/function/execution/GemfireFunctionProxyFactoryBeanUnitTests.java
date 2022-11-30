@@ -21,9 +21,9 @@ import static org.mockito.Mockito.when;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -81,7 +81,7 @@ public class GemfireFunctionProxyFactoryBeanUnitTests {
 			.withMethodNameAndArgTypes("oneArg", String.class);
 
 		when(this.functionOperations.execute("oneArg", invocation.getArguments()))
-			.thenReturn(Collections.singleton(1));
+			.thenReturn(Set.of(1));
 
 		GemfireFunctionProxyFactoryBean proxy =
 			new GemfireFunctionProxyFactoryBean(IFoo.class, this.functionOperations);

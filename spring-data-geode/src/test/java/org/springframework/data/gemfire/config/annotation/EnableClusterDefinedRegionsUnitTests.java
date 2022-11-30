@@ -19,7 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Collections;
 import java.util.Map;
 
 import org.junit.Test;
@@ -53,7 +52,7 @@ public class EnableClusterDefinedRegionsUnitTests {
 	public void configuresClientRegionShortcutUsingAnnotationMetadata() {
 
 		Map<String, Object> enableClusterDefinedRegionsAttributes =
-			Collections.singletonMap("clientRegionShortcut", ClientRegionShortcut.LOCAL);
+			Map.of("clientRegionShortcut", ClientRegionShortcut.LOCAL);
 
 		AnnotationMetadata mockAnnotationMetadata = mock(AnnotationMetadata.class);
 

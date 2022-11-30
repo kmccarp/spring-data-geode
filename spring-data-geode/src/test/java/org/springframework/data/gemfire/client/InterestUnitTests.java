@@ -53,9 +53,8 @@ public class InterestUnitTests {
 		assertThat(interest.isReceiveValues()).isTrue();
 		assertThat(interest.getType()).isEqualTo(KEY);
 
-		String expectedString = String.format(
-			"{ @type = %s, key = testKey, durable = false, policy = KEYS_VALUES, receiveValues = true, type = KEY }",
-				interest.getClass().getName());
+		String expectedString = "{ @type = %s, key = testKey, durable = false, policy = KEYS_VALUES, receiveValues = true, type = KEY }".formatted(
+			interest.getClass().getName());
 
 		assertThat(interest.toString()).isEqualTo(expectedString);
 	}
@@ -71,9 +70,8 @@ public class InterestUnitTests {
 		assertThat(interest.isReceiveValues()).isTrue();
 		assertThat(interest.getType()).isEqualTo(KEY);
 
-		String expectedString = String.format(
-			"{ @type = %s, key = mockKey, durable = false, policy = KEYS, receiveValues = true, type = KEY }",
-				interest.getClass().getName());
+		String expectedString = "{ @type = %s, key = mockKey, durable = false, policy = KEYS, receiveValues = true, type = KEY }".formatted(
+			interest.getClass().getName());
 
 		assertThat(interest.toString()).isEqualTo(expectedString);
 	}
@@ -89,9 +87,8 @@ public class InterestUnitTests {
 		assertThat(interest.isReceiveValues()).isTrue();
 		assertThat(interest.getType()).isEqualTo(REGEX);
 
-		String expectedString = String.format(
-			"{ @type = %s, key = .*Key, durable = true, policy = NONE, receiveValues = true, type = REGEX }",
-				interest.getClass().getName());
+		String expectedString = "{ @type = %s, key = .*Key, durable = true, policy = NONE, receiveValues = true, type = REGEX }".formatted(
+			interest.getClass().getName());
 
 		assertThat(interest.toString()).isEqualTo(expectedString);
 	}
@@ -110,9 +107,8 @@ public class InterestUnitTests {
 		assertThat(interest.isReceiveValues()).isFalse();
 		assertThat(interest.getType()).isEqualTo(Interest.Type.KEY);
 
-		String expectedString = String.format(
-			"{ @type = %s, key = [KeyOne, KeyTwo, KeyThree], durable = true, policy = KEYS_VALUES, receiveValues = false, type = KEY }",
-				interest.getClass().getName());
+		String expectedString = "{ @type = %s, key = [KeyOne, KeyTwo, KeyThree], durable = true, policy = KEYS_VALUES, receiveValues = false, type = KEY }".formatted(
+			interest.getClass().getName());
 
 		assertThat(interest.toString()).isEqualTo(expectedString);
 	}

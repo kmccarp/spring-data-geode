@@ -78,19 +78,19 @@ public class FunctionsReturnResultsFromAllServersIntegrationTests extends Forkin
 		final int port1 = findAndReserveAvailablePort();
 
 		gemfireServer1 = run(MetricsFunctionServerConfiguration.class,
-				String.format("-D%s=%d", GEMFIRE_CACHE_SERVER_PORT_PROPERTY, port1));
+			"-D%s=%d".formatted(GEMFIRE_CACHE_SERVER_PORT_PROPERTY, port1));
 
 		waitForServerToStart(DEFAULT_HOSTNAME, port1);
 
 		final int port2 = findAndReserveAvailablePort();
 
 		gemfireServer2 = run(MetricsFunctionServerConfiguration.class,
-				String.format("-D%s=%d", GEMFIRE_CACHE_SERVER_PORT_PROPERTY, port2));
+			"-D%s=%d".formatted(GEMFIRE_CACHE_SERVER_PORT_PROPERTY, port2));
 
 		waitForServerToStart(DEFAULT_HOSTNAME, port2);
 
 		System.setProperty(GEMFIRE_POOL_SERVERS_PROPERTY,
-			String.format("%s[%d],%s[%d]", DEFAULT_HOSTNAME, port1, DEFAULT_HOSTNAME, port2));
+			"%s[%d],%s[%d]".formatted(DEFAULT_HOSTNAME, port1, DEFAULT_HOSTNAME, port2));
 	}
 
 	@AfterClass

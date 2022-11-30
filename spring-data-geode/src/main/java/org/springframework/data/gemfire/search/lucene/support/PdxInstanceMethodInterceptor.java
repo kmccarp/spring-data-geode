@@ -56,7 +56,7 @@ public class PdxInstanceMethodInterceptor implements MethodInterceptor {
 	 * @see #newPdxInstanceMethodInterceptor(PdxInstance)
 	 */
 	public static PdxInstanceMethodInterceptor newPdxInstanceMethodInterceptor(Object source) {
-		Assert.isInstanceOf(PdxInstance.class, source, () -> String.format("Source [%1$s] is not an instance of [%2$s]",
+		Assert.isInstanceOf(PdxInstance.class, source, () -> "Source [%1$s] is not an instance of [%2$s]".formatted(
 			ObjectUtils.nullSafeClassName(source), PdxInstance.class.getName()));
 
 		return newPdxInstanceMethodInterceptor((PdxInstance) source);
@@ -116,24 +116,22 @@ public class PdxInstanceMethodInterceptor implements MethodInterceptor {
 			PdxInstance pdxInstance = getSource();
 			String propertyName = methodAccessor.getPropertyName();
 
-			Assert.state(pdxInstance.hasField(propertyName), () -> String.format(
-				"Source [%1$s] does not contain field with name [%2$s]", pdxInstance, propertyName));
+			Assert.state(pdxInstance.hasField(propertyName), () -> "Source [%1$s] does not contain field with name [%2$s]".formatted(pdxInstance, propertyName));
 
 			if (methodAccessor.isGetter()) {
 				return pdxInstance.getField(propertyName);
 			}
 			else { // is setter
 				Assert.isTrue(invocation.getArguments().length == 1, () ->
-					String.format("Invoked setter method [%1$s] must expect exactly 1 argument; Arguments were [%2$s]",
+					"Invoked setter method [%1$s] must expect exactly 1 argument; Arguments were [%2$s]".formatted(
 						method.getName(), Arrays.toString(invocation.getArguments())));
 
 				Object value = invocation.getArguments()[0];
 
 				WritablePdxInstance writablePdxInstance = pdxInstance.createWriter();
 
-				Assert.state(writablePdxInstance != null, () -> String.format(
-					"No writer for PdxInstance [%1$s] was found for setting field [%2$s] to value [%3$s]",
-						pdxInstance, propertyName, value));
+				Assert.state(writablePdxInstance != null, () -> "No writer for PdxInstance [%1$s] was found for setting field [%2$s] to value [%3$s]".formatted(
+					pdxInstance, propertyName, value));
 
 				writablePdxInstance.setField(propertyName, value);
 

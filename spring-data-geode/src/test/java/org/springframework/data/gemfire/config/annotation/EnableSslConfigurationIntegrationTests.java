@@ -74,8 +74,8 @@ public class EnableSslConfigurationIntegrationTests extends ForkingClientServerI
 		org.springframework.core.io.Resource trustedKeystore = new ClassPathResource("trusted.keystore");
 
 		startGemFireServer(GeodeServerTestConfiguration.class,
-			String.format("-Dgemfire.name=%s", asApplicationName(EnableSslConfigurationIntegrationTests.class).concat("Server")),
-			String.format("-Djavax.net.ssl.keyStore=%s", trustedKeystore.getFile().getAbsolutePath()));
+			"-Dgemfire.name=%s".formatted(asApplicationName(EnableSslConfigurationIntegrationTests.class).concat("Server")),
+			"-Djavax.net.ssl.keyStore=%s".formatted(trustedKeystore.getFile().getAbsolutePath()));
 
 		System.setProperty("javax.net.ssl.keyStore", trustedKeystore.getFile().getAbsolutePath());
 	}

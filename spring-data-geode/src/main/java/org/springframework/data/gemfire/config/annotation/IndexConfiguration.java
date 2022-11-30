@@ -301,7 +301,7 @@ public class IndexConfiguration extends EntityDefinedRegionsConfiguration {
 		return Optional.ofNullable(this.indexConfigurers)
 			.filter(indexConfigurers -> !indexConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableIndexConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableIndexConfigurer.create(getBeanFactory())));
 	}
 
 	private boolean resolveDefine(AnnotationAttributes enableIndexingAttributes) {
@@ -346,9 +346,9 @@ public class IndexConfiguration extends EntityDefinedRegionsConfiguration {
 	private String generateIndexName(GemfirePersistentEntity<?> persistentEntity,
 			GemfirePersistentProperty persistentProperty, IndexType indexType) {
 
-		return String.format("%1$s%2$s%3$sIdx", persistentEntity.getRegionName(),
+		return "%1$s%2$s%3$sIdx".formatted(persistentEntity.getRegionName(),
 			StringUtils.capitalize(persistentProperty.getName()),
-				StringUtils.capitalize(indexType.name().toLowerCase()));
+			StringUtils.capitalize(indexType.name().toLowerCase()));
 	}
 
 	@SuppressWarnings("unused")

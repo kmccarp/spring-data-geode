@@ -213,7 +213,7 @@ public class QueryPostProcessorIntegrationTests extends IntegrationTestsSupport 
 
 			return "findByFirstname".equals(queryMethod.getName())
 				? query.trim().replace("SELECT", "SELECT DISTINCT")
-					.concat(" ORDER BY lastname DESC").concat(String.format(" LIMIT %d", this.limit))
+					.concat(" ORDER BY lastname DESC").concat(" LIMIT %d".formatted(this.limit))
 				: query;
 		}
 	}

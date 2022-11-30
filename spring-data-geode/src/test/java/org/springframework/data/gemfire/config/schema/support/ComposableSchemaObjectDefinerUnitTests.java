@@ -30,6 +30,7 @@ import static org.springframework.data.gemfire.util.CollectionUtils.asSet;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -92,7 +93,7 @@ public class ComposableSchemaObjectDefinerUnitTests {
 
 	@Test
 	public void composeIterableWithOneElement() {
-		assertThat(ComposableSchemaObjectDefiner.compose(Collections.singleton(this.mockHandlerTwo)))
+		assertThat(ComposableSchemaObjectDefiner.compose(Set.of(this.mockHandlerTwo)))
 			.isSameAs(this.mockHandlerTwo);
 	}
 
@@ -114,7 +115,7 @@ public class ComposableSchemaObjectDefinerUnitTests {
 			.thenReturn(asSet(SchemaObjectType.INDEX, SchemaObjectType.LUCENE_INDEX));
 
 		when(this.mockHandlerTwo.getSchemaObjectTypes())
-			.thenReturn(Collections.singleton(SchemaObjectType.DISK_STORE));
+			.thenReturn(Set.of(SchemaObjectType.DISK_STORE));
 
 		SchemaObjectDefiner handler =
 			ComposableSchemaObjectDefiner.compose(this.mockHandlerOne, this.mockHandlerTwo);

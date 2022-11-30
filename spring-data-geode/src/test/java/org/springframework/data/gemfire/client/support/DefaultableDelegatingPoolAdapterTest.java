@@ -99,8 +99,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 		when(this.mockPool.getRetryAttempts()).thenReturn(1);
 		when(this.mockPool.getServerConnectionTimeout()).thenReturn(10000);
 		when(this.mockPool.getServerGroup()).thenReturn("TestGroup");
-		when(this.mockPool.getServers()).thenReturn(Collections.singletonList(
-			newSocketAddress("localhost", GemfireUtils.DEFAULT_CACHE_SERVER_PORT)));
+		when(this.mockPool.getServers()).thenReturn(List.of(newSocketAddress("localhost", GemfireUtils.DEFAULT_CACHE_SERVER_PORT)));
 		when(this.mockPool.getSocketBufferSize()).thenReturn(16384);
 		when(this.mockPool.getSocketConnectTimeout()).thenReturn(5000);
 		when(this.mockPool.getSocketFactory()).thenReturn(PoolFactory.DEFAULT_SOCKET_FACTORY);
@@ -220,7 +219,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 	@SuppressWarnings("unchecked")
 	public void defaultIfEmptyWhenPrefersDefaultUsesDefault() {
 
-		List<Object> defaultList = Collections.singletonList("default");
+		List<Object> defaultList = List.of("default");
 
 		this.poolAdapter = this.poolAdapter.preferDefault();
 
@@ -235,7 +234,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 	@SuppressWarnings("unchecked")
 	public void defaultIfEmptyWhenPrefersDefaultUsesPoolValueWhenDefaultIsNull() {
 
-		List<Object> poolList = Collections.singletonList("pool");
+		List<Object> poolList = List.of("pool");
 
 		when(this.mockSupplier.get()).thenReturn(poolList);
 
@@ -252,7 +251,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 	@SuppressWarnings("unchecked")
 	public void defaultIfEmptyWhenPrefersDefaultUsesPoolValueWhenDefaultIsEmpty() {
 
-		List<Object> poolList = Collections.singletonList("pool");
+		List<Object> poolList = List.of("pool");
 
 		when(this.mockSupplier.get()).thenReturn(poolList);
 
@@ -269,7 +268,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 	@SuppressWarnings("unchecked")
 	public void defaultIfEmptyWhenPrefersPoolUsesPoolValue() {
 
-		List<Object> poolList = Collections.singletonList("pool");
+		List<Object> poolList = List.of("pool");
 
 		when(this.mockSupplier.get()).thenReturn(poolList);
 
@@ -278,7 +277,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 		assertThat(this.poolAdapter).isNotNull();
 		assertThat(this.poolAdapter.prefersPool()).isTrue();
 		assertThat((List<Object>) this.poolAdapter
-			.defaultIfEmpty(Collections.<Object>singletonList("default"), this.mockSupplier)).isEqualTo(poolList);
+			.defaultIfEmpty(List.of("default"), this.mockSupplier)).isEqualTo(poolList);
 
 		verify(this.mockSupplier, times(1)).get();
 	}
@@ -287,7 +286,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 	@SuppressWarnings("unchecked")
 	public void defaultIfEmptyWhenPrefersPoolUsesDefaultWhenPoolValueIsNull() {
 
-		List<Object> defaultList = Collections.singletonList("default");
+		List<Object> defaultList = List.of("default");
 
 		when(this.mockSupplier.get()).thenReturn(null);
 
@@ -305,7 +304,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 	@SuppressWarnings("unchecked")
 	public void defaultIfEmptyWhenPrefersPoolUsesDefaultWhenPoolValueIsEmpty() {
 
-		List<Object> defaultList = Collections.singletonList("default");
+		List<Object> defaultList = List.of("default");
 
 		when(this.mockSupplier.get()).thenReturn(Collections.emptyList());
 
@@ -324,8 +323,8 @@ public class DefaultableDelegatingPoolAdapterTest {
 
 		assertThat(this.poolAdapter.preferDefault()).isSameAs(this.poolAdapter);
 
-		List<InetSocketAddress> defaultLocator = Collections.singletonList(newSocketAddress("boombox", 21668));
-		List<InetSocketAddress> defaultServer = Collections.singletonList(newSocketAddress("skullbox", 42424));
+		List<InetSocketAddress> defaultLocator = List.of(newSocketAddress("boombox", 21668));
+		List<InetSocketAddress> defaultServer = List.of(newSocketAddress("skullbox", 42424));
 
 		assertThat(this.poolAdapter.getDelegate()).isEqualTo(this.mockPool);
 		assertThat(this.poolAdapter.prefersDefault()).isTrue();
@@ -367,8 +366,8 @@ public class DefaultableDelegatingPoolAdapterTest {
 
 		assertThat(this.poolAdapter.preferDefault()).isSameAs(this.poolAdapter);
 
-		List<InetSocketAddress> defaultLocator = Collections.singletonList(newSocketAddress("boombox", 21668));
-		List<InetSocketAddress> poolServer = Collections.singletonList(newSocketAddress("localhost", 40404));
+		List<InetSocketAddress> defaultLocator = List.of(newSocketAddress("boombox", 21668));
+		List<InetSocketAddress> poolServer = List.of(newSocketAddress("localhost", 40404));
 
 		assertThat(this.poolAdapter.getDelegate()).isEqualTo(this.mockPool);
 		assertThat(this.poolAdapter.prefersDefault()).isTrue();
@@ -425,7 +424,7 @@ public class DefaultableDelegatingPoolAdapterTest {
 
 		assertThat(this.poolAdapter.preferDefault()).isSameAs(this.poolAdapter);
 
-		List<InetSocketAddress> poolServer = Collections.singletonList(newSocketAddress("localhost", 40404));
+		List<InetSocketAddress> poolServer = List.of(newSocketAddress("localhost", 40404));
 
 		assertThat(this.poolAdapter.getDelegate()).isEqualTo(this.mockPool);
 		assertThat(this.poolAdapter.prefersDefault()).isTrue();
@@ -492,8 +491,8 @@ public class DefaultableDelegatingPoolAdapterTest {
 
 		assertThat(this.poolAdapter.preferPool()).isSameAs(this.poolAdapter);
 
-		List<InetSocketAddress> defaultServer = Collections.singletonList(newSocketAddress("jambox", 12480));
-		List<InetSocketAddress> poolServer = Collections.singletonList(newSocketAddress("localhost", 40404));
+		List<InetSocketAddress> defaultServer = List.of(newSocketAddress("jambox", 12480));
+		List<InetSocketAddress> poolServer = List.of(newSocketAddress("localhost", 40404));
 
 		assertThat(this.poolAdapter.getFreeConnectionTimeout(15000)).isEqualTo(5000);
 		assertThat(this.poolAdapter.getIdleTimeout(60000L)).isEqualTo(120000L);

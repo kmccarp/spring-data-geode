@@ -131,7 +131,7 @@ public class EnableDiskStoresConfigurationUnitTests extends SpringApplicationCon
 	}
 
 	static String mockName(String baseName) {
-		return String.format("%s%d", baseName, MOCK_ID.incrementAndGet());
+		return "%s%d".formatted(baseName, MOCK_ID.incrementAndGet());
 	}
 
 	protected static <R> Answer<R> newGetter(AtomicReference<R> returnValue) {

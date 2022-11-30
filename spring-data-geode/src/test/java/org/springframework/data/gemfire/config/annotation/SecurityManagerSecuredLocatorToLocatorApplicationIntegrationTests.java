@@ -68,11 +68,11 @@ public class SecurityManagerSecuredLocatorToLocatorApplicationIntegrationTests
 
 		locatorProcess= run(LocatorAuthServer.class,
 			"-Dspring.profiles.active=locator-auth-server",
-			String.format("-Dspring.data.gemfire.locator.port=%d", locatorPort));
+			"-Dspring.data.gemfire.locator.port=%d".formatted(locatorPort));
 
 		waitForServerToStart("localhost", locatorPort);
 
-		System.setProperty("spring.data.gemfire.locators", String.format("localhost[%d]", locatorPort));
+		System.setProperty("spring.data.gemfire.locators", "localhost[%d]".formatted(locatorPort));
 	}
 
 	@AfterClass

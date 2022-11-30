@@ -161,10 +161,9 @@ public class GemfirePersistentEntity<T> extends BasicPersistentEntity<T, Gemfire
 			if (idProperty != null) {
 				if (idProperty.isExplicitIdProperty()) {
 					if (property.isExplicitIdProperty()) {
-						throw new MappingException(String.format(
-							"Attempt to add explicit id property [%1$s] but already have id property [%2$s] registered as explicit;"
-								+ " Please check your object [%3$s] mapping configuration",
-									property.getName(), idProperty.getName(), getType().getName()));
+						throw new MappingException(("Attempt to add explicit id property [%1$s] but already have id property [%2$s] registered as explicit;"
+							+ " Please check your object [%3$s] mapping configuration").formatted(
+							property.getName(), idProperty.getName(), getType().getName()));
 					}
 
 					return null;

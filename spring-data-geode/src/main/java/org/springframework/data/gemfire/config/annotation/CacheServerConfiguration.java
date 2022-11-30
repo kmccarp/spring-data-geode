@@ -142,7 +142,7 @@ public class CacheServerConfiguration extends PeerCacheConfiguration {
 		return Optional.ofNullable(this.cacheServerConfigurers)
 			.filter(cacheServerConfigurers -> !cacheServerConfigurers.isEmpty())
 			.orElseGet(() ->
-				Collections.singletonList(LazyResolvingComposableCacheServerConfigurer.create(getBeanFactory())));
+			List.of(LazyResolvingComposableCacheServerConfigurer.create(getBeanFactory())));
 	}
 
 	/**

@@ -77,7 +77,7 @@ public class UserRepositoryQueriesIntegrationTests extends IntegrationTestsSuppo
 	}
 
 	private static User createUser(String username, Boolean active) {
-		return createUser(username, active, Instant.now(), String.format("%1$s@xcompany.com", username));
+		return createUser(username, active, Instant.now(), "%1$s@xcompany.com".formatted(username));
 	}
 
 	private static User createUser(String username, Boolean active, Instant since, String email) {

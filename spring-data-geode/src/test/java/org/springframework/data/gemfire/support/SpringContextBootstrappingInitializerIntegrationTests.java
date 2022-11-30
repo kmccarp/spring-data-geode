@@ -218,15 +218,15 @@ public class SpringContextBootstrappingInitializerIntegrationTests extends Integ
 		private DataSource userDataSource;
 
 		static User createUser(String username) {
-			return createUser(username, true, Instant.now(), String.format("%1$s@xcompay.com", username));
+			return createUser(username, true, Instant.now(), "%1$s@xcompay.com".formatted(username));
 		}
 
 		static User createUser(String username, Boolean active) {
-			return createUser(username, active, Instant.now(), String.format("%1$s@xcompay.com", username));
+			return createUser(username, active, Instant.now(), "%1$s@xcompay.com".formatted(username));
 		}
 
 		static User createUser(String username, Boolean active, Instant since) {
-			return createUser(username, active, since, String.format("%1$s@xcompay.com", username));
+			return createUser(username, active, since, "%1$s@xcompay.com".formatted(username));
 		}
 
 		static User createUser(String username, Boolean active, Instant since, String email) {
@@ -246,7 +246,7 @@ public class SpringContextBootstrappingInitializerIntegrationTests extends Integ
 
 		public UserDataStoreCacheLoader() {
 			Assert.state(INSTANCE.compareAndSet(null, this),
-				String.format("An instance of %1$s was already created", getClass().getName()));
+				"An instance of %1$s was already created".formatted(getClass().getName()));
 		}
 
 		@Override
@@ -255,7 +255,7 @@ public class SpringContextBootstrappingInitializerIntegrationTests extends Integ
 			super.assertInitialized();
 
 			Assert.state(this.userDataSource != null,
-				String.format("The 'User' Data Source was not properly configured and initialized for use in (%s)",
+				"The 'User' Data Source was not properly configured and initialized for use in (%s)".formatted(
 					getClass().getName()));
 		}
 

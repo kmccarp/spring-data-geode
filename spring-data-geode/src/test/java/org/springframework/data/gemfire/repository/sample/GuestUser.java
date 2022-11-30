@@ -36,7 +36,7 @@ public class GuestUser extends User {
 
 	@Override
 	public String toString() {
-		return String.format("Guest User '%1$s'", getUsername());
+		return "Guest User '%1$s'".formatted(getUsername());
 	}
 
 }

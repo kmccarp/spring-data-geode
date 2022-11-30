@@ -137,9 +137,8 @@ public class GemfireCache implements Cache {
 		Object value = getNativeCache().get(key);
 
 		if (value != null && type != null && !type.isInstance(value)) {
-			throw new IllegalStateException(String.format(
-				"Cached value [%1$s] is not an instance of type [%2$s]",
-					value, type.getName()));
+			throw new IllegalStateException("Cached value [%1$s] is not an instance of type [%2$s]".formatted(
+				value, type.getName()));
 		}
 
 		return (T) value;

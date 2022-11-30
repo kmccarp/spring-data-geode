@@ -264,7 +264,7 @@ public class ClientCacheFunctionExecutionWithPdxIntegrationTest extends ForkingC
 
 		@Override
 		public String toString() {
-			return String.format("%1$s %2$s, %3$s %4$s", getStreet(), getCity(), getState(), getZipCode());
+			return "%1$s %2$s, %3$s %4$s".formatted(getStreet(), getCity(), getState(), getZipCode());
 		}
 	}
 
@@ -325,7 +325,7 @@ public class ClientCacheFunctionExecutionWithPdxIntegrationTest extends ForkingC
 
 		@Override
 		public String toString() {
-			return String.format("%1$s %2$s", getFirstName(), getLastName());
+			return "%1$s %2$s".formatted(getFirstName(), getLastName());
 		}
 	}
 

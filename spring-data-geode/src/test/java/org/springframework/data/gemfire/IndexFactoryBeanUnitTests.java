@@ -33,6 +33,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.After;
@@ -645,7 +646,7 @@ public class IndexFactoryBeanUnitTests {
 		Index mockIndex =
 			mockIndexWithDefinition("MockIndex", "id", "/Example", IndexType.PRIMARY_KEY);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -665,10 +666,9 @@ public class IndexFactoryBeanUnitTests {
 		}
 		catch (GemfireIndexException expected) {
 
-			assertThat(expected).hasMessageStartingWith(String.format(
-				"An Index with a different name [MockIndex] having the same definition [%s] already exists;"
-					+ " You may attempt to override the existing Index [MockIndex] with the new name [TestIndex]"
-					+ " by setting the 'override' property to 'true'", indexFactoryBean.toBasicIndexDefinition()));
+			assertThat(expected).hasMessageStartingWith(("An Index with a different name [MockIndex] having the same definition [%s] already exists;"
+				+ " You may attempt to override the existing Index [MockIndex] with the new name [TestIndex]"
+				+ " by setting the 'override' property to 'true'").formatted(indexFactoryBean.toBasicIndexDefinition()));
 
 			assertThat(expected).hasCauseInstanceOf(IndexExistsException.class);
 			assertThat(expected.getCause()).hasMessage("TEST");
@@ -709,10 +709,9 @@ public class IndexFactoryBeanUnitTests {
 		}
 		catch (GemfireIndexException expected) {
 
-			assertThat(expected).hasMessageStartingWith(String.format(
-				"An Index with a different name [unknown] having the same definition [%s] already exists;"
-					+ " You may attempt to override the existing Index [unknown] with the new name [TestIndex]"
-					+ " by setting the 'override' property to 'true'", indexFactoryBean.toBasicIndexDefinition()));
+			assertThat(expected).hasMessageStartingWith(("An Index with a different name [unknown] having the same definition [%s] already exists;"
+				+ " You may attempt to override the existing Index [unknown] with the new name [TestIndex]"
+				+ " by setting the 'override' property to 'true'").formatted(indexFactoryBean.toBasicIndexDefinition()));
 
 			assertThat(expected).hasCauseInstanceOf(IndexExistsException.class);
 			assertThat(expected.getCause()).hasMessage("TEST");
@@ -736,7 +735,7 @@ public class IndexFactoryBeanUnitTests {
 
 		when(mockLogger.isWarnEnabled()).thenReturn(true);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -758,9 +757,9 @@ public class IndexFactoryBeanUnitTests {
 			.createKeyIndex(eq(mockQueryService), eq("TestIndex"), eq("id"), eq("/Example"));
 
 		verify(mockLogger, times(1)).warn(
-			eq(String.format("WARNING; You are choosing to ignore this Index [TestIndex] and return the existing Index"
-					+ " having the same basic definition [%s] but with a different name [MockIndex];"
-					+ " Make sure no OQL Query Hints refer to this Index by name [TestIndex]",
+			eq(("WARNING; You are choosing to ignore this Index [TestIndex] and return the existing Index"
+				+ " having the same basic definition [%s] but with a different name [MockIndex];"
+				+ " Make sure no OQL Query Hints refer to this Index by name [TestIndex]").formatted(
 				indexFactoryBean.toBasicIndexDefinition())));
 
 		verify(mockQueryService, times(1)).getIndexes();
@@ -777,7 +776,7 @@ public class IndexFactoryBeanUnitTests {
 
 		when(mockLogger.isWarnEnabled()).thenReturn(true);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -799,12 +798,12 @@ public class IndexFactoryBeanUnitTests {
 			.createKeyIndex(eq(mockQueryService), eq("TestIndex"), eq("id"), eq("/Example"));
 
 		verify(mockLogger, times(1)).warn(
-			eq(String.format("WARNING; You are attempting to 'override' an existing Index [MockIndex]"
-					+ " having the same basic definition [%s] as the Index that will be created by this"
-					+ " IndexFactoryBean [TestIndex]; 'Override' effectively 'renames' the existing Index [MockIndex]"
-					+ " by removing it then recreating it under the new name [TestIndex] with the same definition;"
-					+ " You should be careful to update any existing OQL Query Hints referring to the old"
-					+ " Index name [MockIndex] to now use the new name [TestIndex]",
+			eq(("WARNING; You are attempting to 'override' an existing Index [MockIndex]"
+				+ " having the same basic definition [%s] as the Index that will be created by this"
+				+ " IndexFactoryBean [TestIndex]; 'Override' effectively 'renames' the existing Index [MockIndex]"
+				+ " by removing it then recreating it under the new name [TestIndex] with the same definition;"
+				+ " You should be careful to update any existing OQL Query Hints referring to the old"
+				+ " Index name [MockIndex] to now use the new name [TestIndex]").formatted(
 				indexFactoryBean.toBasicIndexDefinition())));
 
 		verify(mockQueryService, times(1)).getIndexes();
@@ -818,7 +817,7 @@ public class IndexFactoryBeanUnitTests {
 
 		when(mockLogger.isWarnEnabled()).thenReturn(true);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex))
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex))
 			.thenReturn(Collections.emptyList());
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
@@ -848,7 +847,7 @@ public class IndexFactoryBeanUnitTests {
 
 			assertThat(expected).hasCauseInstanceOf(GemfireIndexException.class);
 			assertThat(expected.getCause()).hasMessageStartingWith(
-				String.format("Failed to create Index [%s]", indexFactoryBean.toDetailedIndexDefinition()));
+				"Failed to create Index [%s]".formatted(indexFactoryBean.toDetailedIndexDefinition()));
 			assertThat(expected.getCause()).hasCauseInstanceOf(RuntimeException.class);
 			assertThat(expected.getCause().getCause()).hasMessageStartingWith("RETRY");
 			assertThat(expected.getCause().getCause()).hasNoCause();
@@ -861,12 +860,12 @@ public class IndexFactoryBeanUnitTests {
 				.createKeyIndex(eq(mockQueryService), eq("TestIndex"), eq("id"), eq("/Example"));
 
 			verify(mockLogger, times(1)).warn(
-				eq(String.format("WARNING; You are attempting to 'override' an existing Index [MockIndex]"
-						+ " having the same basic definition [%s] as the Index that will be created by this"
-						+ " IndexFactoryBean [TestIndex]; 'Override' effectively 'renames' the existing Index [MockIndex]"
-						+ " by removing it then recreating it under the new name [TestIndex] with the same definition;"
-						+ " You should be careful to update any existing OQL Query Hints referring to the old"
-						+ " Index name [MockIndex] to now use the new name [TestIndex]",
+				eq(("WARNING; You are attempting to 'override' an existing Index [MockIndex]"
+					+ " having the same basic definition [%s] as the Index that will be created by this"
+					+ " IndexFactoryBean [TestIndex]; 'Override' effectively 'renames' the existing Index [MockIndex]"
+					+ " by removing it then recreating it under the new name [TestIndex] with the same definition;"
+					+ " You should be careful to update any existing OQL Query Hints referring to the old"
+					+ " Index name [MockIndex] to now use the new name [TestIndex]").formatted(
 					indexFactoryBean.toBasicIndexDefinition())));
 
 			verify(mockQueryService, times(1)).getIndexes();
@@ -879,7 +878,7 @@ public class IndexFactoryBeanUnitTests {
 		Index mockIndex =
 			mockIndexWithDefinition("TestIndex", "purchaseDate", "/Orders", IndexType.HASH);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -899,14 +898,13 @@ public class IndexFactoryBeanUnitTests {
 		}
 		catch (GemfireIndexException expected) {
 
-			String existingIndexDefinition = String.format(IndexFactoryBean.DETAILED_INDEX_DEFINITION,
+			String existingIndexDefinition = (IndexFactoryBean.DETAILED_INDEX_DEFINITION).formatted(
 				mockIndex.getName(), mockIndex.getIndexedExpression(), mockIndex.getFromClause(), "unknown",
-					IndexType.valueOf(mockIndex.getType()));
+				IndexType.valueOf(mockIndex.getType()));
 
-			assertThat(expected).hasMessageStartingWith(String.format(
-				"An Index with the same name [TestIndex] having possibly a different definition already exists;"
-					+ " you may choose to ignore this Index definition [%1$s] and use the existing Index"
-					+ " definition [%2$s] by setting the 'ignoreIfExists' property to 'true'",
+			assertThat(expected).hasMessageStartingWith(("An Index with the same name [TestIndex] having possibly a different definition already exists;"
+				+ " you may choose to ignore this Index definition [%1$s] and use the existing Index"
+				+ " definition [%2$s] by setting the 'ignoreIfExists' property to 'true'").formatted(
 				indexFactoryBean.toDetailedIndexDefinition(), existingIndexDefinition));
 
 			assertThat(expected).hasCauseInstanceOf(IndexNameConflictException.class);
@@ -951,10 +949,9 @@ public class IndexFactoryBeanUnitTests {
 		}
 		catch (GemfireIndexException expected) {
 
-			assertThat(expected).hasMessageStartingWith(String.format(
-				"An Index with the same name [TestIndex] having possibly a different definition already exists;"
-					+ " you may choose to ignore this Index definition [%s] and use the existing Index"
-					+ " definition [unknown] by setting the 'ignoreIfExists' property to 'true'",
+			assertThat(expected).hasMessageStartingWith(("An Index with the same name [TestIndex] having possibly a different definition already exists;"
+				+ " you may choose to ignore this Index definition [%s] and use the existing Index"
+				+ " definition [unknown] by setting the 'ignoreIfExists' property to 'true'").formatted(
 				indexFactoryBean.toDetailedIndexDefinition()));
 
 			assertThat(expected).hasCauseInstanceOf(IndexNameConflictException.class);
@@ -980,7 +977,7 @@ public class IndexFactoryBeanUnitTests {
 		Index mockIndex =
 			mockIndexWithDefinition("TestIndex", "price", "/Orders", IndexType.FUNCTIONAL);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -1015,7 +1012,7 @@ public class IndexFactoryBeanUnitTests {
 
 		when(mockLogger.isWarnEnabled()).thenReturn(true);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -1033,16 +1030,15 @@ public class IndexFactoryBeanUnitTests {
 		assertThat(indexFactoryBean.isOverride()).isTrue();
 		assertThat(indexFactoryBean.createIndex(mockQueryService, "TestIndex")).isEqualTo(mockIndex);
 
-		String existingIndexDefinition = String.format(IndexFactoryBean.BASIC_INDEX_DEFINITION,
+		String existingIndexDefinition = (IndexFactoryBean.BASIC_INDEX_DEFINITION).formatted(
 			"id", "/Orders", IndexType.PRIMARY_KEY);
 
 		verify(indexFactoryBean, times(1))
 			.createFunctionalIndex(eq(mockQueryService), eq("TestIndex"), eq("price"),
 				eq("/Orders"), eq(null));
 
-		verify(mockLogger, times(1)).warn(String.format(
-			"WARNING; Returning existing Index [TestIndex] having a definition [%1$s] that does not match"
-				+ " the Index defined [%2$s] by this IndexFactoryBean [TestIndex]",
+		verify(mockLogger, times(1)).warn(("WARNING; Returning existing Index [TestIndex] having a definition [%1$s] that does not match"
+			+ " the Index defined [%2$s] by this IndexFactoryBean [TestIndex]").formatted(
 			existingIndexDefinition, indexFactoryBean.toBasicIndexDefinition()));
 
 		verify(mockQueryService, times(1)).getIndexes();
@@ -1059,7 +1055,7 @@ public class IndexFactoryBeanUnitTests {
 
 		assertThat(mockIndex).isNotSameAs(testIndex);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -1102,7 +1098,7 @@ public class IndexFactoryBeanUnitTests {
 
 		when(mockLogger.isWarnEnabled()).thenReturn(true);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
 
@@ -1120,15 +1116,14 @@ public class IndexFactoryBeanUnitTests {
 		assertThat(indexFactoryBean.isOverride()).isTrue();
 		assertThat(indexFactoryBean.createIndex(mockQueryService, "TestIndex")).isEqualTo(testIndex);
 
-		String existingIndexDefinition = String.format(IndexFactoryBean.BASIC_INDEX_DEFINITION,
+		String existingIndexDefinition = (IndexFactoryBean.BASIC_INDEX_DEFINITION).formatted(
 			mockIndex.getIndexedExpression(), mockIndex.getFromClause(), IndexType.valueOf(mockIndex.getType()));
 
 		verify(indexFactoryBean, times(2)).createHashIndex(eq(mockQueryService),
 			eq("TestIndex"), eq("purchaseDate"), eq("/Orders"), eq(null));
 
-		verify(mockLogger, times(1)).warn(eq(String.format(
-			"WARNING; Overriding existing Index [TestIndex] having a definition [%1$s] that does not match"
-				+ " the Index defined [%2$s] by this IndexFactoryBean [TestIndex]",
+		verify(mockLogger, times(1)).warn(eq(("WARNING; Overriding existing Index [TestIndex] having a definition [%1$s] that does not match"
+			+ " the Index defined [%2$s] by this IndexFactoryBean [TestIndex]").formatted(
 			existingIndexDefinition, indexFactoryBean.toBasicIndexDefinition())));
 
 		verify(mockQueryService, times(1)).getIndexes();
@@ -1143,7 +1138,7 @@ public class IndexFactoryBeanUnitTests {
 
 		when(mockLogger.isWarnEnabled()).thenReturn(true);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex))
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex))
 			.thenReturn(Collections.emptyList());
 
 		IndexFactoryBean indexFactoryBean = newIndexFactoryBean();
@@ -1173,7 +1168,7 @@ public class IndexFactoryBeanUnitTests {
 
 			assertThat(expected).hasCauseInstanceOf(GemfireIndexException.class);
 			assertThat(expected.getCause()).hasMessageStartingWith(
-				String.format("Failed to create Index [%s]", indexFactoryBean.toDetailedIndexDefinition()));
+				"Failed to create Index [%s]".formatted(indexFactoryBean.toDetailedIndexDefinition()));
 			assertThat(expected.getCause()).hasCauseInstanceOf(RuntimeException.class);
 			assertThat(expected.getCause().getCause()).hasMessageStartingWith("RETRY");
 			assertThat(expected.getCause().getCause()).hasNoCause();
@@ -1182,15 +1177,14 @@ public class IndexFactoryBeanUnitTests {
 		}
 		finally {
 
-			String existingIndexDefinition = String.format(IndexFactoryBean.BASIC_INDEX_DEFINITION,
+			String existingIndexDefinition = (IndexFactoryBean.BASIC_INDEX_DEFINITION).formatted(
 				mockIndex.getIndexedExpression(), mockIndex.getFromClause(), IndexType.valueOf(mockIndex.getType()));
 
 			verify(indexFactoryBean, times(2))
 				.createKeyIndex(eq(mockQueryService), eq("MockIndex"), eq("id"), eq("/Example"));
 
-			verify(mockLogger, times(1)).warn(eq(String.format(
-				"WARNING; Overriding existing Index [MockIndex] having a definition [%1$s] that does not match"
-					+ " the Index defined [%2$s] by this IndexFactoryBean [MockIndex]",
+			verify(mockLogger, times(1)).warn(eq(("WARNING; Overriding existing Index [MockIndex] having a definition [%1$s] that does not match"
+				+ " the Index defined [%2$s] by this IndexFactoryBean [MockIndex]").formatted(
 				existingIndexDefinition, indexFactoryBean.toBasicIndexDefinition())));
 
 			verify(mockQueryService, times(1)).getIndexes();
@@ -1410,7 +1404,7 @@ public class IndexFactoryBeanUnitTests {
 		Index mockIndex =
 			mockIndexWithDefinition("PrimaryIndex", "id", "/People", IndexType.HASH);
 
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		assertThat(indexFactoryBean.tryToFindExistingIndexByDefinition(mockQueryService,
 			"key", "/People", IndexType.HASH).orElse(null)).isNull();
@@ -1730,7 +1724,7 @@ public class IndexFactoryBeanUnitTests {
 		when(mockIndex.getProjectionAttributes()).thenReturn("id");
 		when(mockIndex.getStatistics()).thenReturn(mockIndexStats);
 		when(mockIndex.getType()).thenReturn(org.apache.geode.cache.query.IndexType.HASH);
-		when(mockQueryService.getIndexes()).thenReturn(Collections.singletonList(mockIndex));
+		when(mockQueryService.getIndexes()).thenReturn(List.of(mockIndex));
 
 		IndexFactoryBean.IndexWrapper indexWrapper =
 			new IndexFactoryBean.IndexWrapper(mockQueryService, "MockIndex");

@@ -200,7 +200,7 @@ public abstract class EmbeddedServiceConfigurationSupport extends AbstractAnnota
 	}
 
 	protected String generateBeanName(String nameQualifier) {
-		return String.format("%1$s.%2$s", getClass().getName(), nameQualifier);
+		return "%1$s.%2$s".formatted(getClass().getName(), nameQualifier);
 	}
 
 	/**

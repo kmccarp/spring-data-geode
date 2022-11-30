@@ -18,7 +18,7 @@ package org.springframework.data.gemfire.config.annotation;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -138,7 +138,7 @@ public class CachingDefinedRegionsUsesCacheConfigCacheNamesIntegrationTests exte
 
 		assertThat(this.service.cacheableMethodTwo("3")).isEqualTo("TWO");
 
-		Collections.singletonList(this.c).forEach(region -> assertThat(region).containsKey("3"));
+		List.of(this.c).forEach(region -> assertThat(region).containsKey("3"));
 		Arrays.asList(this.a, this.b, this.d).forEach(region -> assertThat(region).isEmpty());
 	}
 

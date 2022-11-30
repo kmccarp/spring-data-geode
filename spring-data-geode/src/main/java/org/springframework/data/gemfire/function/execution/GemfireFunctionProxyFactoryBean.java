@@ -71,7 +71,7 @@ public class GemfireFunctionProxyFactoryBean extends AbstractFactoryBeanSupport<
 		Assert.notNull(functionExecutionInterface, "Function Execution Interface must not be null");
 
 		Assert.isTrue(functionExecutionInterface.isInterface(),
-			String.format("Function Execution type [%s] must be an interface",
+			"Function Execution type [%s] must be an interface".formatted(
 				functionExecutionInterface.getName()));
 
 		this.functionExecutionInterface = functionExecutionInterface;
@@ -109,7 +109,7 @@ public class GemfireFunctionProxyFactoryBean extends AbstractFactoryBeanSupport<
 	public @Nullable Object invoke(@NonNull MethodInvocation invocation) {
 
 		if (AopUtils.isToStringMethod(invocation.getMethod())) {
-			return String.format("Function Proxy for interface [%s]", getFunctionExecutionInterface().getName());
+			return "Function Proxy for interface [%s]".formatted(getFunctionExecutionInterface().getName());
 		}
 
 		logDebug("Invoking method [{}]", invocation.getMethod().getName());

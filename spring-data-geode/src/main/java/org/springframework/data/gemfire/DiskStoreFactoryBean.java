@@ -271,7 +271,7 @@ public class DiskStoreFactoryBean extends AbstractFactoryBeanSupport<DiskStore> 
 
 	protected void validateCompactionThreshold(Integer compactionThreshold) {
 		Assert.isTrue(compactionThreshold == null || (compactionThreshold >= 0 && compactionThreshold <= 100),
-			String.format("The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.",
+			"The DiskStore's (%1$s) compaction threshold (%2$d) must be an integer value between 0 and 100 inclusive.".formatted(
 				resolveDiskStoreName(), compactionThreshold));
 	}
 

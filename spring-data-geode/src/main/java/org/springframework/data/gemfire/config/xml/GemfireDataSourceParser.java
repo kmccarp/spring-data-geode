@@ -74,7 +74,7 @@ class GemfireDataSourceParser extends AbstractBeanDefinitionParser {
 			.registerBeanDefinition(GemfireConstants.DEFAULT_GEMFIRE_CACHE_NAME, clientCacheDefinition);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Registered GemFire ClientCache bean [%1$s] of type [%2$s]%n",
+			logger.debug("Registered GemFire ClientCache bean [%1$s] of type [%2$s]%n".formatted(
 				GemfireConstants.DEFAULT_GEMFIRE_CACHE_NAME, clientCacheDefinition.getBeanClassName()));
 		}
 	}

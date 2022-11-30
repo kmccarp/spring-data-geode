@@ -139,7 +139,7 @@ public abstract class JavaVersion implements Comparable<JavaVersion> {
 	private int validateVersionNumber(int version) {
 
 		Assert.isTrue(version > -1,
-			() -> String.format("Version number [%d] must be greater than equal to 0", version));
+			() -> "Version number [%d] must be greater than equal to 0".formatted(version));
 
 		return version;
 	}
@@ -234,6 +234,6 @@ public abstract class JavaVersion implements Comparable<JavaVersion> {
 
 	@Override
 	public @NonNull String toString() {
-		return String.format("%1$s.%2$s.%3$s", getMajor(), getMinor(), getPatch());
+		return "%1$s.%2$s.%3$s".formatted(getMajor(), getMinor(), getPatch());
 	}
 }
