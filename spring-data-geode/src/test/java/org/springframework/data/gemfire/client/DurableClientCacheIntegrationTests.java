@@ -88,7 +88,7 @@ public class DurableClientCacheIntegrationTests extends ForkingClientServerInteg
 	private static AtomicBoolean dirtiesContext = new AtomicBoolean(false);
 
 	private static List<Integer> regionCacheListenerEventValues =
-		Collections.synchronizedList(new ArrayList<Integer>());
+		Collections.synchronizedList(new ArrayList<>());
 
 	private static final String CLIENT_CACHE_INTEREST_RESULT_POLICY =
 		DurableClientCacheIntegrationTests.class.getName().concat(".interests-result-policy");

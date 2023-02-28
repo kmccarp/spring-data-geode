@@ -41,7 +41,7 @@ public enum InterestResultPolicyType {
 	}
 
 	public static InterestResultPolicy getInterestResultPolicy(final InterestResultPolicyType interestResultPolicyType) {
-		return (interestResultPolicyType != null ? interestResultPolicyType.getInterestResultPolicy() : null);
+		return interestResultPolicyType != null ? interestResultPolicyType.getInterestResultPolicy() : null;
 	}
 
 	public static InterestResultPolicyType valueOf(final InterestResultPolicy interestResultPolicy) {

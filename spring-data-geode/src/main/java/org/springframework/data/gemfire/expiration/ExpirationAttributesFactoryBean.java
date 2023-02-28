@@ -57,7 +57,7 @@ public class ExpirationAttributesFactoryBean implements FactoryBean<ExpirationAt
 	/* non-Javadoc */
 	@Override
 	public Class<?> getObjectType() {
-		return (expirationAttributes != null ? expirationAttributes.getClass() : ExpirationAttributes.class);
+		return expirationAttributes != null ? expirationAttributes.getClass() : ExpirationAttributes.class;
 	}
 
 	/* non-Javadoc */
@@ -84,7 +84,7 @@ public class ExpirationAttributesFactoryBean implements FactoryBean<ExpirationAt
 	 * @see org.apache.geode.cache.ExpirationAttributes#getAction()
 	 */
 	public ExpirationAction getAction() {
-		return (action != null ? action : DEFAULT_EXPIRATION_ACTION);
+		return action != null ? action : DEFAULT_EXPIRATION_ACTION;
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class ExpirationAttributesFactoryBean implements FactoryBean<ExpirationAt
 	 * @see org.apache.geode.cache.ExpirationAttributes#getTimeout()
 	 */
 	public int getTimeout() {
-		return (timeout != null ? timeout : DEFAULT_TIMEOUT);
+		return timeout != null ? timeout : DEFAULT_TIMEOUT;
 	}
 
 	/**

@@ -125,7 +125,7 @@ public class SubRegionRepositoryIntegrationTests extends IntegrationTestsSupport
 
 	private static RootUser getAdminUser(String username) {
 		List<RootUser> users = getAdminUsers(username);
-		return (users.isEmpty() ? null : users.get(0));
+		return users.isEmpty() ? null : users.get(0);
 	}
 
 	private static List<RootUser> getAdminUsers(String... usernames) {
@@ -134,7 +134,7 @@ public class SubRegionRepositoryIntegrationTests extends IntegrationTestsSupport
 
 	private static GuestUser getGuestUser(String username) {
 		List<GuestUser> users = getGuestUsers(username);
-		return (users.isEmpty() ? null : users.get(0));
+		return users.isEmpty() ? null : users.get(0);
 	}
 
 	private static List<GuestUser> getGuestUsers(String... usernames) {

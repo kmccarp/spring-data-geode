@@ -240,7 +240,7 @@ public class LucenePage<T, K, V> extends AbstractPageSupport<T> {
 	 */
 	@Override
 	public boolean hasPrevious() {
-		return (getPrevious() != null);
+		return getPrevious() != null;
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class LucenePage<T, K, V> extends AbstractPageSupport<T> {
 		long totalElements = getTotalElements();
 		int pageSize = getPageSize();
 		int totalPages = Double.valueOf(Math.floor(totalElements / pageSize)).intValue();
-		totalPages += (totalElements % pageSize != 0 ? 1 : 0);
+		totalPages += totalElements % pageSize != 0 ? 1 : 0;
 		return totalPages;
 	}
 

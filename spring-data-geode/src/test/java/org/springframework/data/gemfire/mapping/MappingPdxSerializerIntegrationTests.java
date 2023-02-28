@@ -175,7 +175,7 @@ public class MappingPdxSerializerIntegrationTests {
 
 		assertThat(cache.getPdxSerializer()).isInstanceOf(MappingPdxSerializer.class);
 
-		MappingPdxSerializer serializer = ((MappingPdxSerializer) cache.getPdxSerializer());
+		MappingPdxSerializer serializer = (MappingPdxSerializer) cache.getPdxSerializer();
 
 		try {
 			serializer.setEntityInstantiators(Collections.singletonMap(Person.class, mockEntityInstantiator));
@@ -199,7 +199,7 @@ public class MappingPdxSerializerIntegrationTests {
 
 		assertThat(cache.getPdxSerializer()).isInstanceOf(MappingPdxSerializer.class);
 
-		MappingPdxSerializer serializer = ((MappingPdxSerializer) cache.getPdxSerializer());
+		MappingPdxSerializer serializer = (MappingPdxSerializer) cache.getPdxSerializer();
 
 		try {
 			serializer.setEntityInstantiators(Collections.singletonMap(Person.class, mockEntityInstantiator));
@@ -300,9 +300,9 @@ public class MappingPdxSerializerIntegrationTests {
 		assertThat(jonDoe.getPassword()).isEqualTo("p@55w0rd!");
 
 		Optional.of(region.getRegionService())
-			.filter(regionService -> regionService instanceof Cache)
+			.filter(Cache.class::isInstance)
 			.map(regionService -> ((Cache) regionService).getPdxSerializer())
-			.filter(pdxSerializer -> pdxSerializer instanceof MappingPdxSerializer)
+			.filter(MappingPdxSerializer.class::isInstance)
 			.ifPresent(pdxSerializer -> {
 
 				String passwordPropertyName = User.class.getName().concat(".password");
@@ -369,9 +369,9 @@ public class MappingPdxSerializerIntegrationTests {
 		});
 
 		Optional.of(region.getRegionService())
-			.filter(regionService -> regionService instanceof Cache)
+			.filter(Cache.class::isInstance)
 			.map(regionService -> ((Cache) regionService).getPdxSerializer())
-			.filter(pdxSerializer -> pdxSerializer instanceof MappingPdxSerializer)
+			.filter(MappingPdxSerializer.class::isInstance)
 			.ifPresent(pdxSerializer -> ((MappingPdxSerializer) pdxSerializer)
 				.setCustomPdxSerializers(Collections.singletonMap(CreditCard.class, mockCreditCardSerializer)));
 
@@ -405,6 +405,8 @@ public class MappingPdxSerializerIntegrationTests {
 	@SuppressWarnings({ "serial", "unused" })
 	public static class PersonWithDataSerializableProperty extends Person {
 
+		private static final long serialVersionUID = 1;
+
 		private DataSerializableProperty property;
 
 		public PersonWithDataSerializableProperty(Long id, String firstname,
@@ -426,6 +428,8 @@ public class MappingPdxSerializerIntegrationTests {
 
 	@SuppressWarnings("serial")
 	public static class DataSerializableProperty implements DataSerializable {
+
+		private static final long serialVersionUID = 1;
 
 		static {
 			Instantiator.register(new Instantiator(DataSerializableProperty.class,101) {

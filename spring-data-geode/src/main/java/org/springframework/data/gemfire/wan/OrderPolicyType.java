@@ -55,7 +55,7 @@ public enum OrderPolicyType {
 	 * @see #getOrderPolicy()
 	 */
 	public static GatewaySender.OrderPolicy getOrderPolicy(final OrderPolicyType orderPolicyType) {
-		return (orderPolicyType != null ? orderPolicyType.getOrderPolicy() : null);
+		return orderPolicyType != null ? orderPolicyType.getOrderPolicy() : null;
 	}
 
 	/**

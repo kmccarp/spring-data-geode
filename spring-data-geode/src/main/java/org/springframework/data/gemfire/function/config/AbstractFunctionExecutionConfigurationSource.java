@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractFunctionExecutionConfigurationSource implements FunctionExecutionConfigurationSource {
 
-	private static Set<Class<? extends Annotation>> functionExecutionAnnotationTypes;
+	private static final Set<Class<? extends Annotation>> functionExecutionAnnotationTypes;
 
 	static {
 

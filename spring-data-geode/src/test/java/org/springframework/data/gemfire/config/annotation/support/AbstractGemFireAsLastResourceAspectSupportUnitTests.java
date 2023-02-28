@@ -442,7 +442,7 @@ public class AbstractGemFireAsLastResourceAspectSupportUnitTests {
 		}
 
 		private Object[] toArray(Object argument) {
-			return (argument instanceof Object[] ? (Object[]) argument : new Object[] { argument });
+			return argument instanceof Object[] ? (Object[]) argument : new Object[] { argument };
 		}
 	}
 }

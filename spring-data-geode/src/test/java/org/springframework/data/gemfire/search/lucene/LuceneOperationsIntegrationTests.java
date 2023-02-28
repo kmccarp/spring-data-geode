@@ -118,7 +118,7 @@ public class LuceneOperationsIntegrationTests extends IntegrationTestsSupport {
 
 		assertThat(masterDoes).isNotNull();
 		assertThat(masterDoes).hasSize(2);
-		assertThat(masterDoes.stream().allMatch(user -> user instanceof User)).isTrue();
+		assertThat(masterDoes.stream().allMatch(User.class::isInstance)).isTrue();
 		assertThat(asNames(masterDoes)).containsAll(asNames(asUsers(jonDoe, pieDoe)));
 	}
 
@@ -203,6 +203,8 @@ public class LuceneOperationsIntegrationTests extends IntegrationTestsSupport {
 	@Data
 	@RequiredArgsConstructor(staticName = "newPerson")
 	static class Person implements Nameable, Serializable {
+
+		private static final long serialVersionUID = 1;
 
 		@Id
 		Long id;

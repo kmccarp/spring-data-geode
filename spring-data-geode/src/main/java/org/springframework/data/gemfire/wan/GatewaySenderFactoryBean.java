@@ -62,7 +62,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("unused")
 public class GatewaySenderFactoryBean extends AbstractWANComponentFactoryBean<GatewaySender> {
 
-	private boolean manualStart = false;
+	private boolean manualStart;
 
 	private int remoteDistributedSystemId;
 

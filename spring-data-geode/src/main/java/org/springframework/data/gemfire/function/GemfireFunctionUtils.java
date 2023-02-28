@@ -56,7 +56,7 @@ public abstract class GemfireFunctionUtils {
 
 	private static final String DEFAULT_FUNCTION_ID = null;
 
-	private static Logger logger = LoggerFactory.getLogger(GemfireFunctionUtils.class);
+	private static final Logger logger = LoggerFactory.getLogger(GemfireFunctionUtils.class);
 
 	/**
 	 * Determines whether the given {@link Method} is a POJO, {@link GemfireFunction} annotated {@link Method}.
@@ -130,7 +130,7 @@ public abstract class GemfireFunctionUtils {
 					.filter(annotationAttributes -> annotationAttributes.containsKey("id"))
 					.map(annotationAttributes -> annotationAttributes.getString("id"))
 					.filter(StringUtils::hasText)
-					.orElseGet(() -> it.getName())
+					.orElseGet(it::getName)
 			);
 	}
 

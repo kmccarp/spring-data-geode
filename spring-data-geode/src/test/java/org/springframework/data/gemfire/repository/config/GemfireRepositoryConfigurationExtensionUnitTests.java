@@ -63,7 +63,7 @@ import org.w3c.dom.NodeList;
  */
 public class GemfireRepositoryConfigurationExtensionUnitTests {
 
-	private GemfireRepositoryConfigurationExtension repositoryConfigurationExtension =
+	private final GemfireRepositoryConfigurationExtension repositoryConfigurationExtension =
 		new GemfireRepositoryConfigurationExtension();
 
 	private Object getPropertyValue(BeanDefinitionBuilder builder, String propertyName) {
@@ -73,7 +73,7 @@ public class GemfireRepositoryConfigurationExtensionUnitTests {
 	private Object getPropertyValue(BeanDefinition beanDefinition, String propertyName) {
 		PropertyValue propertyValue = beanDefinition.getPropertyValues().getPropertyValue(propertyName);
 
-		return (propertyValue != null ? propertyValue.getValue() : null);
+		return propertyValue != null ? propertyValue.getValue() : null;
 	}
 
 	private Element mockElement() {

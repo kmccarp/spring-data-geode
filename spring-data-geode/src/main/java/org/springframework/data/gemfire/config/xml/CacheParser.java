@@ -233,7 +233,7 @@ class CacheParser extends AbstractSingleBeanDefinitionParser {
 						String type = jndiProp.getAttribute("type");
 						String value = jndiProp.getTextContent();
 
-						type = (StringUtils.hasText(type) ? type : String.class.getName());
+						type = StringUtils.hasText(type) ? type : String.class.getName();
 
 						props.add(BeanDefinitionBuilder.genericBeanDefinition(ConfigProperty.class)
 							.addConstructorArgValue(key)

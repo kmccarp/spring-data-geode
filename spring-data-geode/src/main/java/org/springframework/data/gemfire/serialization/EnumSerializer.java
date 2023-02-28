@@ -46,7 +46,7 @@ public class EnumSerializer extends DataSerializer implements Serializable {
 
 	@Override
 	public boolean toData(Object obj, DataOutput out) throws IOException {
-		return (obj instanceof Enum && serialize((Enum<?>) obj, out));
+		return obj instanceof Enum && serialize((Enum<?>) obj, out);
 	}
 
 	/* (non-Javadoc) */

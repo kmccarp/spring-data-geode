@@ -52,7 +52,7 @@ public class Interest<K> implements InitializingBean {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
-	private boolean durable = false;
+	private boolean durable;
 	private boolean receiveValues = true;
 
 	private InterestResultPolicy policy = InterestResultPolicy.DEFAULT;
@@ -150,7 +150,7 @@ public class Interest<K> implements InitializingBean {
 	 * @see #isRegularExpression(Object)
 	 */
 	protected Type resolveType(Type type) {
-		return (type != null ? type : (isRegularExpression(getKey()) ? Type.REGEX : Type.KEY));
+		return type != null ? type : (isRegularExpression(getKey()) ? Type.REGEX : Type.KEY);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class Interest<K> implements InitializingBean {
 	 * @see #isRegularExpression(String)
 	 */
 	protected boolean isRegularExpression(Object key) {
-		return (!(ALL_KEYS.equals(key) || key instanceof List) && isRegularExpression(String.valueOf(key)));
+		return !(ALL_KEYS.equals(key) || key instanceof List) && isRegularExpression(String.valueOf(key));
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class Interest<K> implements InitializingBean {
 	@SuppressWarnings("all")
 	protected boolean isRegularExpression(String value) {
 		try {
-			return (containsNonAlphaNumericWhitespace(value) && Pattern.compile(value) != null);
+			return containsNonAlphaNumericWhitespace(value) && Pattern.compile(value) != null;
 		}
 		catch (PatternSyntaxException ignore) {
 			return false;
@@ -231,7 +231,7 @@ public class Interest<K> implements InitializingBean {
 	 * @see java.lang.Character#isWhitespace(char)
 	 */
 	protected boolean isAlphaNumericWhitespace(char character) {
-		return (Character.isDigit(character) || Character.isLetter(character)  || Character.isWhitespace(character));
+		return Character.isDigit(character) || Character.isLetter(character)  || Character.isWhitespace(character);
 	}
 
 	/**

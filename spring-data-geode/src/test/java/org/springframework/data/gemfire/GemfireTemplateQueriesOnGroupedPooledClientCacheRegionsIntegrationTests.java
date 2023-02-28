@@ -267,7 +267,7 @@ public class GemfireTemplateQueriesOnGroupedPooledClientCacheRegionsIntegrationT
 		}
 	}
 
-	static abstract class AbstractGemFireCacheServerConfiguration {
+	abstract static class AbstractGemFireCacheServerConfiguration {
 
 		@Bean
 		Properties gemfireProperties(@Value("${spring.data.gemfire.locator.port:11235}") int locatorPort) {
@@ -379,7 +379,7 @@ public class GemfireTemplateQueriesOnGroupedPooledClientCacheRegionsIntegrationT
 		@Bean(name = "Dogs")
 		LocalRegionFactoryBean<String, Dog> dogsRegion(GemFireCache gemfireCache) {
 
-			LocalRegionFactoryBean<String, Dog> dogsRegion = new LocalRegionFactoryBean<String, Dog>();
+			LocalRegionFactoryBean<String, Dog> dogsRegion = new LocalRegionFactoryBean<>();
 
 			dogsRegion.setCache(gemfireCache);
 			dogsRegion.setPersistent(false);

@@ -480,7 +480,7 @@ public class ClusterConfigurationConfiguration extends AbstractAnnotationConfigS
 		}
 	}
 
-	public static class SchemaObjectContext {
+	public static final class SchemaObjectContext {
 
 		private final GemFireCache gemfireCache;
 

@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 import org.apache.geode.cache.Region;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.data.gemfire.mapping.annotation.Region;
 import org.springframework.data.gemfire.repository.query.support.OqlKeyword;
 import org.springframework.data.gemfire.util.CollectionUtils;
 import org.springframework.data.repository.Repository;
@@ -161,9 +162,9 @@ public class QueryString {
 		return Optional.of(validateDomainType(domainType))
 			.filter(it -> it.isAnnotationPresent(org.springframework.data.gemfire.mapping.annotation.Region.class))
 			.map(it -> it.getAnnotation(org.springframework.data.gemfire.mapping.annotation.Region.class))
-			.map(it -> it.value())
+			.map(Region::value)
 			.filter(StringUtils::hasText)
-			.orElseGet(() -> domainType.getSimpleName());
+			.orElseGet(domainType::getSimpleName);
 	}
 
 	static @NonNull String resolveProjection(boolean isCountQuery) {

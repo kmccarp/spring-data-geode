@@ -54,7 +54,7 @@ class GemfireRegionAutoProxyParser implements BeanDefinitionParser {
 
 		if (StringUtils.hasText(regionNames)) {
 			String[] regions = StringUtils.commaDelimitedListToStringArray(regionNames);
-			ManagedList<String> regionList = new ManagedList<String>(regions.length);
+			ManagedList<String> regionList = new ManagedList<>(regions.length);
 			Collections.addAll(regionList, regions);
 			jsonRegionAdviceBuilder.addPropertyValue("includedRegions", regionList);
 		}

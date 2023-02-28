@@ -73,7 +73,7 @@ class PdxFunctionArgumentResolver extends DefaultFunctionArgumentResolver {
 	boolean isPdxSerializerConfigured() {
 
 		try {
-			return (CacheFactory.getAnyInstance().getPdxSerializer() != null);
+			return CacheFactory.getAnyInstance().getPdxSerializer() != null;
 		}
 		catch (CacheClosedException ignore) {
 			return false;
@@ -81,7 +81,7 @@ class PdxFunctionArgumentResolver extends DefaultFunctionArgumentResolver {
 	}
 
 	boolean isDeserializationNecessary(final String className) {
-		return (isOnClasspath(className) && functionAnnotatedMethodHasParameterOfType(className));
+		return isOnClasspath(className) && functionAnnotatedMethodHasParameterOfType(className);
 	}
 
 	boolean isOnClasspath(final String className) {

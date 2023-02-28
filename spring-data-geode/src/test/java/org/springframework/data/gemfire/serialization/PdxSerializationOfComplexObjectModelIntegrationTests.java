@@ -233,7 +233,7 @@ public class PdxSerializationOfComplexObjectModelIntegrationTests {
 
 			MappingPdxSerializer customMappingPdxSerializer = spy(MappingPdxSerializer.newMappingPdxSerializer());
 
-			customMappingPdxSerializer.setIncludeTypeFilters(type -> includedTypes.contains(type));
+			customMappingPdxSerializer.setIncludeTypeFilters(includedTypes::contains);
 
 			return customMappingPdxSerializer;
 		}

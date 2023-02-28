@@ -113,6 +113,8 @@ public abstract class AbstractTransactionalEventListenerIntegrationTests extends
 	@RequiredArgsConstructor(staticName = "newCustomer")
 	static class Customer implements Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		@Id @NonNull
 		private Long id;
 

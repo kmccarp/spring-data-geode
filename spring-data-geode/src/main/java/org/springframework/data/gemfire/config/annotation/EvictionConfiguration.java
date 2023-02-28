@@ -229,7 +229,7 @@ public class EvictionConfiguration extends AbstractAnnotationConfigSupport
 	 *
 	 * @see org.springframework.data.gemfire.config.annotation.EvictionConfiguration.EvictionPolicyConfigurer
 	 */
-	protected static class ComposableEvictionPolicyConfigurer implements EvictionPolicyConfigurer {
+	protected static final class ComposableEvictionPolicyConfigurer implements EvictionPolicyConfigurer {
 
 		/**
 		 * Composes the array of {@link EvictionPolicyConfigurer} objects into a single
@@ -441,7 +441,7 @@ public class EvictionConfiguration extends AbstractAnnotationConfigSupport
 		 * @see #accepts(Supplier)
 		 */
 		protected boolean accepts(@Nullable Region<?, ?> region) {
-			return region != null && accepts(() -> region.getName());
+			return region != null && accepts(region::getName);
 		}
 
 		/**

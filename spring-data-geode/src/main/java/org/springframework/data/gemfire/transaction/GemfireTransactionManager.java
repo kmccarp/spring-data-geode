@@ -75,6 +75,8 @@ import org.springframework.util.Assert;
 public class GemfireTransactionManager extends AbstractPlatformTransactionManager
 		implements InitializingBean, ResourceTransactionManager {
 
+	private static final long serialVersionUID = 1;
+
 	protected static final TimeUnit DEFAULT_RESUME_WAIT_TIME_UNIT = TimeUnit.SECONDS;
 
 	private GemFireCache cache;
@@ -462,7 +464,7 @@ public class GemfireTransactionManager extends AbstractPlatformTransactionManage
 	 */
 	protected static class CacheHolder {
 
-		private boolean rollbackOnly = false;
+		private boolean rollbackOnly;
 
 		private TransactionId transactionId;
 

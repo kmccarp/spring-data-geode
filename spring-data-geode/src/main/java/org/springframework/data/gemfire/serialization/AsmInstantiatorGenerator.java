@@ -20,7 +20,6 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -63,7 +62,7 @@ public class AsmInstantiatorGenerator implements InstantiatorGenerator, Opcodes 
 	private static final AtomicLong counter = new AtomicLong(1);
 
 	// class cache
-	private final ConcurrentMap<Class<? extends DataSerializable>, Instantiator> cache = new ConcurrentHashMap<Class<? extends DataSerializable>, Instantiator>();
+	private final ConcurrentMap<Class<? extends DataSerializable>, Instantiator> cache = new ConcurrentHashMap<>();
 
 
 	private static final class BytecodeClassLoader extends ClassLoader {
@@ -85,11 +84,7 @@ public class AsmInstantiatorGenerator implements InstantiatorGenerator, Opcodes 
 
 	public AsmInstantiatorGenerator(final ClassLoader classLoader) {
 		Assert.notNull(classLoader);
-		this.classLoader = AccessController.doPrivileged(new PrivilegedAction<BytecodeClassLoader>() {
-			public BytecodeClassLoader run() {
-				return new BytecodeClassLoader(classLoader);
-			}
-		});
+		this.classLoader = AccessController.doPrivileged(() -> new BytecodeClassLoader(classLoader));
 	}
 
 	public Instantiator getInstantiator(Class<? extends DataSerializable> clazz, int classId) {

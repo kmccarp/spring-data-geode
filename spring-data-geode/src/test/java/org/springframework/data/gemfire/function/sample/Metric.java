@@ -30,6 +30,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Metric implements Serializable {
 
+	private static final long serialVersionUID = 1;
+
 	private final String name;
 
 	private final Number value;

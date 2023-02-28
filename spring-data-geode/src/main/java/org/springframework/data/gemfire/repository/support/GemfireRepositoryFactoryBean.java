@@ -241,7 +241,7 @@ public class GemfireRepositoryFactoryBean<T extends Repository<S, ID>, S, ID>
 			new GemfireRepositoryFactory(getRegions(), getGemfireMappingContext());
 
 		getApplicationContext()
-			.map(applicationContext -> new QueryPostProcessorRegistrationOnQueryCreationListener(applicationContext))
+			.map(QueryPostProcessorRegistrationOnQueryCreationListener::new)
 			.ifPresent(repositoryFactory::addQueryCreationListener);
 
 		return repositoryFactory;
@@ -263,7 +263,7 @@ public class GemfireRepositoryFactoryBean<T extends Repository<S, ID>, S, ID>
 	protected class QueryPostProcessorRegistrationOnQueryCreationListener
 			implements QueryCreationListener<GemfireRepositoryQuery> {
 
-		private Iterable<QueryPostProcessorMetadata> queryPostProcessorsMetadata;
+		private final Iterable<QueryPostProcessorMetadata> queryPostProcessorsMetadata;
 
 		@SuppressWarnings("rawtypes")
 		public QueryPostProcessorRegistrationOnQueryCreationListener(ApplicationContext applicationContext) {
@@ -323,7 +323,7 @@ public class GemfireRepositoryFactoryBean<T extends Repository<S, ID>, S, ID>
 			this.declaredRepositoryType = Optional.of(typeArguments)
 				.filter(list -> !list.isEmpty())
 				.map(list -> list.get(0))
-				.map(typeInfo -> typeInfo.getType())
+				.map(TypeInformation::getType)
 				.orElse((Class) Repository.class);
 		}
 

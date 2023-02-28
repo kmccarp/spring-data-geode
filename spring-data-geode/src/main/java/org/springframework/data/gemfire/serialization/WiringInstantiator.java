@@ -52,7 +52,7 @@ public class WiringInstantiator extends Instantiator implements BeanFactoryAware
 	private BeanConfigurerSupport configurer;
 	private BeanFactory beanFactory;
 	private boolean autoRegister = true;
-	private boolean distribute = false;
+	private boolean distribute;
 
 	public WiringInstantiator(Instantiator instantiator) {
 		super(instantiator.getInstantiatedClass(), instantiator.getId());

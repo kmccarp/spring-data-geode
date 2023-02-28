@@ -71,23 +71,23 @@ public class GatewayReceiverConfiguration extends AbstractAnnotationConfigSuppor
 	static final String DEFAULT_BIND_ADDRESS = GatewayReceiver.DEFAULT_BIND_ADDRESS;
 	static final String DEFAULT_HOSTNAME_FOR_SENDERS = GatewayReceiver.DEFAULT_HOSTNAME_FOR_SENDERS;
 
-	private final String START_PORT_LITERAL = "startPort";
-	private final String END_PORT_LITERAL = "endPort";
-	private final String MANUAL_START_LITERAL = "manualStart";
-	private final String MAXIMUM_TIME_BETWEEN_PINGS_LITERAL = "maximumTimeBetweenPings";
-	private final String SOCKET_BUFFER_SIZE_LITERAL = "socketBufferSize";
-	private final String BIND_ADDRESS_LITERAL = "bindAddress";
-	private final String HOSTNAME_FOR_SENDERS_LITERAL = "hostnameForSenders";
-	private final String TRANSPORT_FILTERS_LITERAL = "transportFilters";
+	private final String startPortLiteral = "startPort";
+	private final String endPortLiteral = "endPort";
+	private final String manualStartLiteral = "manualStart";
+	private final String maximumTimeBetweenPingsLiteral = "maximumTimeBetweenPings";
+	private final String socketBufferSizeLiteral = "socketBufferSize";
+	private final String bindAddressLiteral = "bindAddress";
+	private final String hostnameForSendersLiteral = "hostnameForSenders";
+	private final String transportFiltersLiteral = "transportFilters";
 
-	private final String START_PORT_PROPERTY_LITERAL = "start-port";
-	private final String END_PORT_PROPERTY_LITERAL = "end-port";
-	private final String MANUAL_START_PROPERTY_LITERAL = "manual-start";
-	private final String MAXIMUM_TIME_BETWEEN_PINGS_PROPERTY_LITERAL = "maximum-time-between-pings";
-	private final String SOCKET_BUFFER_SIZE_PROPERTY_LITERAL = "socket-buffer-size";
-	private final String BIND_ADDRESS_PROPERTY_LITERAL = "bind-address";
-	private final String HOSTNAME_FOR_SENDERS_PROPERTY_LITERAL = "hostname-for-senders";
-	private final String TRANSPORT_FILTERS_PROPERTY_LITERAL = "transport-filters";
+	private final String startPortPropertyLiteral = "start-port";
+	private final String endPortPropertyLiteral = "end-port";
+	private final String manualStartPropertyLiteral = "manual-start";
+	private final String maximumTimeBetweenPingsPropertyLiteral = "maximum-time-between-pings";
+	private final String socketBufferSizePropertyLiteral = "socket-buffer-size";
+	private final String bindAddressPropertyLiteral = "bind-address";
+	private final String hostnameForSendersPropertyLiteral = "hostname-for-senders";
+	private final String transportFiltersPropertyLiteral = "transport-filters";
 
 	@Autowired(required = false)
 	private List<GatewayReceiverConfigurer> gatewayReceiverConfigurers = Collections.emptyList();
@@ -150,32 +150,32 @@ public class GatewayReceiverConfiguration extends AbstractAnnotationConfigSuppor
 
 		gatewayReceiverBeanBuilder.addPropertyReference("cache", GemfireConstants.DEFAULT_GEMFIRE_CACHE_NAME);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, START_PORT_LITERAL,
-			enableGatewayReceiverAttributes.<Integer>getNumber(START_PORT_LITERAL), DEFAULT_START_PORT);
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, startPortLiteral,
+			enableGatewayReceiverAttributes.<Integer>getNumber(startPortLiteral), DEFAULT_START_PORT);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, END_PORT_LITERAL,
-			enableGatewayReceiverAttributes.<Integer>getNumber(END_PORT_LITERAL), DEFAULT_END_PORT);
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, endPortLiteral,
+			enableGatewayReceiverAttributes.<Integer>getNumber(endPortLiteral), DEFAULT_END_PORT);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, MANUAL_START_LITERAL,
-			enableGatewayReceiverAttributes.getBoolean(MANUAL_START_LITERAL), DEFAULT_MANUAL_START);
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, manualStartLiteral,
+			enableGatewayReceiverAttributes.getBoolean(manualStartLiteral), DEFAULT_MANUAL_START);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, MAXIMUM_TIME_BETWEEN_PINGS_LITERAL,
-			enableGatewayReceiverAttributes.<Integer>getNumber(MAXIMUM_TIME_BETWEEN_PINGS_LITERAL),
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, maximumTimeBetweenPingsLiteral,
+			enableGatewayReceiverAttributes.<Integer>getNumber(maximumTimeBetweenPingsLiteral),
 			DEFAULT_MAXIMUM_TIME_BETWEEN_PINGS);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, SOCKET_BUFFER_SIZE_LITERAL,
-			enableGatewayReceiverAttributes.<Integer>getNumber(SOCKET_BUFFER_SIZE_LITERAL), DEFAULT_SOCKET_BUFFER_SIZE);
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, socketBufferSizeLiteral,
+			enableGatewayReceiverAttributes.<Integer>getNumber(socketBufferSizeLiteral), DEFAULT_SOCKET_BUFFER_SIZE);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, BIND_ADDRESS_LITERAL,
-			enableGatewayReceiverAttributes.getString(BIND_ADDRESS_LITERAL), DEFAULT_BIND_ADDRESS);
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, bindAddressLiteral,
+			enableGatewayReceiverAttributes.getString(bindAddressLiteral), DEFAULT_BIND_ADDRESS);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, HOSTNAME_FOR_SENDERS_LITERAL,
-			enableGatewayReceiverAttributes.getString(HOSTNAME_FOR_SENDERS_LITERAL), DEFAULT_HOSTNAME_FOR_SENDERS);
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, hostnameForSendersLiteral,
+			enableGatewayReceiverAttributes.getString(hostnameForSendersLiteral), DEFAULT_HOSTNAME_FOR_SENDERS);
 
-		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, TRANSPORT_FILTERS_LITERAL,
+		setPropertyValueIfNotDefault(gatewayReceiverBeanBuilder, transportFiltersLiteral,
 			resolveGatewayTransportFilterBeanReferences(
-				enableGatewayReceiverAttributes.getStringArray(TRANSPORT_FILTERS_LITERAL)),
-			new ManagedList<BeanReference>());
+				enableGatewayReceiverAttributes.getStringArray(transportFiltersLiteral)),
+			new ManagedList<>());
 	}
 
 	/**
@@ -191,37 +191,37 @@ public class GatewayReceiverConfiguration extends AbstractAnnotationConfigSuppor
 		gatewayReceiverBeanBuilder.addPropertyValue("gatewayReceiverConfigurers",
 			resolveGatewayReceiverConfigurers());
 
-		configureFromProperties(gatewayReceiverBeanBuilder, BIND_ADDRESS_LITERAL, BIND_ADDRESS_PROPERTY_LITERAL,
-			String.class, (String) beanPropertyValues.getPropertyValue(BIND_ADDRESS_LITERAL).getValue());
+		configureFromProperties(gatewayReceiverBeanBuilder, bindAddressLiteral, bindAddressPropertyLiteral,
+			String.class, (String) beanPropertyValues.getPropertyValue(bindAddressLiteral).getValue());
 
 		configureFromProperties(gatewayReceiverBeanBuilder,
-			HOSTNAME_FOR_SENDERS_LITERAL, HOSTNAME_FOR_SENDERS_PROPERTY_LITERAL,
-			String.class, (String) beanPropertyValues.getPropertyValue(HOSTNAME_FOR_SENDERS_LITERAL).getValue());
+			hostnameForSendersLiteral, hostnameForSendersPropertyLiteral,
+			String.class, (String) beanPropertyValues.getPropertyValue(hostnameForSendersLiteral).getValue());
 
-		configureFromProperties(gatewayReceiverBeanBuilder, MANUAL_START_LITERAL, MANUAL_START_PROPERTY_LITERAL,
-			Boolean.class, (Boolean) beanPropertyValues.getPropertyValue(MANUAL_START_LITERAL).getValue());
-
-		configureFromProperties(gatewayReceiverBeanBuilder,
-			MAXIMUM_TIME_BETWEEN_PINGS_LITERAL, MAXIMUM_TIME_BETWEEN_PINGS_PROPERTY_LITERAL,
-			Integer.class, (Integer) beanPropertyValues.getPropertyValue(MAXIMUM_TIME_BETWEEN_PINGS_LITERAL).getValue());
-
-		configureFromProperties(gatewayReceiverBeanBuilder, START_PORT_LITERAL, START_PORT_PROPERTY_LITERAL,
-			Integer.class, (Integer) beanPropertyValues.getPropertyValue(START_PORT_LITERAL).getValue());
-
-		configureFromProperties(gatewayReceiverBeanBuilder, END_PORT_LITERAL, END_PORT_PROPERTY_LITERAL,
-			Integer.class, (Integer) beanPropertyValues.getPropertyValue(END_PORT_LITERAL).getValue());
+		configureFromProperties(gatewayReceiverBeanBuilder, manualStartLiteral, manualStartPropertyLiteral,
+			Boolean.class, (Boolean) beanPropertyValues.getPropertyValue(manualStartLiteral).getValue());
 
 		configureFromProperties(gatewayReceiverBeanBuilder,
-			SOCKET_BUFFER_SIZE_LITERAL, SOCKET_BUFFER_SIZE_PROPERTY_LITERAL,
-			Integer.class, (Integer) beanPropertyValues.getPropertyValue(SOCKET_BUFFER_SIZE_LITERAL).getValue());
+			maximumTimeBetweenPingsLiteral, maximumTimeBetweenPingsPropertyLiteral,
+			Integer.class, (Integer) beanPropertyValues.getPropertyValue(maximumTimeBetweenPingsLiteral).getValue());
 
-		String[] filters = resolveProperty(gatewayReceiverProperty(TRANSPORT_FILTERS_PROPERTY_LITERAL), String[].class);
+		configureFromProperties(gatewayReceiverBeanBuilder, startPortLiteral, startPortPropertyLiteral,
+			Integer.class, (Integer) beanPropertyValues.getPropertyValue(startPortLiteral).getValue());
+
+		configureFromProperties(gatewayReceiverBeanBuilder, endPortLiteral, endPortPropertyLiteral,
+			Integer.class, (Integer) beanPropertyValues.getPropertyValue(endPortLiteral).getValue());
+
+		configureFromProperties(gatewayReceiverBeanBuilder,
+			socketBufferSizeLiteral, socketBufferSizePropertyLiteral,
+			Integer.class, (Integer) beanPropertyValues.getPropertyValue(socketBufferSizeLiteral).getValue());
+
+		String[] filters = resolveProperty(gatewayReceiverProperty(transportFiltersPropertyLiteral), String[].class);
 
 		Optional.ofNullable(filters).ifPresent(transportFilters -> {
 
 			ManagedList<BeanReference> beanReferences = resolveGatewayTransportFilterBeanReferences(transportFilters);
 
-			gatewayReceiverBeanBuilder.addPropertyValue(TRANSPORT_FILTERS_LITERAL, beanReferences);
+			gatewayReceiverBeanBuilder.addPropertyValue(transportFiltersLiteral, beanReferences);
 		});
 	}
 
@@ -258,7 +258,7 @@ public class GatewayReceiverConfiguration extends AbstractAnnotationConfigSuppor
 	private void registerGatewayTransportFilterDependencies(AnnotationAttributes annotationAttributes,
 			BeanDefinitionBuilder gatewayReceiverBeanBuilder) {
 
-		String[] transportFilters = annotationAttributes.getStringArray(TRANSPORT_FILTERS_LITERAL);
+		String[] transportFilters = annotationAttributes.getStringArray(transportFiltersLiteral);
 
 		Optional.ofNullable(transportFilters).ifPresent(transportFilerBeanNames ->
 			Arrays.stream(transportFilerBeanNames).forEach(gatewayReceiverBeanBuilder::addDependsOn));

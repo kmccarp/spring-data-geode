@@ -43,7 +43,8 @@ public class FactoryDefaultsPoolAdapterTest {
 
 	protected static final int DEFAULT_CACHE_SERVER_PORT = GemfireUtils.DEFAULT_CACHE_SERVER_PORT;
 
-	private FactoryDefaultsPoolAdapter poolAdapter = new FactoryDefaultsPoolAdapter() { };
+	private final FactoryDefaultsPoolAdapter poolAdapter = new FactoryDefaultsPoolAdapter() {
+	};
 
 	private InetSocketAddress newSocketAddress(String host, int port) {
 		return new InetSocketAddress(host, port);
@@ -88,7 +89,7 @@ public class FactoryDefaultsPoolAdapterTest {
 
 	@Test
 	public void onlineLocatorsIsEmptyList() {
-		assertThat(this.poolAdapter.getOnlineLocators()).isEqualTo(Collections.EMPTY_LIST);
+		assertThat(this.poolAdapter.getOnlineLocators()).isEqualTo(Collections.emptyList());
 	}
 
 	@Test
@@ -118,12 +119,12 @@ public class FactoryDefaultsPoolAdapterTest {
 
 	@Test(expected = UnsupportedOperationException.class)
 	public void isDestroyedIsUnsupported() {
-		testPoolOperationIsUnsupported(() -> this.poolAdapter.isDestroyed());
+		testPoolOperationIsUnsupported(this.poolAdapter::isDestroyed);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
 	public void getPendingEventCountIsUnsupported() {
-		testPoolOperationIsUnsupported(() -> this.poolAdapter.getPendingEventCount());
+		testPoolOperationIsUnsupported(this.poolAdapter::getPendingEventCount);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)

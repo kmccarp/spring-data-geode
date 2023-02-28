@@ -57,6 +57,6 @@ public class RepositoryClient {
 
 	public boolean delete(Person person) {
 		getPersonRepository().delete(person);
-		return (find(person.getId()) == null);
+		return find(person.getId()) == null;
 	}
 }
