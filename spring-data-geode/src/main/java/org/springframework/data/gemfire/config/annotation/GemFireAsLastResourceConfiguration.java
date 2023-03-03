@@ -119,7 +119,7 @@ public class GemFireAsLastResourceConfiguration implements ImportAware {
 		GemFireAsLastResourceConnectionAcquiringAspect connectionAcquiringAspect =
 			new GemFireAsLastResourceConnectionAcquiringAspect();
 
-		int order = (getEnableTransactionManagementOrder() + 1);
+		int order = getEnableTransactionManagementOrder() + 1;
 
 		connectionAcquiringAspect.setOrder(order);
 
@@ -132,7 +132,7 @@ public class GemFireAsLastResourceConfiguration implements ImportAware {
 		GemFireAsLastResourceConnectionClosingAspect connectionClosingAspect =
 			new GemFireAsLastResourceConnectionClosingAspect();
 
-		int order = (getEnableTransactionManagementOrder() - 1);
+		int order = getEnableTransactionManagementOrder() - 1;
 
 		connectionClosingAspect.setOrder(order);
 

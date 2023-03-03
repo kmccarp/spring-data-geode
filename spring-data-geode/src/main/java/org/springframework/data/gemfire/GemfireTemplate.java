@@ -77,7 +77,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("unused")
 public class GemfireTemplate extends GemfireAccessor implements GemfireOperations {
 
-	private boolean exposeNativeRegion = false;
+	private boolean exposeNativeRegion;
 
 	private Region<?, ?> regionProxy;
 

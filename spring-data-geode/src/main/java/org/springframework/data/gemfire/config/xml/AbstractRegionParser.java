@@ -171,15 +171,15 @@ abstract class AbstractRegionParser extends AbstractSingleBeanDefinitionParser {
 		List<Element> subElements = DomUtils.getChildElements(element);
 
 		for (Element subElement : subElements) {
-			if (subElement.getLocalName().equals("cache-listener")) {
+			if ("cache-listener".equals(subElement.getLocalName())) {
 				regionBuilder.addPropertyValue("cacheListeners", ParsingUtils.parseRefOrNestedBeanDeclaration(
 					subElement, parserContext, regionBuilder));
 			}
-			else if (subElement.getLocalName().equals("cache-loader")) {
+			else if ("cache-loader".equals(subElement.getLocalName())) {
 				regionBuilder.addPropertyValue("cacheLoader", ParsingUtils.parseRefOrSingleNestedBeanDeclaration(
 					subElement, parserContext, regionBuilder));
 			}
-			else if (subElement.getLocalName().equals("cache-writer")) {
+			else if ("cache-writer".equals(subElement.getLocalName())) {
 				regionBuilder.addPropertyValue("cacheWriter", ParsingUtils.parseRefOrSingleNestedBeanDeclaration(
 					subElement, parserContext, regionBuilder));
 			}

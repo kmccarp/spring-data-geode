@@ -52,7 +52,7 @@ public abstract class AbstractSliceSupport<T> implements Slice<T> {
 	 */
 	@Override
 	public boolean hasContent() {
-		return (getNumberOfElements() > 0);
+		return getNumberOfElements() > 0;
 	}
 
 	/**

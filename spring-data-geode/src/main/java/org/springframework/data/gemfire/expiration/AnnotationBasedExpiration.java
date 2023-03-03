@@ -427,7 +427,7 @@ public class AnnotationBasedExpiration<K, V> implements BeanFactoryAware, Custom
 	}
 
 	private <T extends Annotation> boolean isAnnotationPresent(Object obj, Class<T> annotationType) {
-		return (obj != null && obj.getClass().isAnnotationPresent(annotationType));
+		return obj != null && obj.getClass().isAnnotationPresent(annotationType);
 	}
 
 	private <T extends Annotation> T getAnnotation(Object obj, Class<T> annotationType) {
@@ -588,8 +588,8 @@ public class AnnotationBasedExpiration<K, V> implements BeanFactoryAware, Custom
 
 			ExpirationMetaData that = (ExpirationMetaData) obj;
 
-			return (this.timeout() == that.timeout()
-				&& ObjectUtils.nullSafeEquals(this.action(), that.action()));
+			return this.timeout() == that.timeout()
+				&& ObjectUtils.nullSafeEquals(this.action(), that.action());
 		}
 
 		/**

@@ -38,7 +38,7 @@ class BatchingResultSender {
 
 	private final int batchSize;
 
-	private ResultSender<Object> resultSender;
+	private final ResultSender<Object> resultSender;
 
 	/**
 	 * Constructs a new instance of {@link BatchingResultSender} initialized with the given {@link Integer batch size}

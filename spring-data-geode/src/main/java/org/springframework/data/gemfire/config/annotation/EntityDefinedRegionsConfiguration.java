@@ -319,7 +319,7 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 	protected @NonNull GemfireMappingContext resolveMappingContext() {
 
 		if (this.mappingContext == null) {
-			this.mappingContext = SpringExtensions.<GemfireMappingContext>safeGetValue(() ->
+			this.mappingContext = SpringExtensions.safeGetValue(() ->
 				getBeanFactory().getBean(GemfireMappingContext.class), GemfireMappingContext::new);
 		}
 
@@ -436,8 +436,8 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 
 		Class<? extends Annotation> regionAnnotationType = regionAnnotation.annotationType();
 
-		boolean persistent = (regionAnnotationAttributes.containsKey("persistent")
-			&& regionAnnotationAttributes.getBoolean("persistent"));
+		boolean persistent = regionAnnotationAttributes.containsKey("persistent")
+			&& regionAnnotationAttributes.getBoolean("persistent");
 
 		return LocalRegion.class.equals(regionAnnotationType)
 				? (persistent ? RegionShortcut.LOCAL_PERSISTENT : RegionShortcut.LOCAL)
@@ -545,17 +545,17 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 	private <T> BeanDefinitionBuilder setPropertyReferenceIfSet(BeanDefinitionBuilder beanDefinitionBuilder,
 			String propertyName, String beanName) {
 
-		return (StringUtils.hasText(beanName)
+		return StringUtils.hasText(beanName)
 			? beanDefinitionBuilder.addPropertyReference(propertyName, beanName)
-			: beanDefinitionBuilder);
+			: beanDefinitionBuilder;
 	}
 
 	private <T> BeanDefinitionBuilder setPropertyValueIfNotDefault(BeanDefinitionBuilder beanDefinitionBuilder,
 			String propertyName, T value, T defaultValue) {
 
-		return (value != null && !value.equals(defaultValue)
+		return value != null && !value.equals(defaultValue)
 			? beanDefinitionBuilder.addPropertyValue(propertyName, value)
-			: beanDefinitionBuilder);
+			: beanDefinitionBuilder;
 	}
 
 	/**
@@ -642,7 +642,7 @@ public class EntityDefinedRegionsConfiguration extends AbstractAnnotationConfigS
 		protected @NonNull Class<?> getRegionKeyConstraint() {
 
 			return Optional.ofNullable(resolvePersistentEntity().getIdProperty())
-				.map(idProperty -> idProperty.getActualType())
+				.map(AbstractPersistentProperty::getActualType)
 				.orElse((Class) Object.class);
 		}
 

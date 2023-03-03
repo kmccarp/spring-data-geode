@@ -48,7 +48,7 @@ import org.w3c.dom.Node;
 // TODO add more tests
 public class AbstractRegionParserUnitTests {
 
-	private AbstractRegionParser regionParser = new TestRegionParser();
+	private final AbstractRegionParser regionParser = new TestRegionParser();
 
 	protected void assertIsRegionTemplateWhenElementLocalNameEndsWithTemplate(String localName) {
 

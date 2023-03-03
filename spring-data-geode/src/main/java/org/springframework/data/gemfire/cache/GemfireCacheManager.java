@@ -101,7 +101,7 @@ public class GemfireCacheManager extends AbstractCacheManager {
 	protected Collection<Cache> loadCaches() {
 		Set<Region<?, ?>> regions = resolveRegions(this.gemfireCache, this.regions, this.cacheNames);
 
-		Collection<Cache> caches = new HashSet<Cache>(regions.size());
+		Collection<Cache> caches = new HashSet<>(regions.size());
 
 		for (Region<?, ?> region : regions) {
 			caches.add(newGemfireCache(region));
@@ -119,7 +119,7 @@ public class GemfireCacheManager extends AbstractCacheManager {
 		else if (isSet(cacheNames)) {
 			dynamic.set(false);
 
-			regions = new HashSet<Region<?, ?>>(cacheNames.size());
+			regions = new HashSet<>(cacheNames.size());
 
 			for (String cacheName : cacheNames) {
 				regions.add(regionFor(gemfireCache, cacheName));
@@ -134,7 +134,7 @@ public class GemfireCacheManager extends AbstractCacheManager {
 
 	/* (non-Javadoc) */
 	boolean isSet(Iterable<?> collection) {
-		return (collection != null && collection.iterator().hasNext());
+		return collection != null && collection.iterator().hasNext();
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class GemfireCacheManager extends AbstractCacheManager {
 	protected Cache getMissingCache(String name) {
 		Cache cache = super.getMissingCache(name);
 
-		return (cache != null ? cache : (isDynamic() ? newGemfireCache(regionFor(this.gemfireCache, name)) : null));
+		return cache != null ? cache : (isDynamic() ? newGemfireCache(regionFor(this.gemfireCache, name)) : null);
 	}
 
 	/**

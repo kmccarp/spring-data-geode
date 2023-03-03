@@ -214,6 +214,6 @@ public class GemfireCache implements Cache {
 
 		Object existingValue = getNativeCache().putIfAbsent(key, value);
 
-		return (existingValue != null ? new SimpleValueWrapper(existingValue) : null);
+		return existingValue != null ? new SimpleValueWrapper(existingValue) : null;
 	}
 }

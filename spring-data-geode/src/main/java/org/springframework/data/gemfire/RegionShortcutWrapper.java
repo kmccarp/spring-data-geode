@@ -107,7 +107,7 @@ public enum RegionShortcutWrapper {
 	}
 
 	public boolean isPersistentOverflow() {
-		return (isOverflow() && isPersistent());
+		return isOverflow() && isPersistent();
 	}
 
 	public boolean isProxy() {

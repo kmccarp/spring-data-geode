@@ -69,7 +69,7 @@ import org.springframework.util.CollectionUtils;
 public class JSONRegionAdvice {
 
 	private boolean convertReturnedCollections = true;
-	private boolean prettyPrint = false;
+	private boolean prettyPrint;
 
 	private List<String> includedRegions = new ArrayList<>();
 
@@ -317,7 +317,7 @@ public class JSONRegionAdvice {
 		List<String> regionReferencesList = Arrays.asList(nullSafeArray(regionReferences, String.class));
 
 		return CollectionUtils.isEmpty(this.includedRegions) || this.includedRegions.stream()
-			.anyMatch(includeRegion -> regionReferencesList.contains(includeRegion));
+			.anyMatch(regionReferencesList::contains);
 	}
 
 	private Object convertToJson(Object returnValue) {

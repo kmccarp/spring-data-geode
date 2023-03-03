@@ -50,6 +50,8 @@ import org.springframework.util.ObjectUtils;
 @SuppressWarnings("unused")
 public class Person implements Comparable<Person>, Serializable {
 
+	private static final long serialVersionUID = 1;
+
 	protected static final String PERSON_TO_STRING =
 		"{ @type = %1$s, id = %2$d, firstName = %3$s, lastName = %4$s, birthDate = %5$s, gender = %6$s}";
 
@@ -96,7 +98,7 @@ public class Person implements Comparable<Person>, Serializable {
 
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthDate = (birthDate != null ? (Date) birthDate.clone() : null);
+		this.birthDate = birthDate != null ? (Date) birthDate.clone() : null;
 		this.gender = gender;
 	}
 
@@ -118,7 +120,7 @@ public class Person implements Comparable<Person>, Serializable {
 	}
 
 	public void setBirthDate(Date birthDate) {
-		this.birthDate = (birthDate != null ? (Date) birthDate.clone() : null);
+		this.birthDate = birthDate != null ? (Date) birthDate.clone() : null;
 	}
 
 	public String getFirstName() {
@@ -198,10 +200,10 @@ public class Person implements Comparable<Person>, Serializable {
 			toString(getBirthDate(), BIRTH_DATE_PATTERN), getGender());
 	}
 
-	protected static String toString(Date dateTime, String DATE_FORMAT_PATTERN) {
+	protected static String toString(Date dateTime, String dateFormatPattern) {
 
 		return dateTime != null
-			? new SimpleDateFormat(DATE_FORMAT_PATTERN).format(dateTime)
+			? new SimpleDateFormat(dateFormatPattern).format(dateTime)
 			: null;
 	}
 }

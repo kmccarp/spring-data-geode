@@ -179,7 +179,7 @@ public class ApacheShiroSecurityConfiguration extends AbstractAnnotationConfigSu
 
 		return Optional.ofNullable(resolveRealms())
 			.filter(realms -> !realms.isEmpty())
-			.map(realms -> new DefaultSecurityManager(realms))
+			.map(DefaultSecurityManager::new)
 			.map(this::registerSecurityManager)
 			.orElse(null);
 	}

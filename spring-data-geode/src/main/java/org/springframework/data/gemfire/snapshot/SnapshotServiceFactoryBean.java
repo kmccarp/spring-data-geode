@@ -429,7 +429,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 	 * @param <V> the class type of the Cache Region value.
 	 * @see SnapshotServiceFactoryBean.SnapshotServiceAdapter
 	 */
-	protected static abstract class SnapshotServiceAdapterSupport<K, V> implements SnapshotServiceAdapter<K, V> {
+	protected abstract static class SnapshotServiceAdapterSupport<K, V> implements SnapshotServiceAdapter<K, V> {
 
 		protected static final File TEMPORARY_DIRECTORY = new File(System.getProperty("java.io.tmpdir"));
 
@@ -471,7 +471,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 		protected abstract File[] handleLocation(SnapshotMetadata<K, V> configuration);
 
 		protected File[] handleDirectoryLocation(File directory) {
-			return directory.listFiles(pathname -> nullSafeIsFile(pathname));
+			return directory.listFiles(SnapshotServiceFactoryBean::nullSafeIsFile);
 		}
 
 		protected File[] handleFileLocation(File file) {
@@ -486,9 +486,9 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 						String.format("Failed create directory (%1$s) in which to extract archive (%2$s)",
 							extractedArchiveDirectory, file));
 
-					ZipFile zipFile = (ArchiveFileFilter.INSTANCE.isJarFile(file)
+					ZipFile zipFile = ArchiveFileFilter.INSTANCE.isJarFile(file)
 						? new JarFile(file, false, JarFile.OPEN_READ)
-							: new ZipFile(file, ZipFile.OPEN_READ));
+							: new ZipFile(file, ZipFile.OPEN_READ);
 
 					for (ZipEntry entry : CollectionUtils.iterable(zipFile.entries())) {
 						if (!entry.isDirectory()) {
@@ -560,7 +560,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 
 		protected String toSimpleFilename(String pathname) {
 			int pathSeparatorIndex = String.valueOf(pathname).lastIndexOf(File.separator);
-			pathname = (pathSeparatorIndex > -1 ? pathname.substring(pathSeparatorIndex + 1) : pathname);
+			pathname = pathSeparatorIndex > -1 ? pathname.substring(pathSeparatorIndex + 1) : pathname;
 			return StringUtils.trimWhitespace(pathname);
 		}
 	}
@@ -789,7 +789,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 		}
 
 		public boolean isFilterPresent() {
-			return (getFilter() != null);
+			return getFilter() != null;
 		}
 
 		public SnapshotFilter<K, V> getFilter() {
@@ -848,7 +848,7 @@ public class SnapshotServiceFactoryBean<K, V> extends AbstractFactoryBeanSupport
 			if (nullSafeIsFile(file)) {
 				String pathname = file.getAbsolutePath();
 				int fileExtensionIndex = pathname.lastIndexOf(FILE_EXTENSION_DOT_SEPARATOR);
-				fileExtension = (fileExtensionIndex > -1 ? pathname.substring(fileExtensionIndex + 1) : "");
+				fileExtension = fileExtensionIndex > -1 ? pathname.substring(fileExtensionIndex + 1) : "";
 			}
 
 			return fileExtension.toLowerCase();

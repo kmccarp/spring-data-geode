@@ -127,7 +127,7 @@ public class Person implements Serializable {
 
 		Person that = (Person) obj;
 
-		return (this.id != null && this.id.equals(that.id));
+		return this.id != null && this.id.equals(that.id);
 	}
 
 	@Override

@@ -80,8 +80,8 @@ public class DefinedIndexesApplicationListener implements ApplicationListener<Co
 
 		String queryServiceBeanName = getQueryServiceBeanName();
 
-		return (applicationContext.containsBean(queryServiceBeanName)
-			? applicationContext.getBean(queryServiceBeanName, QueryService.class) : null);
+		return applicationContext.containsBean(queryServiceBeanName)
+			? applicationContext.getBean(queryServiceBeanName, QueryService.class) : null;
 	}
 
 	private String getQueryServiceBeanName() {

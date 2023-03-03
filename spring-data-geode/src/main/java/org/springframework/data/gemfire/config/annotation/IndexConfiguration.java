@@ -318,7 +318,7 @@ public class IndexConfiguration extends EntityDefinedRegionsConfiguration {
 			? indexedAttributes.getString("expression")
 			: null;
 
-		return (StringUtils.hasText(expression) ? expression : persistentProperty.getName());
+		return StringUtils.hasText(expression) ? expression : persistentProperty.getName();
 	}
 
 	@SuppressWarnings("unused")
@@ -329,7 +329,7 @@ public class IndexConfiguration extends EntityDefinedRegionsConfiguration {
 			? indexedAttributes.getString("from")
 			: null;
 
-		return (StringUtils.hasText(from) ? from : persistentEntity.getRegionName());
+		return StringUtils.hasText(from) ? from : persistentEntity.getRegionName();
 	}
 
 	private String resolveName(GemfirePersistentEntity<?> persistentEntity,
@@ -339,8 +339,8 @@ public class IndexConfiguration extends EntityDefinedRegionsConfiguration {
 			? indexedAttributes.getString("name")
 			: null;
 
-		return (StringUtils.hasText(indexName) ? indexName
-			: generateIndexName(persistentEntity, persistentProperty, indexType));
+		return StringUtils.hasText(indexName) ? indexName
+			: generateIndexName(persistentEntity, persistentProperty, indexType);
 	}
 
 	private String generateIndexName(GemfirePersistentEntity<?> persistentEntity,

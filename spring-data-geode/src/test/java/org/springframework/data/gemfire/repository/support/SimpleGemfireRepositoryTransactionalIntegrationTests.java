@@ -133,6 +133,8 @@ public class SimpleGemfireRepositoryTransactionalIntegrationTests extends Integr
 
 	public static class SerializableCustomer extends Customer implements Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		public SerializableCustomer() { }
 
 		public SerializableCustomer(final Long id) {
@@ -161,7 +163,7 @@ public class SimpleGemfireRepositoryTransactionalIntegrationTests extends Integr
 
 			EntityInformation<Customer, Long> entityInformation = new PersistentEntityInformation<>(customerEntity);
 
-			this.customerRepository = new SimpleGemfireRepository<Customer, Long>(customersTemplate, entityInformation);
+			this.customerRepository = new SimpleGemfireRepository<>(customersTemplate, entityInformation);
 			this.transactionTemplate = new TransactionTemplate(transactionManager);
 		}
 

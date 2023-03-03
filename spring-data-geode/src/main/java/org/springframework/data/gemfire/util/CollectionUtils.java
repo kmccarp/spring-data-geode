@@ -249,7 +249,7 @@ public abstract class CollectionUtils extends org.springframework.util.Collectio
 	 */
 	@SuppressWarnings("all")
 	public static @NonNull <K, V> Map<K, V> nullSafeMap(@Nullable Map<K, V> map) {
-		return map != null ? map : Collections.<K, V>emptyMap();
+		return map != null ? map : Collections.emptyMap();
 	}
 
 	/**

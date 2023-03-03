@@ -291,7 +291,7 @@ public class LuceneIndexFactoryBean extends AbstractFactoryBeanSupport<LuceneInd
 
 		if (this.luceneIndex == null) {
 			setLuceneIndex(Optional.ofNullable(resolveLuceneService())
-				.map((luceneService) -> luceneService.getIndex(getIndexName(), resolveRegionPath()))
+				.map(luceneService -> luceneService.getIndex(getIndexName(), resolveRegionPath()))
 				.orElse(null));
 		}
 

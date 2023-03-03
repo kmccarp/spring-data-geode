@@ -206,7 +206,7 @@ public class LocatorFactoryBeanUnitTests {
 	public void getObjectThrowsIllegalStateException() throws Exception {
 
 		assertThatIllegalStateException()
-			.isThrownBy(() -> this.locatorFactoryBean.getObject())
+			.isThrownBy(this.locatorFactoryBean::getObject)
 			.withMessage("Locator was not configured and initialized")
 			.withNoCause();
 	}

@@ -56,7 +56,7 @@ public class ClientCacheSecurityIntegrationTests extends ForkingClientServerInte
 	@BeforeClass
 	public static void startGeodeServer() throws IOException {
 
-		List<String> arguments = new ArrayList<String>();
+		List<String> arguments = new ArrayList<>();
 
 		org.springframework.core.io.Resource trustedKeystore = new ClassPathResource("trusted.keystore");
 
@@ -80,7 +80,7 @@ public class ClientCacheSecurityIntegrationTests extends ForkingClientServerInte
 
 	@Test
 	public void exampleRegionGet() {
-		assertThat(String.valueOf(example.get("TestKey"))).isEqualTo("TestValue");
+		assertThat(example.get("TestKey")).isEqualTo("TestValue");
 	}
 
 	@SuppressWarnings("unused")

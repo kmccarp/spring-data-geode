@@ -85,7 +85,7 @@ public class ClientServerCacheApplicationIntegrationTests extends ForkingClientS
 		@Bean(name = "Echo")
 		ClientRegionFactoryBean<String, String> echoRegion(ClientCache gemfireCache) {
 
-			ClientRegionFactoryBean<String, String> echoRegion = new ClientRegionFactoryBean<String, String>();
+			ClientRegionFactoryBean<String, String> echoRegion = new ClientRegionFactoryBean<>();
 
 			echoRegion.setCache(gemfireCache);
 			echoRegion.setClose(false);
@@ -106,7 +106,7 @@ public class ClientServerCacheApplicationIntegrationTests extends ForkingClientS
 		public PartitionedRegionFactoryBean<String, String> echoRegion(Cache gemfireCache) {
 
 			PartitionedRegionFactoryBean<String, String> echoRegion =
-				new PartitionedRegionFactoryBean<String, String>();
+				new PartitionedRegionFactoryBean<>();
 
 			echoRegion.setCache(gemfireCache);
 			echoRegion.setCacheLoader(echoCacheLoader());

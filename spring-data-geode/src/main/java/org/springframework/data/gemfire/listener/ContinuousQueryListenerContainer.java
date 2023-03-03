@@ -109,9 +109,9 @@ public class ContinuousQueryListenerContainer implements BeanFactoryAware, BeanN
 
 	private boolean autoStartup = true;
 
-	private volatile boolean initialized = false;
-	private volatile boolean manageExecutor = false;
-	private volatile boolean running = false;
+	private volatile boolean initialized;
+	private volatile boolean manageExecutor;
+	private volatile boolean running;
 
 	private int phase = Integer.MAX_VALUE;
 

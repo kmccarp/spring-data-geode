@@ -85,7 +85,7 @@ import org.springframework.util.ClassUtils;
  */
 public abstract class GemfireCacheUtils {
 
-	private static Class<?> CQ_EXCEPTION_CLASS;
+	private static final Class<?> CQ_EXCEPTION_CLASS;
 
 	static {
 

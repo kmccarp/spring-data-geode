@@ -76,8 +76,8 @@ class FunctionContextInjectingArgumentResolver extends PdxFunctionArgumentResolv
 					method.getName()));
 		}
 
-		regionParameterPosition = (regionDataAnnotationParameterPosition >= 0 ? regionDataAnnotationParameterPosition
-			: (regionTypeParameterPosition >= 0 ? regionTypeParameterPosition : -1));
+		regionParameterPosition = regionDataAnnotationParameterPosition >= 0 ? regionDataAnnotationParameterPosition
+			: (regionTypeParameterPosition >= 0 ? regionTypeParameterPosition : -1);
 
 		filterParameterPosition = GemfireFunctionUtils.getAnnotationParameterPosition(method, Filter.class,
 			new Class[] { Set.class });

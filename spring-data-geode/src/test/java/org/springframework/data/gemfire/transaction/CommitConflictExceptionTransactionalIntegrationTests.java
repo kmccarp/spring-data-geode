@@ -230,6 +230,8 @@ public class CommitConflictExceptionTransactionalIntegrationTests extends Integr
 	@RequiredArgsConstructor(staticName = "open")
 	static class Account implements Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		@Id @lombok.NonNull
 		private final Integer number;
 

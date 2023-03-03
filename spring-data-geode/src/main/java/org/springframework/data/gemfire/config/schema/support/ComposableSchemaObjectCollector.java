@@ -61,9 +61,9 @@ public final class ComposableSchemaObjectCollector
 			stream(nullSafeIterable(schemaObjectCollectors).spliterator(), false)
 				.filter(Objects::nonNull).collect(Collectors.toList());
 
-		return (schemaObjectCollectorList.isEmpty() ? null
+		return schemaObjectCollectorList.isEmpty() ? null
 			: (schemaObjectCollectorList.size() == 1 ? schemaObjectCollectorList.iterator().next()
-				: new ComposableSchemaObjectCollector(schemaObjectCollectorList)));
+				: new ComposableSchemaObjectCollector(schemaObjectCollectorList));
 	}
 
 	private ComposableSchemaObjectCollector(List<SchemaObjectCollector<?>> schemaObjectCollectors) {

@@ -79,7 +79,7 @@ public class CqCacheServerProcess {
 
 	private static Cache registerShutdownHook(Cache gemfireCache) {
 
-		Runtime.getRuntime().addShutdownHook(new Thread(() -> SpringExtensions.safeDoOperation(() -> gemfireCache.close())));
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> SpringExtensions.safeDoOperation(gemfireCache::close)));
 
 		return gemfireCache;
 	}

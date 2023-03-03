@@ -86,7 +86,7 @@ public class AbstractFunctionTemplateUnitTests {
 
 		assertThat(functionTemplate.getResultCollector()).isEqualTo(mockResultCollector);
 		assertThat(actualResults).isNotNull();
-		assertThat(actualResults).isEqualTo((results));
+		assertThat(actualResults).isEqualTo(results);
 
 		verify(mockFunctionExecution, times(1)).setArguments(args);
 		verify(mockFunctionExecution, times(1)).setFunction(mockFunction);

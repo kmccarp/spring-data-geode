@@ -34,7 +34,7 @@ import org.springframework.util.Assert;
  * @see org.apache.geode.cache.TransactionWriter
  * @since 2.3.0
  */
-public class ComposableTransactionWriter implements TransactionWriter {
+public final class ComposableTransactionWriter implements TransactionWriter {
 
 	/**
 	 * Factory method used to construct and compose 2 {@link TransactionWriter} objects into a composite instance of

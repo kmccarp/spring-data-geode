@@ -78,8 +78,8 @@ public enum JndiDataSourceType {
 	 */
 	private static boolean isMatch(final JndiDataSourceType jndiDataSourceType, String name) {
 		name = StringUtils.trimWhitespace(name);
-		return (jndiDataSourceType.getName().equalsIgnoreCase(name)
-			|| jndiDataSourceType.name().equalsIgnoreCase(name));
+		return jndiDataSourceType.getName().equalsIgnoreCase(name)
+			|| jndiDataSourceType.name().equalsIgnoreCase(name);
 	}
 
 	/**

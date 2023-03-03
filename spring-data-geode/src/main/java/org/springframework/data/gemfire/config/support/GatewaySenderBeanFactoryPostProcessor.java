@@ -197,7 +197,7 @@ public class GatewaySenderBeanFactoryPostProcessor extends AbstractAnnotationCon
 
 			ManagedList<RuntimeBeanReference> runtimeBeanReferences = value.stream()
 				.map(RuntimeBeanReference::new)
-				.collect(Collectors.toCollection(() -> new ManagedList<>()));
+				.collect(Collectors.toCollection(ManagedList::new));
 
 			Optional.ofNullable(beanFactory.getBeanDefinition(key)).ifPresent(regionBeanDefinition ->
 				regionBeanDefinition.getPropertyValues()

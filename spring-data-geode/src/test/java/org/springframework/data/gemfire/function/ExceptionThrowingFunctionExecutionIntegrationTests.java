@@ -87,6 +87,8 @@ public class ExceptionThrowingFunctionExecutionIntegrationTests extends ForkingC
 
 	public static class ExceptionThrowingFunction implements Function<Object> {
 
+		private static final long serialVersionUID = 1;
+
 		@Override
 		public String getId() {
 			return "exceptionThrowingFunction";

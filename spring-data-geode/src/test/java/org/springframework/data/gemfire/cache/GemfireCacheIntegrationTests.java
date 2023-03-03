@@ -139,7 +139,7 @@ public class GemfireCacheIntegrationTests extends AbstractNativeCacheTests<Regio
 
 		GemfireCache cache = newCache();
 
-		TestValueLoader<String> valueLoader = new TestValueLoader<String>("test");
+		TestValueLoader<String> valueLoader = new TestValueLoader<>("test");
 
 		assertThat(cache.get("key", valueLoader)).isEqualTo("test");
 		assertThat(valueLoader.wasCalled()).isTrue();
@@ -237,7 +237,7 @@ public class GemfireCacheIntegrationTests extends AbstractNativeCacheTests<Regio
 
 			Thread.currentThread().setName("Cache Reader Thread");
 
-			TestValueLoader<String> illegalCacheLoader = new TestValueLoader<String>("illegal");
+			TestValueLoader<String> illegalCacheLoader = new TestValueLoader<>("illegal");
 
 			String value = cache.get("key", illegalCacheLoader);
 
@@ -249,7 +249,7 @@ public class GemfireCacheIntegrationTests extends AbstractNativeCacheTests<Regio
 
 	protected static class TestValueLoader<T> implements Callable<T> {
 
-		protected static final TestValueLoader<Object> NULL_VALUE = new TestValueLoader<Object>();
+		protected static final TestValueLoader<Object> NULL_VALUE = new TestValueLoader<>();
 
 		private final AtomicBoolean called = new AtomicBoolean(false);
 

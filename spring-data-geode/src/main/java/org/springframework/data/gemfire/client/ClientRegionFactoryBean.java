@@ -93,8 +93,8 @@ public class ClientRegionFactoryBean<K, V> extends ConfigurableRegionFactoryBean
 	public static final String DEFAULT_POOL_NAME = "DEFAULT";
 	public static final String GEMFIRE_POOL_NAME = GemfireConstants.DEFAULT_GEMFIRE_POOL_NAME;
 
-	private boolean close = false;
-	private boolean destroy = false;
+	private boolean close;
+	private boolean destroy;
 
 	private Boolean cloningEnabled;
 	private Boolean concurrencyChecksEnabled;

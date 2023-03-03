@@ -112,6 +112,8 @@ public class FunctionCacheServerProcess {
 
 	static class EchoFunction implements Function<Object> {
 
+		private static final long serialVersionUID = 1;
+
 		@Override
 		public String getId() {
 			return "echoFunction";
@@ -136,6 +138,8 @@ public class FunctionCacheServerProcess {
 
 	@SuppressWarnings("unchecked")
 	static class ServerFunction implements Function<Object> {
+
+		private static final long serialVersionUID = 1;
 
 		@Override
 		public String getId() {
