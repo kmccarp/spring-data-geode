@@ -42,6 +42,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(staticName = "newBook")
 public class Book implements Comparable<Book>, Serializable {
 
+	private static final long serialVersionUID = 1;
+
 	@NonNull @Id
 	private final Long id;
 

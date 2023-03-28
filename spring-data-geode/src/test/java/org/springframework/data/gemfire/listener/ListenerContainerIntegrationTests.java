@@ -44,7 +44,7 @@ import org.springframework.data.gemfire.util.SpringExtensions;
  */
 public class ListenerContainerIntegrationTests extends ForkingClientServerIntegrationTestsSupport {
 
-	private ClientCache gemfireCache = null;
+	private ClientCache gemfireCache;
 
 	private final ContinuousQueryListenerAdapter adapter = new ContinuousQueryListenerAdapter(new EventListener() {
 
@@ -87,7 +87,7 @@ public class ListenerContainerIntegrationTests extends ForkingClientServerIntegr
 	public void closeGemFireClient() {
 
 		Optional.ofNullable(this.gemfireCache)
-			.ifPresent(cache -> SpringExtensions.safeDoOperation(() -> cache.close()));
+			.ifPresent(cache -> SpringExtensions.safeDoOperation(cache::close));
 	}
 
 	@Test

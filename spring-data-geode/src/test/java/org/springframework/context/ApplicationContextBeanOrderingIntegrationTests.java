@@ -316,7 +316,7 @@ public class ApplicationContextBeanOrderingIntegrationTests extends IntegrationT
 	}
 
 	@Order(0)
-	static abstract class AbstractZeroOrderedNamedBean extends NamedBean {
+	abstract static class AbstractZeroOrderedNamedBean extends NamedBean {
 
 		AbstractZeroOrderedNamedBean() { }
 

@@ -73,9 +73,9 @@ public class AutoRegionLookupConfiguration extends AbstractAnnotationConfigSuppo
 
 	private static final AtomicBoolean AUTO_REGION_LOOKUP_BEAN_POST_PROCESSOR_REGISTERED = new AtomicBoolean(false);
 
-	private ExpressionParser spelParser = new SpelExpressionParser();
+	private final ExpressionParser spelParser = new SpelExpressionParser();
 
-	private StandardEvaluationContext evaluationContext = new StandardEvaluationContext();
+	private final StandardEvaluationContext evaluationContext = new StandardEvaluationContext();
 
 	@Override
 	protected Class<? extends Annotation> getAnnotationType() {

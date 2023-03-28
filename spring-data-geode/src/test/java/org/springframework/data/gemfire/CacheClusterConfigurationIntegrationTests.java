@@ -164,7 +164,7 @@ public class CacheClusterConfigurationIntegrationTests extends ForkingClientServ
 		arguments.add(String.format("-Dspring.data.gemfire.locator.port=%d", locatorPort));
 
 		locatorProcess = run(locatorWorkingDirectory, LocatorProcess.class, arguments.toArray(new String[0]));
-		locatorProcess.register(input -> locatorProcessOutput.add(input));
+		locatorProcess.register(locatorProcessOutput::add);
 		locatorProcess.registerShutdownHook();
 
 		waitForServerToStart("localhost", locatorPort);

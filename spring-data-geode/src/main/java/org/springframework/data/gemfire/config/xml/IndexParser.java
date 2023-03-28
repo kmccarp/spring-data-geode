@@ -78,6 +78,6 @@ class IndexParser extends AbstractSimpleBeanDefinitionParser {
 	/* (non-Javadoc) */
 	@Override
 	protected boolean isEligibleAttribute(String attributeName) {
-		return (!"cache-ref".equals(attributeName) && super.isEligibleAttribute(attributeName));
+		return !"cache-ref".equals(attributeName) && super.isEligibleAttribute(attributeName);
 	}
 }

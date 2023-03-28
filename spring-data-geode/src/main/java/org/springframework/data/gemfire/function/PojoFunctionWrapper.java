@@ -52,6 +52,8 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings({ "rawtypes", "serial"})
 public class PojoFunctionWrapper implements Function {
 
+	private static final long serialVersionUID = 1;
+
 	private static transient Logger logger = LoggerFactory.getLogger(PojoFunctionWrapper.class);
 
 	private volatile boolean HA;
@@ -105,8 +107,8 @@ public class PojoFunctionWrapper implements Function {
 		return this.batchSize;
 	}
 
-	public void setHA(boolean HA) {
-		this.HA = HA;
+	public void setHA(boolean ha) {
+		this.HA = ha;
 	}
 
 	@Override

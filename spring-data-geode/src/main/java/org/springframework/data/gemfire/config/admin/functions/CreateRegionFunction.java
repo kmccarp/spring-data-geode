@@ -71,6 +71,6 @@ public class CreateRegionFunction {
 	}
 
 	private boolean isNonExistingRegion(Cache gemfireCache, RegionDefinition regionDefinition) {
-		return (gemfireCache.getRegion(regionDefinition.getName()) == null);
+		return gemfireCache.getRegion(regionDefinition.getName()) == null;
 	}
 }

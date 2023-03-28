@@ -74,9 +74,9 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 	public static final String DETAILED_INDEX_DEFINITION =
 		"{ name = '%1$s', expression = '%2$s', from = '%3$s', imports = '%4$s', type = %5$s }";
 
-	private boolean define = false;
-	private boolean ignoreIfExists = false;
-	private boolean override = false;
+	private boolean define;
+	private boolean ignoreIfExists;
+	private boolean override;
 
 	private Index index;
 
@@ -350,11 +350,9 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 
 				IndexType thisIndexType = Optional.ofNullable(this.indexType).orElse(IndexType.FUNCTIONAL);
 
-				boolean result = ObjectUtils.nullSafeEquals(it.getIndexedExpression(), this.expression)
+				return ObjectUtils.nullSafeEquals(it.getIndexedExpression(), this.expression)
 					&& ObjectUtils.nullSafeEquals(it.getFromClause(), this.from)
 					&& ObjectUtils.nullSafeEquals(IndexType.valueOf(it.getType()), thisIndexType);
-
-				return result;
 			})
 			.orElse(false);
 	}
@@ -922,7 +920,7 @@ public class IndexFactoryBean extends AbstractFactoryBeanSupport<Index> implemen
 			}
 
 			if (obj instanceof IndexWrapper) {
-				return (getIndexName().equals(((IndexWrapper) obj).getIndexName()));
+				return getIndexName().equals(((IndexWrapper) obj).getIndexName());
 			}
 
 			return resolveIndex().equals(obj);

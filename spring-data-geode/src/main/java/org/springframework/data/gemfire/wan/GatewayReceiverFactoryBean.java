@@ -52,7 +52,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("unused")
 public class GatewayReceiverFactoryBean extends AbstractWANComponentFactoryBean<GatewayReceiver> {
 
-	private boolean manualStart = false;
+	private boolean manualStart;
 
 	private volatile GatewayReceiver gatewayReceiver;
 

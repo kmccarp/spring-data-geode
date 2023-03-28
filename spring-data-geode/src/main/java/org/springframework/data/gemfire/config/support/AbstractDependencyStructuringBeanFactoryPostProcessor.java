@@ -85,7 +85,7 @@ public abstract class AbstractDependencyStructuringBeanFactoryPostProcessor impl
 			.orElseGet(() ->
 				Optional.ofNullable(beanDefinition.getFactoryMethodName())
 					.filter(StringUtils::hasText)
-					.filter(it -> beanDefinition instanceof AnnotatedBeanDefinition)
+					.filter(AnnotatedBeanDefinition.class::isInstance)
 					.map(it -> ((AnnotatedBeanDefinition) beanDefinition).getFactoryMethodMetadata())
 					.map(MethodMetadata::getReturnTypeName)
 					.map(typeFilter::test)

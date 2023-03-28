@@ -129,7 +129,7 @@ public class GemfirePersistentEntity<T> extends BasicPersistentEntity<T, Gemfire
 	 */
 	public Class<? extends Annotation> getRegionAnnotationType() {
 		return Optional.ofNullable(getRegionAnnotation())
-			.map((annotation) -> ((Annotation) annotation).annotationType())
+			.map(annotation -> ((Annotation) annotation).annotationType())
 				.orElse(null);
 	}
 

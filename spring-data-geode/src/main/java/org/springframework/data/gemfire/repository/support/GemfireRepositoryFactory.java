@@ -27,6 +27,7 @@ import org.springframework.data.gemfire.GemfireTemplate;
 import org.springframework.data.gemfire.mapping.GemfirePersistentEntity;
 import org.springframework.data.gemfire.mapping.GemfirePersistentProperty;
 import org.springframework.data.gemfire.mapping.Regions;
+import org.springframework.data.gemfire.mapping.annotation.Region;
 import org.springframework.data.gemfire.repository.query.DefaultGemfireEntityInformation;
 import org.springframework.data.gemfire.repository.query.GemfireEntityInformation;
 import org.springframework.data.gemfire.repository.query.GemfireQueryMethod;
@@ -203,7 +204,7 @@ public class GemfireRepositoryFactory extends RepositoryFactorySupport {
 			.map(RepositoryMetadata::getRepositoryInterface)
 			.filter(repositoryInterface -> repositoryInterface.isAnnotationPresent(REGION_ANNOTATION))
 			.map(repositoryInterface -> repositoryInterface.getAnnotation(REGION_ANNOTATION))
-			.map(regionAnnotation -> regionAnnotation.value())
+			.map(Region::value)
 			.filter(StringUtils::hasText);
 	}
 

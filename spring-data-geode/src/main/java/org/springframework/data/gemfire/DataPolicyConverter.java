@@ -30,11 +30,11 @@ import org.springframework.core.convert.converter.Converter;
  */
 public class DataPolicyConverter implements Converter<String, DataPolicy> {
 
-	static enum Policy {
+	enum Policy {
 		DEFAULT, EMPTY, NORMAL, PRELOADED, PARTITION, PERSISTENT_PARTITION, REPLICATE, PERSISTENT_REPLICATE;
 
 		private static String toUpperCase(String value) {
-			return (value == null ? null : value.toUpperCase());
+			return value == null ? null : value.toUpperCase();
 		}
 
 		public static Policy getValue(String value) {
@@ -72,7 +72,7 @@ public class DataPolicyConverter implements Converter<String, DataPolicy> {
 	@Override
 	public DataPolicy convert(String policyValue) {
 		Policy policy = Policy.getValue(policyValue);
-		return (policy == null ? null : policy.toDataPolicy());
+		return policy == null ? null : policy.toDataPolicy();
 	}
 
 }

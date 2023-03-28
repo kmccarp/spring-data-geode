@@ -21,7 +21,7 @@ import org.springframework.data.repository.query.parser.Part;
 import org.springframework.data.repository.query.parser.Part.Type;
 import org.springframework.util.Assert;
 
-class Predicates implements Predicate {
+final class Predicates implements Predicate {
 
 	private final Predicate current;
 
@@ -154,7 +154,7 @@ class Predicates implements Predicate {
 		}
 
 		String resolveAlias(String alias) {
-			return (alias != null ? alias : QueryBuilder.DEFAULT_ALIAS);
+			return alias != null ? alias : QueryBuilder.DEFAULT_ALIAS;
 		}
 
 		/**

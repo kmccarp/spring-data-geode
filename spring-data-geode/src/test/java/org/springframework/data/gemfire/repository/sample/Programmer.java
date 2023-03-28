@@ -40,7 +40,7 @@ public class Programmer extends User {
 	}
 
 	public String getProgrammingLanguage() {
-		return (StringUtils.hasText(programmingLanguage) ? programmingLanguage : DEFAULT_PROGRAMMING_LANGUAGE);
+		return StringUtils.hasText(programmingLanguage) ? programmingLanguage : DEFAULT_PROGRAMMING_LANGUAGE;
 	}
 
 	public void setProgrammingLanguage(final String programmingLanguage) {

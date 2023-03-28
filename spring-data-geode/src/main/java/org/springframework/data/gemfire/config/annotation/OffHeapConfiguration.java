@@ -131,7 +131,7 @@ public class OffHeapConfiguration extends EmbeddedServiceConfigurationSupport {
 
 			return Optional.ofNullable(beanDefinition)
 				.flatMap(it -> resolveBeanClass(it, beanFactory.getBeanClassLoader()))
-				.filter(beanClass -> ResolvableRegionFactoryBean.class.isAssignableFrom(beanClass))
+				.filter(ResolvableRegionFactoryBean.class::isAssignableFrom)
 				.isPresent();
 		}
 

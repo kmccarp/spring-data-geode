@@ -39,7 +39,9 @@ public class AsmInstantiatorFactoryUnitTests {
 
 	public static class SomeClass implements DataSerializable {
 
-		public static boolean instantiated = false;
+		private static final long serialVersionUID = 1;
+
+		public static boolean instantiated;
 
 		public SomeClass() {
 			instantiated = true;
@@ -51,7 +53,7 @@ public class AsmInstantiatorFactoryUnitTests {
 
 	}
 
-	private AsmInstantiatorGenerator asmFactory = null;
+	private AsmInstantiatorGenerator asmFactory;
 
 	@Before
 	public void setUp() {

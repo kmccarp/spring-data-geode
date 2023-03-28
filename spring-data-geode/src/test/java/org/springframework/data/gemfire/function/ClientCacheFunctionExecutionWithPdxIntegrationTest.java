@@ -329,7 +329,7 @@ public class ClientCacheFunctionExecutionWithPdxIntegrationTest extends ForkingC
 		}
 	}
 
-	public static class ComposablePdxSerializer implements PdxSerializer {
+	public static final class ComposablePdxSerializer implements PdxSerializer {
 
 		private final PdxSerializer[] pdxSerializers;
 

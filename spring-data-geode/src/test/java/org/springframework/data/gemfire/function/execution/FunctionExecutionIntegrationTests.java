@@ -45,13 +45,13 @@ import org.springframework.data.gemfire.util.SpringExtensions;
  */
 public class FunctionExecutionIntegrationTests extends ForkingClientServerIntegrationTestsSupport {
 
-	private ClientCache gemfireCache = null;
+	private ClientCache gemfireCache;
 
-	private Pool gemfirePool = null;
+	private Pool gemfirePool;
 
 	private final PoolResolver poolResolver = new PoolManagerPoolResolver();
 
-	private Region<String, String> gemfireRegion = null;
+	private Region<String, String> gemfireRegion;
 
 	@BeforeClass
 	public static void startGemFireServer() throws Exception {
@@ -85,7 +85,7 @@ public class FunctionExecutionIntegrationTests extends ForkingClientServerIntegr
 
 	@After
 	public void tearDownGemFireClient() {
-		Optional.ofNullable(this.gemfireCache).ifPresent(cache -> SpringExtensions.safeDoOperation(() -> cache.close()));
+		Optional.ofNullable(this.gemfireCache).ifPresent(cache -> SpringExtensions.safeDoOperation(cache::close));
 	}
 
 	@Test

@@ -57,6 +57,8 @@ public class WiringInstantiatorIntegrationTests extends IntegrationTestsSupport 
 
 	public static class AnnotatedBean implements DataSerializable {
 
+		private static final long serialVersionUID = 1;
+
 		@Autowired
 		Point point;
 		Shape shape;
@@ -74,6 +76,8 @@ public class WiringInstantiatorIntegrationTests extends IntegrationTestsSupport 
 
 	public static class TemplateWiringBean implements DataSerializable {
 
+		private static final long serialVersionUID = 1;
+
 		Beans beans;
 		Point point;
 
@@ -89,6 +93,8 @@ public class WiringInstantiatorIntegrationTests extends IntegrationTestsSupport 
 
 	public static class TypeA implements DataSerializable {
 
+		private static final long serialVersionUID = 1;
+
 		public void fromData(DataInput arg0) { }
 
 		public void toData(DataOutput arg0) { }
@@ -96,6 +102,8 @@ public class WiringInstantiatorIntegrationTests extends IntegrationTestsSupport 
 	}
 
 	public static class TypeB implements DataSerializable {
+
+		private static final long serialVersionUID = 1;
 
 		public void fromData(DataInput arg0) { }
 

@@ -45,7 +45,7 @@ public class InstantiatorFactoryBean implements BeanClassLoaderAware, FactoryBea
 	private Collection<Instantiator> list;
 	private ClassLoader classLoader;
 	private boolean autoRegister = true;
-	private boolean distribute = false;
+	private boolean distribute;
 
 	private Map<Class<? extends DataSerializable>, Integer> types;
 
@@ -57,7 +57,7 @@ public class InstantiatorFactoryBean implements BeanClassLoaderAware, FactoryBea
 			generator = new AsmInstantiatorGenerator(classLoader);
 		}
 
-		list = new ArrayList<Instantiator>(types.size());
+		list = new ArrayList<>(types.size());
 
 		for (Entry<Class<? extends DataSerializable>, Integer> entry : types.entrySet()) {
 			Assert.notNull(entry.getKey(), "Invalid/Null class given as custom type");
@@ -78,7 +78,7 @@ public class InstantiatorFactoryBean implements BeanClassLoaderAware, FactoryBea
 	}
 
 	public Class<?> getObjectType() {
-		return (list != null ? list.getClass() : Collection.class);
+		return list != null ? list.getClass() : Collection.class;
 	}
 
 	public boolean isSingleton() {

@@ -198,10 +198,10 @@ public class SpELExpressionConfiguredPoolsIntegrationTests extends IntegrationTe
 					PoolFactory mockPoolFactory = GemFireMockObjectsSupport.mockPoolFactory();
 
 					when(mockPoolFactory.addLocator(anyString(), anyInt())).thenAnswer(newAnswer(mockPoolFactory,
-						connectionEndpoint -> list.add(connectionEndpoint)));
+						list::add));
 
 					when(mockPoolFactory.addServer(anyString(), anyInt())).thenAnswer(newAnswer(mockPoolFactory,
-						connectionEndpoint -> list.add(connectionEndpoint)));
+						list::add));
 
 					return mockPoolFactory;
 

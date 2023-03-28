@@ -487,8 +487,8 @@ public class AbstractGemFireAsLastResourceAspectSupport implements Ordered {
 
 		String gemfireJcaResourceAdapterJndiName = getGemFireJcaResourceAdapterJndiName();
 
-		return (StringUtils.hasText(gemfireJcaResourceAdapterJndiName) ? gemfireJcaResourceAdapterJndiName
-			: DEFAULT_GEMFIRE_JCA_RESOURCE_ADAPTER_JNDI_NAME);
+		return StringUtils.hasText(gemfireJcaResourceAdapterJndiName) ? gemfireJcaResourceAdapterJndiName
+			: DEFAULT_GEMFIRE_JCA_RESOURCE_ADAPTER_JNDI_NAME;
 	}
 
 	/**

@@ -80,6 +80,6 @@ public class ProjectingLuceneOperationsUnitTests {
 
 	static class Book {}
 
-	static abstract class TestProjectingLuceneOperations implements ProjectingLuceneOperations { }
+	abstract static class TestProjectingLuceneOperations implements ProjectingLuceneOperations { }
 
 }

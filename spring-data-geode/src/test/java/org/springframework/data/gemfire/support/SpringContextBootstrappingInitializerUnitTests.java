@@ -1050,7 +1050,7 @@ public class SpringContextBootstrappingInitializerUnitTests {
 
 	protected static class TestApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
 
-		private volatile boolean notified = false;
+		private volatile boolean notified;
 
 		private volatile ApplicationContextEvent actualEvent;
 

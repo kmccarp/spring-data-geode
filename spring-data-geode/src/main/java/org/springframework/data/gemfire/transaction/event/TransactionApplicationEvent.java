@@ -35,6 +35,8 @@ import org.springframework.util.StringUtils;
  */
 public class TransactionApplicationEvent extends ApplicationEvent {
 
+	private static final long serialVersionUID = 1;
+
 	protected static final String TIMESTAMP_PATTERN = "yyyy-MM-dd-hh:mm:ss.S";
 
 	/**

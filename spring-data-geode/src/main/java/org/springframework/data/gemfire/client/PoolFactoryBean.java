@@ -88,7 +88,7 @@ public class PoolFactoryBean extends AbstractFactoryBeanSupport<Pool> implements
 	volatile boolean springManagedPool = true;
 
 	// GemFire Pool Configuration Settings
-	private boolean keepAlive = false;
+	private boolean keepAlive;
 	private boolean multiUserAuthentication = PoolFactory.DEFAULT_MULTIUSER_AUTHENTICATION;
 	private boolean prSingleHopEnabled = PoolFactory.DEFAULT_PR_SINGLE_HOP_ENABLED;
 	private boolean subscriptionEnabled = PoolFactory.DEFAULT_SUBSCRIPTION_ENABLED;

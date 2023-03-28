@@ -40,7 +40,7 @@ import org.springframework.util.CollectionUtils;
  */
 public class FunctionServiceFactoryBean implements FactoryBean<FunctionService>, InitializingBean {
 
-	private static Logger logger = LoggerFactory.getLogger(FunctionServiceFactoryBean.class);
+	private static final Logger logger = LoggerFactory.getLogger(FunctionServiceFactoryBean.class);
 
 	private List<Function> functions;
 

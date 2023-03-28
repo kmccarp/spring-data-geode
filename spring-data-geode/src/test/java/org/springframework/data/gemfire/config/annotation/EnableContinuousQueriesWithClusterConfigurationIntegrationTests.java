@@ -103,8 +103,8 @@ public class EnableContinuousQueriesWithClusterConfigurationIntegrationTests
 
 			Optional.ofNullable(event)
 				.map(CqEvent::getNewValue)
-				.filter(newValue -> newValue instanceof Person)
-				.map(newValue -> (Person) newValue)
+				.filter(Person.class::isInstance)
+				.map(Person.class::cast)
 				.ifPresent(events::offer);
 		}
 	}

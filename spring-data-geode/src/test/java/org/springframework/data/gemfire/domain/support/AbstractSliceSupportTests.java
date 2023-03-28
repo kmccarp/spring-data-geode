@@ -154,7 +154,7 @@ public class AbstractSliceSupportTests {
 	@SuppressWarnings("unchecked")
 	public void iteratorWithContent() {
 		doReturn(Arrays.asList(1, 2, 3)).when(mockSlice).getContent();
-		assertThat((Iterable) () -> mockSlice.iterator()).contains(1, 2, 3);
+		assertThat((Iterable) mockSlice::iterator).contains(1, 2, 3);
 		verify(mockSlice, atLeastOnce()).getContent();
 	}
 }

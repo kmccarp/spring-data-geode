@@ -96,7 +96,7 @@ public class ApacheGeodeSecurityManagerSecurityIntegrationTests extends Abstract
 		Set<User> users = new HashSet<>(Arrays.asList(root, scientist, analyst, guest));
 
 		default User findBy(String username) {
-			return users.stream().filter((user) -> user.getName().equals(username)).findFirst().orElse(null);
+			return users.stream().filter(user -> user.getName().equals(username)).findFirst().orElse(null);
 		}
 	}
 
@@ -132,7 +132,7 @@ public class ApacheGeodeSecurityManagerSecurityIntegrationTests extends Abstract
 		 */
 		@Override
 		public boolean authorize(Object principal, ResourcePermission permission) {
-			return (principal instanceof User && ((User) principal).hasPermission(permission));
+			return principal instanceof User && ((User) principal).hasPermission(permission);
 		}
 	}
 }

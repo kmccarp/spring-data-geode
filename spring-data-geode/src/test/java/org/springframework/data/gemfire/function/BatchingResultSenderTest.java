@@ -193,11 +193,11 @@ public class BatchingResultSenderTest {
 		testBatchingResultSender(resultSender,batchSize,100);
 	}
 
-	public static abstract class AbstractTestResultSender implements ResultSender<Object> {
+	public abstract static class AbstractTestResultSender implements ResultSender<Object> {
 
-		private boolean lastResultSent = false;
+		private boolean lastResultSent;
 
-		private List<Object> results = new ArrayList<>();
+		private final List<Object> results = new ArrayList<>();
 
         public boolean isLastResultSent() {
             return this.lastResultSent;

@@ -116,7 +116,7 @@ public abstract class SnapshotApplicationEvent<K, V> extends ApplicationEvent {
 	 * @see #matches(String)
 	 */
 	public boolean matches(Region region) {
-		return (region != null && matches(region.getFullPath()));
+		return region != null && matches(region.getFullPath());
 	}
 
 	/**

@@ -200,7 +200,7 @@ public class ExpirationConfiguration extends AbstractAnnotationConfigSupport imp
 	 * @see org.springframework.data.gemfire.config.annotation.ExpirationConfiguration.ExpirationPolicyConfigurer
 	 * @see <a href="https://en.wikipedia.org/wiki/Composite_pattern">Composition Software Design Pattern</a>
 	 */
-	protected static class ComposableExpirationPolicyConfigurer implements ExpirationPolicyConfigurer {
+	protected static final class ComposableExpirationPolicyConfigurer implements ExpirationPolicyConfigurer {
 
 		private final ExpirationPolicyConfigurer one;
 		private final ExpirationPolicyConfigurer two;
@@ -500,7 +500,7 @@ public class ExpirationConfiguration extends AbstractAnnotationConfigSupport imp
 		 * @see #accepts(Supplier)
 		 */
 		protected boolean accepts(Region<?, ?> region) {
-			return region != null && accepts(() -> region.getName());
+			return region != null && accepts(region::getName);
 		}
 
 		/**

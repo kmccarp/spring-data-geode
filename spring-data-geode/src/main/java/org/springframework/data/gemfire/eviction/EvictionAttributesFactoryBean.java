@@ -41,15 +41,15 @@ public class EvictionAttributesFactoryBean implements FactoryBean<EvictionAttrib
 
 	protected static final int DEFAULT_MEMORY_MAXIMUM_SIZE = EvictionAttributes.DEFAULT_MEMORY_MAXIMUM;
 
-	private EvictionAction action = null;
+	private EvictionAction action;
 
 	private EvictionAttributes evictionAttributes;
 
 	private EvictionPolicyType type = EvictionPolicyType.ENTRY_COUNT;
 
-	private Integer threshold = null;
+	private Integer threshold;
 
-	private ObjectSizer objectSizer = null;
+	private ObjectSizer objectSizer;
 
 	/**
 	 * @inheritDoc
@@ -67,12 +67,12 @@ public class EvictionAttributesFactoryBean implements FactoryBean<EvictionAttrib
 
 				return EvictionAttributes.createLRUHeapAttributes(getObjectSizer(), getAction());
 			case MEMORY_SIZE:
-				return (threshold != null ? EvictionAttributes.createLRUMemoryAttributes(getThreshold(), getObjectSizer(), getAction())
-					: EvictionAttributes.createLRUMemoryAttributes(getObjectSizer(), getAction()));
+				return threshold != null ? EvictionAttributes.createLRUMemoryAttributes(getThreshold(), getObjectSizer(), getAction())
+					: EvictionAttributes.createLRUMemoryAttributes(getObjectSizer(), getAction());
 			case ENTRY_COUNT:
 			default:
-				return (threshold != null ? EvictionAttributes.createLRUEntryAttributes(getThreshold(), getAction())
-					: EvictionAttributes.createLRUEntryAttributes(DEFAULT_LRU_MAXIMUM_ENTRIES, getAction()));
+				return threshold != null ? EvictionAttributes.createLRUEntryAttributes(getThreshold(), getAction())
+					: EvictionAttributes.createLRUEntryAttributes(DEFAULT_LRU_MAXIMUM_ENTRIES, getAction());
 		}
 	}
 
@@ -87,7 +87,7 @@ public class EvictionAttributesFactoryBean implements FactoryBean<EvictionAttrib
 	 * @inheritDoc
 	 */
 	public Class<?> getObjectType() {
-		return (evictionAttributes != null ? evictionAttributes.getClass() : EvictionAttributes.class);
+		return evictionAttributes != null ? evictionAttributes.getClass() : EvictionAttributes.class;
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class EvictionAttributesFactoryBean implements FactoryBean<EvictionAttrib
 	 * @see org.apache.geode.cache.EvictionAction
 	 */
 	public EvictionAction getAction() {
-		return (action != null ? action : EvictionAction.DEFAULT_EVICTION_ACTION);
+		return action != null ? action : EvictionAction.DEFAULT_EVICTION_ACTION;
 	}
 
 	/**

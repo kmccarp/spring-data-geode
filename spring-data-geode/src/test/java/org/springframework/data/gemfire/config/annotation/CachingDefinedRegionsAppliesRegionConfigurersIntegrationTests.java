@@ -74,7 +74,7 @@ public class CachingDefinedRegionsAppliesRegionConfigurersIntegrationTests exten
 
 		assertThat(this.clientCache.rootRegions().stream()
 			.filter(Objects::nonNull)
-			.map(region -> region.getName())
+			.map(Region::getName)
 			.collect(Collectors.toList())).containsExactlyInAnyOrder("TestCacheOne", "TestCacheTwo");
 	}
 

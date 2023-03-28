@@ -189,6 +189,6 @@ public class PoolResolverUnitTests {
 		}
 	}
 
-	private static abstract class TestPoolResolver implements PoolResolver { }
+	private abstract static class TestPoolResolver implements PoolResolver { }
 
 }

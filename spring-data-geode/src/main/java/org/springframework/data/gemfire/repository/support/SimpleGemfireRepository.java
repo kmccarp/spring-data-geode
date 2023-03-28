@@ -293,11 +293,9 @@ public class SimpleGemfireRepository<T, ID> implements GemfireRepository<T, ID> 
 			? getTemplate().getAll(keys)
 			: Collections.emptyMap();
 
-		List<T> values = CollectionUtils.nullSafeMap(keysValues).values().stream()
+		return CollectionUtils.nullSafeMap(keysValues).values().stream()
 			.filter(Objects::nonNull)
 			.collect(Collectors.toList());
-
-		return values;
 	}
 
 	/**
@@ -333,7 +331,7 @@ public class SimpleGemfireRepository<T, ID> implements GemfireRepository<T, ID> 
 				doRegionClear(region);
 			}
 			else {
-				SpringExtensions.safeDoOperation(() -> region.clear(), () -> doRegionClear(region));
+				SpringExtensions.safeDoOperation(region::clear, () -> doRegionClear(region));
 			}
 
 			return null;

@@ -226,7 +226,7 @@ public class PdxConfiguration extends AbstractAnnotationConfigSupport implements
 	protected Optional<ConversionService> resolveConversionService() {
 
 		return Optional.of(getBeanFactory())
-			.filter(it -> it instanceof ConfigurableBeanFactory)
+			.filter(ConfigurableBeanFactory.class::isInstance)
 			.map(it -> ((ConfigurableBeanFactory) it).getConversionService());
 	}
 
@@ -292,7 +292,7 @@ public class PdxConfiguration extends AbstractAnnotationConfigSupport implements
 
 		for (Class<?> domainType : getIncludeDomainTypes()) {
 			if (Objects.nonNull(domainType)) {
-				includeTypeFilter = includeTypeFilter.or(type -> domainType.isAssignableFrom(type));
+				includeTypeFilter = includeTypeFilter.or(domainType::isAssignableFrom);
 			}
 		}
 

@@ -113,7 +113,7 @@ public class EnableGemfireCachingIntegrationTests extends IntegrationTestsSuppor
 			cacheMiss = true;
 
 			if (number < 3) {
-				return (number > 1L ? 2L : 1L);
+				return number > 1L ? 2L : 1L;
 			}
 
 			long result = number;

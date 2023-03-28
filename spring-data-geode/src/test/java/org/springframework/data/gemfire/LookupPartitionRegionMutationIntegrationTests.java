@@ -176,7 +176,7 @@ public class LookupPartitionRegionMutationIntegrationTests extends IntegrationTe
 
 	}
 
-	static abstract class AbstractNameable implements Nameable {
+	abstract static class AbstractNameable implements Nameable {
 
 		private String name;
 

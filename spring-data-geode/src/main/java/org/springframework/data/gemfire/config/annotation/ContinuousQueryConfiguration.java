@@ -187,7 +187,7 @@ public class ContinuousQueryConfiguration extends AbstractAnnotationConfigSuppor
 
 		return Optional.ofNullable(bean)
 			.filter(this::isProxy)
-			.map(proxy -> AopProxyUtils.getSingletonTarget(proxy))
+			.map(AopProxyUtils::getSingletonTarget)
 			.orElse(bean);
 	}
 

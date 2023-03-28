@@ -66,7 +66,7 @@ public class StringBasedGemfireRepositoryQuery extends GemfireRepositoryQuery {
 
 	private static final String INVALID_QUERY = "Modifying queries are not supported";
 
-	private volatile boolean userDefinedQuery = false;
+	private volatile boolean userDefinedQuery;
 
 	private final GemfireTemplate template;
 
@@ -264,9 +264,8 @@ public class StringBasedGemfireRepositoryQuery extends GemfireRepositoryQuery {
 		query = bindInParameters(queryMethod, resolveFromClause(queryMethod, query), arguments);
 
 		String queryString = query.toString();
-		String processedQueryString = getQueryPostProcessor().postProcess(queryMethod, queryString, arguments);
 
-		return processedQueryString;
+		return getQueryPostProcessor().postProcess(queryMethod, queryString, arguments);
 	}
 
 	private QueryString bindInParameters(QueryMethod queryMethod, QueryString query, Object[] arguments) {
@@ -645,7 +644,7 @@ public class StringBasedGemfireRepositoryQuery extends GemfireRepositoryQuery {
 	 *
 	 * @see org.springframework.data.gemfire.repository.query.support.TemplateBasedOqlQueryExecutor
 	 */
-	static abstract class SimplePagedOqlQueryExecutor extends TemplateBasedOqlQueryExecutor {
+	abstract static class SimplePagedOqlQueryExecutor extends TemplateBasedOqlQueryExecutor {
 
 		/**
 		 * Constructs a new instance of {@link SimplePagedOqlQueryExecutor} initialized with the given, required

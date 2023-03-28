@@ -112,7 +112,7 @@ public class LazyWiringDeclarableSupportUnitTests {
 
 		try {
 			assertThatIllegalStateException()
-				.isThrownBy(() -> declarable.assertInitialized())
+				.isThrownBy(declarable::assertInitialized)
 				.withMessage("This Declarable object [%s] has not been properly configured and initialized",
 					declarable.getClass().getName())
 				.withNoCause();
@@ -148,7 +148,7 @@ public class LazyWiringDeclarableSupportUnitTests {
 
 		try {
 			assertThatIllegalStateException()
-				.isThrownBy(() -> declarable.assertUninitialized())
+				.isThrownBy(declarable::assertUninitialized)
 				.withMessage("This Declarable object [%s] has already been configured and initialized",
 					declarable.getClass().getName())
 				.withNoCause();
