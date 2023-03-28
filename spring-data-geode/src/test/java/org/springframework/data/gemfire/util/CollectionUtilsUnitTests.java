@@ -381,12 +381,7 @@ public class CollectionUtilsUnitTests {
 			iterator.next();
 		}
 		catch (NoSuchElementException ignore) {
-			try {
-				iterator.remove();
-			}
-			catch (IllegalStateException expected) {
-				throw expected;
-			}
+			iterator.remove();
 		}
 	}
 
@@ -590,7 +585,7 @@ public class CollectionUtilsUnitTests {
 	@Test
 	public void nullSafeIterableSizeWithEmptyIterable() {
 
-		Iterable<?> iterable = () -> Collections.emptyIterator();
+		Iterable<?> iterable = Collections::emptyIterator;
 
 		assertThat(CollectionUtils.nullSafeSize(iterable)).isZero();
 	}

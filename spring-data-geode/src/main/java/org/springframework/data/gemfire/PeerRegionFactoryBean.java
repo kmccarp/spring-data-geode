@@ -108,9 +108,9 @@ import org.springframework.util.StringUtils;
 public abstract class PeerRegionFactoryBean<K, V> extends ConfigurableRegionFactoryBean<K, V>
 		implements DisposableBean, EvictingRegionFactoryBean, ExpiringRegionFactoryBean<K, V>, SmartLifecycle {
 
-	private boolean close = false;
-	private boolean destroy = false;
-	private boolean running = false;
+	private boolean close;
+	private boolean destroy;
+	private boolean running;
 
 	private Boolean offHeap;
 	private Boolean persistent;

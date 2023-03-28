@@ -163,7 +163,7 @@ public interface CompositeTypeFilter extends TypeFilter {
 
 		return typeFilter instanceof CompositeTypeFilter
 			? (CompositeTypeFilter) typeFilter
-			: (metadataReader, metadataReaderFactory) -> typeFilter.match(metadataReader, metadataReaderFactory);
+			: typeFilter::match;
 	}
 
 	/**

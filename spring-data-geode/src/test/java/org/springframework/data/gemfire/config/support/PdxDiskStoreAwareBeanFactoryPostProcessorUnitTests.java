@@ -192,7 +192,7 @@ public class PdxDiskStoreAwareBeanFactoryPostProcessorUnitTests {
 	@SuppressWarnings("all")
 	public void postProcessBeanFactory() {
 
-		Map<String, BeanDefinition> beanDefinitions = new HashMap<String, BeanDefinition>(13);
+		Map<String, BeanDefinition> beanDefinitions = new HashMap<>(13);
 
 		beanDefinitions.put("someBean", defineBean("org.company.app.domain.SomeBean", "someOtherBean"));
 		beanDefinitions.put("gemfireCache", defineCache());

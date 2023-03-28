@@ -80,7 +80,7 @@ public class GemFireDataSourceIntegrationTest extends ForkingClientServerIntegra
 		if (Boolean.parseBoolean(System.getProperty("spring.gemfire.fork.clean", Boolean.TRUE.toString()))) {
 			getGemFireServerProcess()
 				.map(ProcessWrapper::getWorkingDirectory)
-				.ifPresent(workingDirectory -> FileSystemUtils.deleteRecursively(workingDirectory));
+				.ifPresent(FileSystemUtils::deleteRecursively);
 		}
 	}
 

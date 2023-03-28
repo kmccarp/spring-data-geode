@@ -44,7 +44,7 @@ public class ClientRegionShortcutConverter implements Converter<String, ClientRe
 	 * @see java.lang.String#valueOf(Object)
 	 */
 	protected static String toUpperCase(final String value) {
-		return (value != null ? value.toUpperCase().trim() : String.valueOf(value));
+		return value != null ? value.toUpperCase().trim() : value;
 	}
 
 	/**

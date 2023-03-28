@@ -137,6 +137,8 @@ public class SchemaObjectDefinitionUnitTests {
 
 	private static final class TestSchemaObjectDefinition extends SchemaObjectDefinition {
 
+		private static final long serialVersionUID = 1;
+
 		private TestSchemaObjectDefinition(String name) {
 			super(name);
 		}

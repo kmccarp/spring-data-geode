@@ -81,8 +81,8 @@ public class FixedPartitionAttributesFactoryBean implements FactoryBean<FixedPar
 	 */
 	@Override
 	public Class<?> getObjectType() {
-		return (this.fixedPartitionAttributes != null ? this.fixedPartitionAttributes.getClass()
-			: FixedPartitionAttributes.class);
+		return this.fixedPartitionAttributes != null ? this.fixedPartitionAttributes.getClass()
+			: FixedPartitionAttributes.class;
 	}
 
 	/**

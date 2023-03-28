@@ -37,7 +37,7 @@ import lombok.Data;
  */
 public class GemfireMappingContextUnitTests {
 
-	private GemfireMappingContext mappingContext = new GemfireMappingContext();
+	private final GemfireMappingContext mappingContext = new GemfireMappingContext();
 
 	@Test
 	@SuppressWarnings("unchecked")

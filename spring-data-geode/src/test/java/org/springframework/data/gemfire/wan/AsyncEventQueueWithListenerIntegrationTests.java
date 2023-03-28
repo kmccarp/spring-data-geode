@@ -163,7 +163,7 @@ public class AsyncEventQueueWithListenerIntegrationTests extends IntegrationTest
 
 		@Override
 		public String toString() {
-			return (StringUtils.hasText(getName()) ? getName() : getClass().getName());
+			return StringUtils.hasText(getName()) ? getName() : getClass().getName();
 		}
 	}
 }

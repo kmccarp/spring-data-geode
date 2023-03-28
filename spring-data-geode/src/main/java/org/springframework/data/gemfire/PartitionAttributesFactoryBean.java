@@ -73,7 +73,7 @@ public class PartitionAttributesFactoryBean<K, V> extends AbstractFactoryBeanSup
 
 	@Override
 	public Class<?> getObjectType() {
-		return (this.partitionAttributes != null ? this.partitionAttributes.getClass() : PartitionAttributes.class);
+		return this.partitionAttributes != null ? this.partitionAttributes.getClass() : PartitionAttributes.class;
 	}
 
 	public void setColocatedWith(String collocatedWith) {

@@ -82,7 +82,7 @@ public class AutoRegionLookupBeanPostProcessorUnitTests {
 
 	protected String toRegionName(String regionFullPath) {
 		int index = regionFullPath.lastIndexOf(Region.SEPARATOR);
-		return (index > -1 ? regionFullPath.substring(index + 1) : regionFullPath);
+		return index > -1 ? regionFullPath.substring(index + 1) : regionFullPath;
 	}
 
 	@Test

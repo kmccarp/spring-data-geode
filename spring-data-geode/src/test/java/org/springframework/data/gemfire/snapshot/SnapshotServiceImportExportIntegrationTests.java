@@ -126,7 +126,7 @@ public class SnapshotServiceImportExportIntegrationTests extends SpringApplicati
 	@Before
 	public void setup() {
 		//setupPeople();
-		ThreadUtils.timedWait(TimeUnit.SECONDS.toMillis(5), 500, () -> !(people.size() > 0));
+		ThreadUtils.timedWait(TimeUnit.SECONDS.toMillis(5), 500, () -> people.size() <= 0);
 	}
 
 	private void setupPeople() {

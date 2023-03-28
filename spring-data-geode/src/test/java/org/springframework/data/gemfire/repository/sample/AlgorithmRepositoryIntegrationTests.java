@@ -89,7 +89,7 @@ public class AlgorithmRepositoryIntegrationTests extends IntegrationTestsSupport
 		assertThat(binarySearch.getName()).isEqualTo(BinarySearch.class.getSimpleName());
 	}
 
-	protected static abstract class AbstractAlgorithm implements Algorithm {
+	protected abstract static class AbstractAlgorithm implements Algorithm {
 
 		@Override
 		public String getName() {

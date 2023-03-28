@@ -59,6 +59,8 @@ public class FunctionServiceNamespaceIntegrationTests extends IntegrationTestsSu
 
 	public static class FunctionOne implements Function<Object> {
 
+		private static final long serialVersionUID = 1;
+
 		@Override
 		public void execute(FunctionContext functionContext) { }
 
@@ -69,6 +71,8 @@ public class FunctionServiceNamespaceIntegrationTests extends IntegrationTestsSu
 	}
 
 	public static class FunctionTwo implements Function<Object> {
+
+		private static final long serialVersionUID = 1;
 
 		@Override
 		public void execute(FunctionContext functionContext) { }

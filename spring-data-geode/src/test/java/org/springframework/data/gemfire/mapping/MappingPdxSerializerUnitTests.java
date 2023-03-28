@@ -558,8 +558,8 @@ public class MappingPdxSerializerUnitTests {
 
 		this.pdxSerializer.setCustomPdxSerializers(Collections.singletonMap(Address.class, mockAddressSerializer));
 		this.pdxSerializer.setEntityInstantiators(Collections.singletonMap(Person.class, this.mockEntityInstantiator));
-		this.pdxSerializer.setIncludeTypeFilters(type -> Address.class.isAssignableFrom(type));
-		this.pdxSerializer.setIncludeTypeFilters(type -> Person.class.isAssignableFrom(type));
+		this.pdxSerializer.setIncludeTypeFilters(Address.class::isAssignableFrom);
+		this.pdxSerializer.setIncludeTypeFilters(Person.class::isAssignableFrom);
 
 		Object obj = this.pdxSerializer.fromData(Person.class, this.mockReader);
 
@@ -592,7 +592,7 @@ public class MappingPdxSerializerUnitTests {
 
 		try {
 			this.pdxSerializer.setEntityInstantiators(Collections.singletonMap(Person.class, this.mockEntityInstantiator));
-			this.pdxSerializer.setIncludeTypeFilters(type -> Person.class.equals(type));
+			this.pdxSerializer.setIncludeTypeFilters(Person.class::equals);
 			this.pdxSerializer.fromData(Person.class, this.mockReader);
 		}
 		catch (MappingException expected) {
@@ -633,7 +633,7 @@ public class MappingPdxSerializerUnitTests {
 
 		this.pdxSerializer.setCustomPdxSerializers(Collections.singletonMap(Address.class, mockAddressSerializer));
 		this.pdxSerializer.setEntityInstantiators(Collections.singletonMap(Person.class, this.mockEntityInstantiator));
-		this.pdxSerializer.setIncludeTypeFilters(type -> Person.class.equals(type));
+		this.pdxSerializer.setIncludeTypeFilters(Person.class::equals);
 		this.pdxSerializer.fromData(Person.class, this.mockReader);
 
 		GemfirePersistentEntity<?> persistentEntity =
@@ -736,8 +736,8 @@ public class MappingPdxSerializerUnitTests {
 
 		jonDoe.address = address;
 
-		this.pdxSerializer.setIncludeTypeFilters(type -> Address.class.equals(type));
-		this.pdxSerializer.setIncludeTypeFilters(type -> Person.class.equals(type));
+		this.pdxSerializer.setIncludeTypeFilters(Address.class::equals);
+		this.pdxSerializer.setIncludeTypeFilters(Person.class::equals);
 		this.pdxSerializer.setCustomPdxSerializers(Collections.singletonMap(Address.class, mockAddressSerializer));
 
 		assertThat(this.pdxSerializer.toData(jonDoe, this.mockWriter)).isTrue();
@@ -773,8 +773,8 @@ public class MappingPdxSerializerUnitTests {
 			.thenThrow(newIllegalArgumentException("test"));
 
 		try {
-			this.pdxSerializer.setIncludeTypeFilters(type -> Address.class.equals(type));
-			this.pdxSerializer.setIncludeTypeFilters(type -> Person.class.equals(type));
+			this.pdxSerializer.setIncludeTypeFilters(Address.class::equals);
+			this.pdxSerializer.setIncludeTypeFilters(Person.class::equals);
 			this.pdxSerializer.setCustomPdxSerializers(Collections.emptyMap());
 			this.pdxSerializer.toData(jonDoe, this.mockWriter);
 		}

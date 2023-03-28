@@ -93,15 +93,15 @@ class GatewaySenderParser extends AbstractSimpleBeanDefinitionParser {
 			if (element.getParentNode().getNodeName().endsWith("region")) {
 				Element region = (Element) element.getParentNode();
 
-				String regionName = (StringUtils.hasText(region.getAttribute(NAME_ATTRIBUTE))
-					? region.getAttribute(NAME_ATTRIBUTE) : region.getAttribute(ID_ATTRIBUTE));
+				String regionName = StringUtils.hasText(region.getAttribute(NAME_ATTRIBUTE))
+					? region.getAttribute(NAME_ATTRIBUTE) : region.getAttribute(ID_ATTRIBUTE);
 
 				int index = 0;
 
-				String gatewaySenderName = (regionName + ".gatewaySender#" + index);
+				String gatewaySenderName = regionName + ".gatewaySender#" + index;
 
 				while (parserContext.getRegistry().isBeanNameInUse(gatewaySenderName)) {
-					gatewaySenderName = (regionName + ".gatewaySender#" + (++index));
+					gatewaySenderName = regionName + ".gatewaySender#" + (++index);
 				}
 
 				builder.addPropertyValue("name", gatewaySenderName);

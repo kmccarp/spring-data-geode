@@ -179,7 +179,7 @@ public class LookupRegionMutationIntegrationTests extends IntegrationTestsSuppor
 		void setName(String name);
 	}
 
-	static abstract class AbstractNameable implements Nameable {
+	abstract static class AbstractNameable implements Nameable {
 
 		private String name;
 

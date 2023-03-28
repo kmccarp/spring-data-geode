@@ -276,6 +276,8 @@ public abstract class AbstractGeodeSecurityIntegrationTests extends ForkingClien
 	@RequiredArgsConstructor(staticName = "newUser")
 	public static class User implements Iterable<Role>, Principal, Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		private final Set<Role> roles = new HashSet<>();
 
 		@lombok.NonNull
@@ -325,6 +327,8 @@ public abstract class AbstractGeodeSecurityIntegrationTests extends ForkingClien
 	@RequiredArgsConstructor(staticName = "newRole")
 	@SuppressWarnings("unsed")
 	public static class Role implements Iterable<ResourcePermission>, Serializable {
+
+		private static final long serialVersionUID = 1;
 
 		@NonNull
 		private final String name;

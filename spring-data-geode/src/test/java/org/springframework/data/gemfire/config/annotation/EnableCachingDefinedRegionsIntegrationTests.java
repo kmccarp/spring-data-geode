@@ -141,7 +141,7 @@ public class EnableCachingDefinedRegionsIntegrationTests extends IntegrationTest
 		}
 	}
 
-	static abstract class AbstractCacheableService {
+	abstract static class AbstractCacheableService {
 
 		private final AtomicBoolean cacheMiss = new AtomicBoolean(false);
 

@@ -31,7 +31,7 @@ import org.apache.geode.cache.snapshot.SnapshotFilter;
  * @since 1.7.0
  */
 @SuppressWarnings("unused")
-public class ComposableSnapshotFilter<K, V> implements SnapshotFilter<K, V> {
+public final class ComposableSnapshotFilter<K, V> implements SnapshotFilter<K, V> {
 
 	/**
 	 * Operator is an enumeration of logical operators (AND, OR) used to compose SnapshotFilters
@@ -42,15 +42,15 @@ public class ComposableSnapshotFilter<K, V> implements SnapshotFilter<K, V> {
 		OR;
 
 		public boolean isAnd() {
-			return (this == AND);
+			return this == AND;
 		}
 
 		public boolean isOr() {
-			return (this == OR);
+			return this == OR;
 		}
 
 		public boolean operate(boolean leftOperand, boolean rightOperand) {
-			return (isAnd() ? (leftOperand && rightOperand) : (leftOperand || rightOperand));
+			return isAnd() ? (leftOperand && rightOperand) : (leftOperand || rightOperand);
 		}
 	}
 
@@ -95,8 +95,8 @@ public class ComposableSnapshotFilter<K, V> implements SnapshotFilter<K, V> {
 		SnapshotFilter<K, V> composedSnapshotFilter = null;
 
 		for (SnapshotFilter<K, V> snapshotFilter : nullSafeArray(snapshotFilters, SnapshotFilter.class)) {
-			composedSnapshotFilter = (composedSnapshotFilter == null ? snapshotFilter
-				: new ComposableSnapshotFilter<K, V>(snapshotFilter, operator, composedSnapshotFilter));
+			composedSnapshotFilter = composedSnapshotFilter == null ? snapshotFilter
+				: new ComposableSnapshotFilter<K, V>(snapshotFilter, operator, composedSnapshotFilter);
 		}
 
 		return composedSnapshotFilter;

@@ -68,7 +68,7 @@ public class RegionDefiner implements SchemaObjectDefiner {
 
 		return Optional.ofNullable(schemaObject)
 			.filter(this::canDefine)
-			.map(it -> (Region) it)
+			.map(Region.class::cast)
 			.filter(RegionUtils::isClient)
 			.map(it -> RegionDefinition.from(it).having(getRegionShortcut()));
 	}

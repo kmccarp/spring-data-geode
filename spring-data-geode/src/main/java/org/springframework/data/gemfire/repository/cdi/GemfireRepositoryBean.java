@@ -103,7 +103,7 @@ class GemfireRepositoryBean<T> extends CdiRepositoryBean<T> {
 
 		for (Type type : bean.getTypes()) {
 
-			Type assignableType = (type instanceof ParameterizedType ? ((ParameterizedType) type).getRawType() : type);
+			Type assignableType = type instanceof ParameterizedType ? ((ParameterizedType) type).getRawType() : type;
 
 			if (assignableType instanceof Class && targetType.isAssignableFrom((Class<?>) assignableType)) {
 				return type;
@@ -127,9 +127,9 @@ class GemfireRepositoryBean<T> extends CdiRepositoryBean<T> {
 	}
 
 	GemfireMappingContext resolveGemfireMappingContext() {
-		return (gemfireMappingContextBean != null
+		return gemfireMappingContextBean != null
 			? getDependencyInstance(gemfireMappingContextBean, GemfireMappingContext.class)
-				: DEFAULT_GEMFIRE_MAPPING_CONTEXT);
+				: DEFAULT_GEMFIRE_MAPPING_CONTEXT;
 	}
 
 	GemfireRepositoryFactory newGemfireRepositoryFactory() {

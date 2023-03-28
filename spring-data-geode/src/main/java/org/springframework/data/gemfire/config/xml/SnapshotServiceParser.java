@@ -106,6 +106,6 @@ class SnapshotServiceParser extends AbstractSingleBeanDefinitionParser {
 
 	/* (non-Javadoc) */
 	private boolean isSnapshotFilterSpecified(final Element snapshotMetadataElement) {
-		return (snapshotMetadataElement.hasAttribute("filter-ref") || snapshotMetadataElement.hasChildNodes());
+		return snapshotMetadataElement.hasAttribute("filter-ref") || snapshotMetadataElement.hasChildNodes();
 	}
 }

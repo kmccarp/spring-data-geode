@@ -141,9 +141,9 @@ public class GemFireComponentClassTypeScanner implements Iterable<String> {
 
 		ConfigurableApplicationContext applicationContext = getApplicationContext();
 
-		return (this.entityClassLoader != null ? this.entityClassLoader
+		return this.entityClassLoader != null ? this.entityClassLoader
 			: (applicationContext != null ? applicationContext.getBeanFactory().getBeanClassLoader()
-			: Thread.currentThread().getContextClassLoader()));
+			: Thread.currentThread().getContextClassLoader());
 	}
 
 	/**

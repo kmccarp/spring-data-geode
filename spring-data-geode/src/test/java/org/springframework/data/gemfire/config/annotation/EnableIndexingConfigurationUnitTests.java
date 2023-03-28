@@ -312,7 +312,7 @@ public class EnableIndexingConfigurationUnitTests extends SpringApplicationConte
 		}
 	}
 
-	static abstract class AbstractIndexAnswer implements Answer<Index> {
+	abstract static class AbstractIndexAnswer implements Answer<Index> {
 
 		@Override
 		public Index answer(InvocationOnMock invocation) throws Throwable {

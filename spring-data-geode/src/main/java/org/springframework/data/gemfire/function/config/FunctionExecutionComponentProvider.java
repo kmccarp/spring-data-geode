@@ -104,9 +104,7 @@ class FunctionExecutionComponentProvider extends ClassPathScanningCandidateCompo
 	@Override
 	protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
 
- 		boolean isTopLevelType = !beanDefinition.getMetadata().hasEnclosingClass();
-
-		return isTopLevelType;
+		return !beanDefinition.getMetadata().hasEnclosingClass();
 	}
 
 	// Copy of Spring's AnnotationTypeFilter until SPR-8336 gets resolved.

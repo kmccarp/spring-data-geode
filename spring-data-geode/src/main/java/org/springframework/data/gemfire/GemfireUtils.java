@@ -38,10 +38,10 @@ import org.springframework.util.ClassUtils;
 @SuppressWarnings("unused")
 public abstract class GemfireUtils extends RegionUtils {
 
-	public final static String APACHE_GEODE_NAME = "Apache Geode";
-	public final static String GEMFIRE_NAME = apacheGeodeProductName();
-	public final static String GEMFIRE_VERSION = apacheGeodeVersion();
-	public final static String UNKNOWN = "unknown";
+	public static final String APACHE_GEODE_NAME = "Apache Geode";
+	public static final String GEMFIRE_NAME = apacheGeodeProductName();
+	public static final String GEMFIRE_VERSION = apacheGeodeVersion();
+	public static final String UNKNOWN = "unknown";
 
 	private static final String ASYNC_EVENT_QUEUE_ELEMENT_NAME = "async-event-queue";
 	private static final String ASYNC_EVENT_QUEUE_TYPE_NAME = "org.apache.geode.cache.asyncqueue.AsyncEventQueue";
@@ -78,20 +78,20 @@ public abstract class GemfireUtils extends RegionUtils {
 
 	public static boolean isGemfireFeatureAvailable(GemfireFeature feature) {
 
-		boolean featureAvailable = (!GemfireFeature.AEQ.equals(feature) || isAsyncEventQueueAvailable());
+		boolean featureAvailable = !GemfireFeature.AEQ.equals(feature) || isAsyncEventQueueAvailable();
 
-		featureAvailable &= (!GemfireFeature.CONTINUOUS_QUERY.equals(feature) || isContinuousQueryAvailable());
-		featureAvailable &= (!GemfireFeature.WAN.equals(feature) || isGatewayAvailable());
+		featureAvailable &= !GemfireFeature.CONTINUOUS_QUERY.equals(feature) || isContinuousQueryAvailable();
+		featureAvailable &= !GemfireFeature.WAN.equals(feature) || isGatewayAvailable();
 
 		return featureAvailable;
 	}
 
 	public static boolean isGemfireFeatureAvailable(Element element) {
 
-		boolean featureAvailable = (!isAsyncEventQueue(element) || isAsyncEventQueueAvailable());
+		boolean featureAvailable = !isAsyncEventQueue(element) || isAsyncEventQueueAvailable();
 
-		featureAvailable &= (!isContinuousQuery(element) || isContinuousQueryAvailable());
-		featureAvailable &= (!isGateway(element) || isGatewayAvailable());
+		featureAvailable &= !isContinuousQuery(element) || isContinuousQueryAvailable();
+		featureAvailable &= !isGateway(element) || isGatewayAvailable();
 
 		return featureAvailable;
 	}
@@ -124,8 +124,8 @@ public abstract class GemfireUtils extends RegionUtils {
 
 		String elementLocalName = element.getLocalName();
 
-		return (GATEWAY_RECEIVER_ELEMENT_NAME.equals(elementLocalName)
-			|| GATEWAY_SENDER_ELEMENT_NAME.equals(elementLocalName));
+		return GATEWAY_RECEIVER_ELEMENT_NAME.equals(elementLocalName)
+			|| GATEWAY_SENDER_ELEMENT_NAME.equals(elementLocalName);
 	}
 
 	private static boolean isGatewayAvailable() {

@@ -83,7 +83,7 @@ public class Regions implements Iterable<Region<?, ?>> {
 		Assert.notNull(entityType, "Entity type must not be null");
 
 		String regionName = Optional.ofNullable(this.mappingContext.getPersistentEntity(entityType))
-			.map(entity -> entity.getRegionName())
+			.map(GemfirePersistentEntity::getRegionName)
 			.orElseGet(entityType::getSimpleName);
 
 		return (Region<?, T>) this.regions.get(regionName);

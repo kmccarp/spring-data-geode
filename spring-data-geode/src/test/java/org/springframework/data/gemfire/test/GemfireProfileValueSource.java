@@ -41,7 +41,7 @@ public class GemfireProfileValueSource implements ProfileValueSource {
 	public static final Map<String, String> PROFILE_VALUES;
 
 	static {
-		Map<String, String> profileValues = new ConcurrentHashMap<String, String>(1);
+		Map<String, String> profileValues = new ConcurrentHashMap<>(1);
 		profileValues.put(PRODUCT_NAME_KEY, System.getProperty(PRODUCT_NAME_KEY, GemfireUtils.GEMFIRE_NAME));
 		PROFILE_VALUES = Collections.unmodifiableMap(profileValues);
 	}

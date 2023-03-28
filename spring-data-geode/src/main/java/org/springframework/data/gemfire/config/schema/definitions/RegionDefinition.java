@@ -45,6 +45,8 @@ import org.springframework.util.StringUtils;
  */
 public class RegionDefinition extends SchemaObjectDefinition {
 
+	private static final long serialVersionUID = 1;
+
 	protected static final int ORDER = 1;
 
 	public static final RegionShortcut DEFAULT_REGION_SHORTCUT = RegionShortcut.PARTITION;
