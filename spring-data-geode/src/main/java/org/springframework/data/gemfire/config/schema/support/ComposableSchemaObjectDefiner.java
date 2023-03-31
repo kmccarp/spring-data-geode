@@ -58,9 +58,9 @@ public final class ComposableSchemaObjectDefiner
 			stream(nullSafeIterable(schemaObjectDefiners).spliterator(), false)
 				.filter(Objects::nonNull).collect(Collectors.toSet());
 
-		return (schemaObjectDefinerSet.isEmpty() ? null
+		return schemaObjectDefinerSet.isEmpty() ? null
 			: (schemaObjectDefinerSet.size() == 1 ? schemaObjectDefinerSet.iterator().next()
-			: new ComposableSchemaObjectDefiner(schemaObjectDefinerSet)));
+			: new ComposableSchemaObjectDefiner(schemaObjectDefinerSet));
 	}
 
 	private final Set<SchemaObjectDefiner> schemaObjectDefiners;

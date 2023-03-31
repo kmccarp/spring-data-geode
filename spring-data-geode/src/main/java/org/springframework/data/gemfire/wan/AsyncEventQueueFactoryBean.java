@@ -154,7 +154,7 @@ public class AsyncEventQueueFactoryBean extends AbstractWANComponentFactoryBean<
 	public void destroy() {
 
 		if (!getCache().isClosed()) {
-			SpringExtensions.safeDoOperation(() -> this.asyncEventListener.close());
+			SpringExtensions.safeDoOperation(this.asyncEventListener::close);
 		}
 	}
 

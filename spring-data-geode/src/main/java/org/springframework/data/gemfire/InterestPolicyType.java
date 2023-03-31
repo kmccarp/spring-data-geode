@@ -53,7 +53,7 @@ public enum InterestPolicyType {
 	 * @see org.apache.geode.cache.InterestPolicy
 	 */
 	public static InterestPolicy getInterestPolicy(final InterestPolicyType interestPolicyType) {
-		return (interestPolicyType != null ? interestPolicyType.getInterestPolicy() : null);
+		return interestPolicyType != null ? interestPolicyType.getInterestPolicy() : null;
 	}
 
 	/**

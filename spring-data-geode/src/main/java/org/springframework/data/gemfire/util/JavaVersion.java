@@ -71,7 +71,7 @@ public abstract class JavaVersion implements Comparable<JavaVersion> {
 
 	private static JavaVersion determineCurrentJavaVersion() {
 
-		String javaVersion = String.valueOf(System.getProperty(JAVA_VERSION_SYSTEM_PROPERTY));
+		String javaVersion = System.getProperty(JAVA_VERSION_SYSTEM_PROPERTY);
 
 		String[] javaVersionArray = ArrayUtils.nullSafeArray(javaVersion.split("\\."), String.class);
 

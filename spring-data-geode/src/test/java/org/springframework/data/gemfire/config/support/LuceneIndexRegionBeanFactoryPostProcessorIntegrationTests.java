@@ -66,9 +66,9 @@ public class LuceneIndexRegionBeanFactoryPostProcessorIntegrationTests extends I
 	private BeanDefinition getBeanDefinition(String beanName) {
 
 		return Optional.ofNullable(this.applicationContext)
-			.filter(it -> it instanceof AbstractApplicationContext)
-			.map(it -> (AbstractApplicationContext) it)
-			.map(it -> it.getBeanFactory())
+			.filter(AbstractApplicationContext.class::isInstance)
+			.map(AbstractApplicationContext.class::cast)
+			.map(AbstractApplicationContext::getBeanFactory)
 			.map(beanFactory -> beanFactory.getBeanDefinition(beanName))
 			.orElse(null);
 	}

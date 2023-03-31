@@ -44,7 +44,7 @@ import org.springframework.data.gemfire.PeerRegionFactoryBean;
 @SuppressWarnings("unused")
 public abstract class DeclarableSupport implements CacheCallback, Declarable {
 
-	private String beanFactoryKey = null;
+	private String beanFactoryKey;
 
 	/**
 	 * Returns a reference to the Spring {@link BeanFactory}.

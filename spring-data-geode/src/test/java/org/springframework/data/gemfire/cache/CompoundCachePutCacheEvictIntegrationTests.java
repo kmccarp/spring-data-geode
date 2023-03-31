@@ -233,6 +233,8 @@ public class CompoundCachePutCacheEvictIntegrationTests extends IntegrationTests
 	@RequiredArgsConstructor(staticName = "newEmployee")
 	public static class Employee implements Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		@Id
 		private Long id;
 
@@ -272,7 +274,7 @@ public class CompoundCachePutCacheEvictIntegrationTests extends IntegrationTests
 		}
 	}
 
-	protected static abstract class CacheableService {
+	protected abstract static class CacheableService {
 
 		private final AtomicBoolean cacheMiss = new AtomicBoolean(false);
 

@@ -72,7 +72,7 @@ public class SubRegionSubElementNamespaceIntegrationTests extends IntegrationTes
 		boolean found = false;
 
 		for (CacheListener<?, ?> listener : customersAccountsRegion.getAttributes().getCacheListeners()) {
-			found |= (listener instanceof TestNoOpCacheListener);
+			found |= listener instanceof TestNoOpCacheListener;
 		}
 
 		assertThat(found)

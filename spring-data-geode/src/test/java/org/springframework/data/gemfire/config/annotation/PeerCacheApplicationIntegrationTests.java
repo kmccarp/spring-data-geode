@@ -71,7 +71,7 @@ public class PeerCacheApplicationIntegrationTests extends IntegrationTestsSuppor
 		PartitionedRegionFactoryBean<String, String> echoRegion(Cache gemfireCache) {
 
 			PartitionedRegionFactoryBean<String, String> echoRegion =
-				new PartitionedRegionFactoryBean<String, String>();
+				new PartitionedRegionFactoryBean<>();
 
 			echoRegion.setCache(gemfireCache);
 			echoRegion.setCacheLoader(echoCacheLoader());

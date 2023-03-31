@@ -131,7 +131,7 @@ abstract class AbstractFunctionExecution {
 
 		return Optional.ofNullable(getFunction())
 			.map(ObjectUtils::nullSafeClassName)
-			.orElseGet(() -> getFunctionId());
+			.orElseGet(this::getFunctionId);
 	}
 
 	/**

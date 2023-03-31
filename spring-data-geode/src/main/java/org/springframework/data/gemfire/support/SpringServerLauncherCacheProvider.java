@@ -71,7 +71,7 @@ public class SpringServerLauncherCacheProvider implements ServerLauncherCachePro
 
 	/* (non-Javadoc) */
 	String gemfireName() {
-		return (GemfireUtils.GEMFIRE_PREFIX + GemfireUtils.NAME_PROPERTY_NAME);
+		return GemfireUtils.GEMFIRE_PREFIX + GemfireUtils.NAME_PROPERTY_NAME;
 	}
 
 	/* (non-Javadoc) */

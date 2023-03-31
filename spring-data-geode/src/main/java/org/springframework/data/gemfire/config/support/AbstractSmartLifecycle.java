@@ -38,7 +38,7 @@ public abstract class AbstractSmartLifecycle implements ApplicationContextAware,
 
 	protected static final int DEFAULT_PHASE = 0;
 
-	private volatile boolean running = false;
+	private volatile boolean running;
 
 	private ApplicationContext applicationContext;
 

@@ -90,7 +90,7 @@ public class ClientCachePoolIntegrationTests extends ForkingClientServerIntegrat
 			Assert.isTrue(number >= 0, String.format("number [%1$d] must be greater than equal to 0", number));
 
 			if (number <= 2l) {
-				return (number < 2l ? 1l : 2l);
+				return number < 2l ? 1l : 2l;
 			}
 
 			long result = number;

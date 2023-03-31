@@ -178,7 +178,7 @@ public class RegionDataPolicyShortcutsIntegrationTests extends IntegrationTestsS
 		assertThat(shortcutDefaults.getAttributes().isDiskSynchronous()).isFalse();
 		assertThat(shortcutDefaults.getAttributes().getIgnoreJTA()).isTrue();
 		assertThat(shortcutDefaults.getAttributes().getInitialCapacity()).isEqualTo(101);
-		assertThat(new Float(shortcutDefaults.getAttributes().getLoadFactor())).isEqualTo(new Float(0.85f));
+		assertThat(Float.valueOf(shortcutDefaults.getAttributes().getLoadFactor())).isEqualTo(Float.valueOf(0.85f));
 		assertThat(shortcutDefaults.getAttributes().getKeyConstraint()).isEqualTo(Long.class);
 		assertThat(shortcutDefaults.getAttributes().getMulticastEnabled()).isFalse();
 		assertThat(shortcutDefaults.getAttributes().getValueConstraint()).isEqualTo(String.class);
@@ -206,7 +206,7 @@ public class RegionDataPolicyShortcutsIntegrationTests extends IntegrationTestsS
 		assertThat(shortcutOverrides.getAttributes().isDiskSynchronous()).isTrue();
 		assertThat(shortcutOverrides.getAttributes().getIgnoreJTA()).isFalse();
 		assertThat(shortcutOverrides.getAttributes().getInitialCapacity()).isEqualTo(51);
-		assertThat(new Float(shortcutOverrides.getAttributes().getLoadFactor())).isEqualTo(new Float(0.72f));
+		assertThat(Float.valueOf(shortcutOverrides.getAttributes().getLoadFactor())).isEqualTo(Float.valueOf(0.72f));
 		assertThat(shortcutOverrides.getAttributes().getKeyConstraint()).isEqualTo(String.class);
 		assertThat(shortcutOverrides.getAttributes().getValueConstraint()).isEqualTo(Object.class);
 		assertThat(shortcutOverrides.getAttributes().getEvictionAttributes()).isNotNull();

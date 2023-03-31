@@ -77,7 +77,7 @@ public class Customer {
 	}
 
 	protected static boolean equalsIgnoreNull(final Object obj1, final Object obj2) {
-		return (Objects.equals(obj1, obj2));
+		return Objects.equals(obj1, obj2);
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class Customer {
 	}
 
 	protected static int hashCodeIgnoreNull(Object obj) {
-		return (obj != null ? obj.hashCode() : 0);
+		return obj != null ? obj.hashCode() : 0;
 	}
 
 	@Override

@@ -206,6 +206,8 @@ public class SnapshotApplicationEventTriggeredImportsExportsIntegrationTests ext
 
 	static class LastNameSnapshotFilter implements SnapshotFilter<Long, Person> {
 
+		private static final long serialVersionUID = 1;
+
 		private final String lastName;
 
 		LastNameSnapshotFilter(String lastName) {
@@ -229,6 +231,8 @@ public class SnapshotApplicationEventTriggeredImportsExportsIntegrationTests ext
 	}
 
 	static class NotLastNameSnapshotFilter extends LastNameSnapshotFilter {
+
+		private static final long serialVersionUID = 1;
 
 		NotLastNameSnapshotFilter(String lastName) {
 			super(lastName);

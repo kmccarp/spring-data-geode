@@ -43,7 +43,7 @@ public class RegionShortcutConverter implements Converter<String, RegionShortcut
 	 * @see java.lang.String#valueOf(Object)
 	 */
 	protected static String toUpperCase(final String value) {
-		return (value != null ? value.toUpperCase().trim() : String.valueOf(value));
+		return value != null ? value.toUpperCase().trim() : value;
 	}
 
 	/**

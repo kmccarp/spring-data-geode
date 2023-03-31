@@ -65,7 +65,7 @@ class GemfireListenerContainerParser extends AbstractSingleBeanDefinitionParser 
 		List<Element> listenerElements = DomUtils.getChildElementsByTagName(element, "listener");
 
 		if (!listenerElements.isEmpty()) {
-			ManagedSet<BeanDefinition> listeners = new ManagedSet<BeanDefinition>(listenerElements.size());
+			ManagedSet<BeanDefinition> listeners = new ManagedSet<>(listenerElements.size());
 
 			for (Element listenerElement : listenerElements) {
 				listeners.add(parseListener(listenerElement));

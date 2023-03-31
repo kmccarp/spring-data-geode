@@ -234,7 +234,7 @@ public class SmartCacheResolverFactoryBeanIntegrationTests extends IntegrationTe
 	}
 
 	@Order(0)
-	static abstract class ZeroOrderedCacheResolver implements CacheResolver<GemFireCache> {
+	abstract static class ZeroOrderedCacheResolver implements CacheResolver<GemFireCache> {
 
 		@Override
 		public GemFireCache resolve() {

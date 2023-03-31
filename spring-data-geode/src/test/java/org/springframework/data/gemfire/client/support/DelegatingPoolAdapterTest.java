@@ -206,7 +206,7 @@ public class DelegatingPoolAdapterTest {
 		assertThat(pool.getMaxConnections()).isEqualTo(PoolFactory.DEFAULT_MAX_CONNECTIONS);
 		assertThat(pool.getMinConnections()).isEqualTo(PoolFactory.DEFAULT_MIN_CONNECTIONS);
 		assertThat(pool.getMultiuserAuthentication()).isEqualTo(PoolFactory.DEFAULT_MULTIUSER_AUTHENTICATION);
-		assertThat(pool.getOnlineLocators()).isEqualTo(Collections.EMPTY_LIST);
+		assertThat(pool.getOnlineLocators()).isEqualTo(Collections.emptyList());
 		assertThat(pool.getPingInterval()).isEqualTo(PoolFactory.DEFAULT_PING_INTERVAL);
 		assertThat(pool.getPRSingleHopEnabled()).isEqualTo(PoolFactory.DEFAULT_PR_SINGLE_HOP_ENABLED);
 		assertThat(pool.getReadTimeout()).isEqualTo(PoolFactory.DEFAULT_READ_TIMEOUT);

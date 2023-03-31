@@ -42,11 +42,8 @@ class QueryBuilder {
 	static String asQuery(GemfirePersistentEntity<?> entity, PartTree tree) {
 
 		String distinctKeyword = tree.isDistinct() ? OqlKeyword.DISTINCT.toString() : "";
-		String regionName = entity.getRegionName();
-		String query = String.format(SELECT_OQL_TEMPLATE, distinctKeyword, regionName, DEFAULT_ALIAS)
-			.replaceAll("\\s{2,}", " "); // single space tokens
-
-		return query;
+		String regionName = entity.getRegionName(); return String.format(SELECT_OQL_TEMPLATE, distinctKeyword, regionName, DEFAULT_ALIAS)
+			.replaceAll("\\s{2,}", " ");
 	}
 
 	static String validateQuery(String query) {

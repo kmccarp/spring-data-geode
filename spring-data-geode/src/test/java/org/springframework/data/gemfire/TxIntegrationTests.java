@@ -57,7 +57,7 @@ public class TxIntegrationTests extends IntegrationTestsSupport {
 	@Qualifier("commit-region")
 	private Map<String, String> commitRegion;
 
-	private boolean txCommit = false;
+	private boolean txCommit;
 
 	@BeforeTransaction
 	public void addItemsToTheCache() {

@@ -61,8 +61,8 @@ public class LocatorFactoryBean extends AbstractFactoryBeanSupport<Locator> impl
 	private static final String LOCATORS_PROPERTY = GemFireProperties.LOCATORS.getName();
 	public static final String LOG_LEVEL_PROPERTY = GemFireProperties.LOG_LEVEL.getName();
 
-	private boolean useBeanFactoryLocator = false;
-	private boolean useClusterConfigurationService = false;
+	private boolean useBeanFactoryLocator;
+	private boolean useClusterConfigurationService;
 
 	private Integer port = DEFAULT_PORT;
 

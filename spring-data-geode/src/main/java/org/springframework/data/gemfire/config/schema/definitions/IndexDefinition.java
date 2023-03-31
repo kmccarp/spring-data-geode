@@ -48,6 +48,8 @@ import org.springframework.util.StringUtils;
  */
 public class IndexDefinition extends SchemaObjectDefinition {
 
+	private static final long serialVersionUID = 1;
+
 	protected static final int ORDER = RegionDefinition.ORDER + 1;
 
 	/**
@@ -192,7 +194,7 @@ public class IndexDefinition extends SchemaObjectDefinition {
 
 	protected static final class IndexWrapper extends AbstractIndexSupport {
 
-		private IndexType indexType;
+		private final IndexType indexType;
 
 		private final String name;
 		private final String expression;

@@ -120,6 +120,6 @@ public class LuceneOperationsUnitTests {
 			eq(mockLuceneQueryProvider), eq(LuceneOperations.DEFAULT_RESULT_LIMIT));
 	}
 
-	static abstract class TestLuceneOperations implements LuceneOperations { }
+	abstract static class TestLuceneOperations implements LuceneOperations { }
 
 }

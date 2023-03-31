@@ -246,6 +246,8 @@ public class EnableContinuousQueriesConfigurationIntegrationTests extends Forkin
 	@RequiredArgsConstructor(staticName = "newTemperatureReading")
 	public static class TemperatureReading implements Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		@NonNull
 		private Integer temperature;
 

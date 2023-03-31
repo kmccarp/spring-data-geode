@@ -60,7 +60,7 @@ public interface GemfireOperations {
 	<K, V> V put(K key, V value);
 
 	default <K, V> void putAll(Map<? extends K, ? extends V> map) {
-		CollectionUtils.nullSafeMap(map).forEach((key, value) -> put(key, value));
+		CollectionUtils.nullSafeMap(map).forEach(this::put);
 	}
 
 	<K, V> V putIfAbsent(K key, V value);

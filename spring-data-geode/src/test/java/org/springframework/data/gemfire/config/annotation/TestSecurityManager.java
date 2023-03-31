@@ -86,6 +86,8 @@ public final class TestSecurityManager implements org.apache.geode.security.Secu
 	@SuppressWarnings("unused")
 	public static final class TestPrincipal implements java.security.Principal, java.io.Serializable {
 
+		private static final long serialVersionUID = 1;
+
 		private final String name;
 
 		public static TestPrincipal newPrincipal(String username) {

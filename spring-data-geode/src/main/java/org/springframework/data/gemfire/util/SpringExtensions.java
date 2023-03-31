@@ -412,7 +412,7 @@ public abstract class SpringExtensions {
 		}
 	}
 
-	private static class DefaultOrderedBeanWrapper<T> implements OrderedBeanWrapper<T> {
+	private static final class DefaultOrderedBeanWrapper<T> implements OrderedBeanWrapper<T> {
 
 		private static <T> OrderedBeanWrapper<T> from(String beanName, T bean) {
 			return from(beanName, bean, Ordered.LOWEST_PRECEDENCE);

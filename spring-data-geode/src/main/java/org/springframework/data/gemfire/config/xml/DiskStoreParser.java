@@ -92,7 +92,7 @@ class DiskStoreParser extends AbstractSingleBeanDefinitionParser {
 		List<Element> diskDirElements = DomUtils.getChildElementsByTagName(element, "disk-dir");
 
 		if (!CollectionUtils.isEmpty(diskDirElements)) {
-			ManagedList<AbstractBeanDefinition> diskDirs = new ManagedList<AbstractBeanDefinition>();
+			ManagedList<AbstractBeanDefinition> diskDirs = new ManagedList<>();
 
 			for (Element diskDirElement : diskDirElements) {
 				BeanDefinitionBuilder diskDirBuilder = BeanDefinitionBuilder.genericBeanDefinition(DiskDir.class);

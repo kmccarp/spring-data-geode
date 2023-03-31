@@ -64,7 +64,7 @@ public abstract class LazyWiringDeclarableSupport extends WiringDeclarableSuppor
 	private final AtomicReference<Properties> parametersReference = new AtomicReference<>();
 
 	// condition to determine the initialized state of this Declarable object
-	volatile boolean initialized = false;
+	volatile boolean initialized;
 
 	/**
 	 * Constructs a new instance of the {@link LazyWiringDeclarableSupport} class registered with the

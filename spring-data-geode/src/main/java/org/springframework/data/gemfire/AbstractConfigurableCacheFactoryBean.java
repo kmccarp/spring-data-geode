@@ -53,7 +53,7 @@ import org.springframework.lang.Nullable;
 @SuppressWarnings("unused")
 public abstract class AbstractConfigurableCacheFactoryBean extends AbstractBasicCacheFactoryBean {
 
-	private boolean useBeanFactoryLocator = false;
+	private boolean useBeanFactoryLocator;
 
 	private GemfireBeanFactoryLocator beanFactoryLocator;
 

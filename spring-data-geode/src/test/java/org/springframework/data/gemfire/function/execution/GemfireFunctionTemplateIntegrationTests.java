@@ -44,13 +44,13 @@ import org.springframework.data.gemfire.tests.integration.ForkingClientServerInt
  */
 public class GemfireFunctionTemplateIntegrationTests extends ForkingClientServerIntegrationTestsSupport {
 
-	private ClientCache gemfireCache = null;
+	private ClientCache gemfireCache;
 
-	private Pool gemfirePool = null;
+	private Pool gemfirePool;
 
 	private final PoolResolver poolResolver = new PoolManagerPoolResolver();
 
-	private Region<String, String> gemfireRegion = null;
+	private Region<String, String> gemfireRegion;
 
 	@BeforeClass
 	public static void startGeodeServer() throws Exception {

@@ -44,7 +44,7 @@ public class ListIndexesFunction {
 	public Set<String> listIndexes() {
 
 		return Optional.ofNullable(resolveCache())
-			.map(cache -> cache.getQueryService())
+			.map(RegionService::getQueryService)
 			.map(queryService ->
 				nullSafeCollection(queryService.getIndexes()).stream().map(Index::getName).collect(Collectors.toSet()))
 			.orElseGet(Collections::emptySet);

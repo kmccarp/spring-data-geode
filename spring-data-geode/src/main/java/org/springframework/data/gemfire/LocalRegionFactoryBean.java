@@ -62,7 +62,7 @@ public class LocalRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K, V> {
 
 			// NOTE this is safe since a LOCAL Scoped NORMAL Region requiring persistence can be satisfied with
 			// PERSISTENT_REPLICATE, per the RegionShortcut.LOCAL_PERSISTENT
-			DataPolicy resolvedDataPolicy = (isPersistent() ? DataPolicy.PERSISTENT_REPLICATE : DataPolicy.NORMAL);
+			DataPolicy resolvedDataPolicy = isPersistent() ? DataPolicy.PERSISTENT_REPLICATE : DataPolicy.NORMAL;
 
 			regionFactory.setDataPolicy(resolvedDataPolicy);
 			setDataPolicy(resolvedDataPolicy);
@@ -71,7 +71,7 @@ public class LocalRegionFactoryBean<K, V> extends PeerRegionFactoryBean<K, V> {
 
 			// NOTE this is safe since a LOCAL Scoped PRELOADED Region requiring persistence can be satisfied with
 			// PERSISTENT_REPLICATE, per the RegionShortcut.LOCAL_PERSISTENT
-			DataPolicy resolvedDataPolicy = (isPersistent() ? DataPolicy.PERSISTENT_REPLICATE : DataPolicy.PRELOADED);
+			DataPolicy resolvedDataPolicy = isPersistent() ? DataPolicy.PERSISTENT_REPLICATE : DataPolicy.PRELOADED;
 
 			regionFactory.setDataPolicy(resolvedDataPolicy);
 			setDataPolicy(resolvedDataPolicy);

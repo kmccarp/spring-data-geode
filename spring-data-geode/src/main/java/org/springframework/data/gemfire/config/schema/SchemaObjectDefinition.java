@@ -41,6 +41,8 @@ import org.springframework.util.StringUtils;
  */
 public abstract class SchemaObjectDefinition implements Serializable, Ordered {
 
+	private static final long serialVersionUID = 1;
+
 	private final String name;
 
 	/**

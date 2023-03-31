@@ -86,7 +86,7 @@ public class LazyWiringDeclarableSupportFunctionBasedIntegrationTests extends In
 		assertThat(helloFunctionExecution.hello(null)).isEqualTo("Hello Everyone");
 	}
 
-	protected static abstract class FunctionAdaptor<T> extends LazyWiringDeclarableSupport implements Function<T> {
+	protected abstract static class FunctionAdaptor<T> extends LazyWiringDeclarableSupport implements Function<T> {
 
 		private final String id;
 
@@ -119,6 +119,8 @@ public class LazyWiringDeclarableSupportFunctionBasedIntegrationTests extends In
 	@SuppressWarnings("all")
 	public static class HelloGemFireFunction extends FunctionAdaptor<Object> {
 
+		private static final long serialVersionUID = 1;
+
 		protected static final String ADDRESS_TO_PARAMETER = "hello.address.to";
 		protected static final String DEFAULT_ADDRESS_TO = "World";
 		protected static final String HELLO_GREETING = "Hello %1$s";
@@ -138,7 +140,7 @@ public class LazyWiringDeclarableSupportFunctionBasedIntegrationTests extends In
 		}
 
 		protected String getDefaultAddressTo() {
-			return (StringUtils.hasText(defaultAddressTo) ? defaultAddressTo : DEFAULT_ADDRESS_TO);
+			return StringUtils.hasText(defaultAddressTo) ? defaultAddressTo : DEFAULT_ADDRESS_TO;
 		}
 
 		@Override
@@ -159,13 +161,13 @@ public class LazyWiringDeclarableSupportFunctionBasedIntegrationTests extends In
 
 			if (arguments instanceof Object[]) {
 				Object[] args = (Object[]) arguments;
-				addressTo = (args.length > 0 && args[0] != null ? String.valueOf(args[0]) : null);
+				addressTo = args.length > 0 && args[0] != null ? String.valueOf(args[0]) : null;
 			}
 			else if (arguments != null) {
 				addressTo = String.valueOf(arguments);
 			}
 
-			return (StringUtils.hasText(addressTo) ? addressTo : getAddressTo());
+			return StringUtils.hasText(addressTo) ? addressTo : getAddressTo();
 		}
 
 		protected String formatHelloGreeting(String addressTo) {
